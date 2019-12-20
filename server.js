@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // use react 20, activities 8 and 11. (pupster and ajax)
-
+// video guide in 20
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
