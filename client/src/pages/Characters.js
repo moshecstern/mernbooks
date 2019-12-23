@@ -23,7 +23,10 @@ class Characters extends Component {
 
   loadCharacters = () => {
     API.getCharacters()
-      .then(res => this.setState({ Characters: res.data, name: "", info: "", link: "" })
+      .then(res => {
+        //console.log(res);
+        this.setState({ characters: res.data, name: "", info: "", link: "" })
+      }
       )
       .catch(err => console.log(err));
   };
@@ -46,8 +49,8 @@ class Characters extends Component {
     if (this.state.name && this.state.info) {
       API.saveCharacter({
         name: this.state.name,
-        info: this.state.info,
-        link: this.state.link
+        link: this.state.link,
+        info: this.state.info
       })
         .then(res => this.loadCharacters())
         .catch(err => console.log(err));

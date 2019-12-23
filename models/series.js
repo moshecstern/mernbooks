@@ -8,7 +8,7 @@ const SeriesSchema = new Schema({
   synopsis: String,
   volumes: {type: Array},
   extras: Array,
-  date: { type: Date, default: Date.now }
+  // date: { type: Date, default: Date.now }
 });
 
 const Series = mongoose.model("Series", SeriesSchema);

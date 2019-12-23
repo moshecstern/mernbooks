@@ -2,6 +2,6 @@ const router = require("express").Router();
 const characterRoutes = require("./characters");
 
 // Book routes
-router.use("/character", characterRoutes);
+router.use("/characters", characterRoutes);
 
 module.exports = router;

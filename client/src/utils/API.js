@@ -7,14 +7,14 @@ export default {
   },
   // Gets the book with the given id
   getCharacter: function(id) {
-    return axios.get("/api/character/" + id);
+    return axios.get("/api/characters/" + id);
   },
   // Deletes the book with the given id
   deleteCharacter: function(id) {
-    return axios.delete("/api/character/" + id);
+    return axios.delete("/api/characters/" + id);
   },
   // Saves a book to the database
   saveCharacter: function(characterData) {
-    return axios.post("/api/character", characterData);
+    return axios.post("/api/characters", characterData);
   }
 };
