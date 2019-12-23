@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const routes = require("./routes");
+
 
 // use react 20, activities 8 and 11. (pupster and ajax)
 // video guide in 20
@@ -15,8 +17,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
-const booksController= require("./controllers/booksController");
-app.use(booksController);
+// const characterController= require("./controllers/characterController");
+// app.use(characterController);
+app.use(routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs

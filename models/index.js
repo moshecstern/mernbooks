@@ -1,3 +1,5 @@
 module.exports = {
-  Book: require("./book")
+  Series: require("./series"),
+  Notes: require("./notes"),
+  Character: require("./character")
 };
