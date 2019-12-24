@@ -16,21 +16,28 @@ mongoose.connect(
           link: "https://dc.fandom.com/wiki/Batman",
           img: "#.png",
           info: "badass hero kicks villains butt",
-          series: ["new 52", "rebirth"]
+          series: ["new52", "rebirth"]
+      },
+      {
+        name: "superman",
+        link: "https://dc.fandom.com/wiki/Superman",
+        img: "#.png",
+        info: "smallville",
+        series: ["new52", "rebirth"]
       }
   ];
 
 const seriesSeed = [
     {
-        series: "new 52",
+        series: "new52",
         character: "batman",
-        name: "Batman",
+        name: "batman",
         synopsis: "batman fights joker...",
         volumes: ["Vol 1: Court of Owls", "Vol 2: City of Owls", "Vol 3: Death of the Family", "Vol 4: Zero Year - Secret City", "Vol 5: Zero Year - Dark City", "Vol 6: Graveyard Shift", "Vol 7: Endgame", "Vol 8: Superheavy", "Vol 9: Bloom", "Vol 10: Epilogue"],
         extras: ["DC Comics: Zero Year", "The Joker: Endgame", "Batman vs. Superman: The Greatest Battles", "Absolute Batman: The Court of Owls"]
     }, 
     {
-        series: "new 52",
+        series: "new52",
         character: "batman",
         name: "Batman: Detective Comics",
         synopsis: "batman fights joker...",

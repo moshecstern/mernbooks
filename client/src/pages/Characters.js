@@ -14,7 +14,8 @@ class Characters extends Component {
     link: "",
     img: "",
     info: "",
-    series: []
+    series: [],
+    volumes: []
   };
 
   componentDidMount() {
@@ -30,6 +31,14 @@ class Characters extends Component {
       )
       .catch(err => console.log(err));
   };
+
+  getseriesbyname = () => {
+    API.findCharacterBySeries()
+    .then(res=> {
+      this.setState({volumes: res.data})
+    })
+    .catch(err => console.log(err));
+  }
 
   deleteCharacter = id => {
     API.deleteCharacter(id)
@@ -99,15 +108,31 @@ class Characters extends Component {
             {this.state.characters.length ? (
               <List>
                 {this.state.characters.map(character => (
-                  <ListItem key={character._id}>
+                  <ListItem key={character._id} onclick={this.getseriesbyname}>
                     <Link to={"/character/" + character._id}>
                       <strong>
                         {character.name} by {character.info}
+                        {/* <br></br>
+                        {character.series} */}
+                        {console.log(character.series)}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deletecharacter(character._id)} />
+                    {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
+                    {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}>{series}</Link>)}
+                    {/* {character.series.map(series => {series})} */}
+                    
                   </ListItem>
                 ))}
+                {/* {this.state.characters.map(characterarray => (
+                  <ListItem key={characterarray.series}>
+                  <Link to={"/character/" + characterarray._id}>
+                      <strong>
+                          {characterarray.series}
+                        
+                      </strong>
+                    </Link>
+                  </ListItem>
+                ))} */}
               </List>
             ) : (
               <h3>No Results to Display</h3>
