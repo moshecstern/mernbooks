@@ -46,6 +46,31 @@ const seriesSeed = [
 
 ]
 
+// const seriesSeed = [
+//   {
+//       series: "new52",
+//       character: "batman",
+//       name: "batman",
+//       synopsis: "batman fights joker...",
+//       volumes: {"vol": "1: Court of Owls", "vol": "2: City of Owls", "vol": "3: Death of the Family", "vol": "4: Zero Year - Secret City", "vol": "5: Zero Year - Dark City", "vol": "6: Graveyard Shift", "vol": "7: Endgame", "vol": "8: Superheavy", "vol": "9: Bloom", "vol": "10: Epilogue"},
+//       extras: ["DC Comics: Zero Year", "The Joker: Endgame", "Batman vs. Superman: The Greatest Battles", "Absolute Batman: The Court of Owls"]
+//   }, 
+//   {
+//       series: "new52",
+//       character: "batman",
+//       name: "Batman: Detective Comics",
+//       synopsis: "batman fights joker...",
+//       volumes: {"vol": "1: Faces of Death", "vol": "2: Scare Tactics", "vol": "3: Emperor Penguin", "vol": "4: The Wrath", "vol": "5: Gothtopia", "vol": "6: Icarus", "vol": "7: Anarky", "vol": "8: Blood of Heroes", "vol": "9: Gordon at War", "vol": "10: Epilogue"},
+//   }, 
+
+// ]
+
+const volumeSeed = [
+  {
+
+  }
+]
+
 const notesSeed = [
     {
         name: "DC Comics: Zero Year",

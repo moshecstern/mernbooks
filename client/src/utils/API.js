@@ -19,5 +19,9 @@ export default {
   },
   findCharacterBySeries: function(seriesname, charactername) {
     return axios.get("/api/series/"+seriesname+ "/"+ charactername);
-  }
+  },
+  getSeries: function() {
+    return axios.get("/api/series");
+  },
+
 };

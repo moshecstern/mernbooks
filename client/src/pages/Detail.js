@@ -7,9 +7,10 @@ import { List, ListItem } from "../components/List";
 
 class Detail extends Component {
   state = {
-    character: {},
-    volumes: {},
-    series: {}
+    character: [],
+    volumes: [],
+    series: [],
+    singlevolume: [],
   };
   // Add code to get the Character with an _id equal to the id in the route param
   // e.g. http://localhost:3000/Characters/:id
