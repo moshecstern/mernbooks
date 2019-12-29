@@ -23,5 +23,9 @@ export default {
   getSeries: function() {
     return axios.get("/api/series");
   },
+  getheroinfo: function(name) {
+    // return(console.log(name))
+    return axios.get("https://cors-anywhere.herokuapp.com/http://superheroapi.com/api/10214859933028426/search/batman/id/biography")
+  }
 
 };
