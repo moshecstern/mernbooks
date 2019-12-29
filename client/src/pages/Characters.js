@@ -24,6 +24,7 @@ class Characters extends Component {
   componentDidMount() {
     this.loadCharacters();
     this.loadSeries();
+    this.getseriesbyname()
     // this.runheroinfo();
   }
 
@@ -87,7 +88,7 @@ class Characters extends Component {
     API.getheroinfo()
     .then(res => {
       //console.log(res);
-      // this.setState({ results: res.data })
+      this.setState({ results: res.data })
       console.log(res.data);
       console.log(res.data.results[0])
     }
