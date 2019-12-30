@@ -9,6 +9,7 @@ import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import { Container } from "@material-ui/core";
+import "typeface-roboto";
 
 function App() {
   return (

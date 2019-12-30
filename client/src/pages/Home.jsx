@@ -112,12 +112,12 @@ const Home = () => {
           <Grid container>
             <Grid item>
               <Typography variant="h3">Info</Typography>
-            </Grid>{" "}
-            <Grid item>
-              <Typography variant="h4">Name</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h4">Link</Typography>
+              <Typography variant="h4">Name {data.name}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h4">Link {data.Link}</Typography>
             </Grid>
             <Grid item container>
               <Grid item>
