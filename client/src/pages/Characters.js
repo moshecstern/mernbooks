@@ -24,8 +24,8 @@ class Characters extends Component {
   componentDidMount() {
     this.loadCharacters();
     this.loadSeries();
-    this.getseriesbyname()
-    // this.runheroinfo();
+    // this.getseriesbyname()
+    this.runheroinfo();
   }
 
   loadCharacters = () => {
@@ -176,7 +176,9 @@ class Characters extends Component {
                     </Link>
                     
                     {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
+                    {/* {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)} */}
                     {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)}
+
                     {/* {character.series.map(series => {series})} */}
 
                   </ListItem>

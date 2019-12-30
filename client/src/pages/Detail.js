@@ -28,7 +28,7 @@ class Detail extends Component {
   // };
   loadMySeries = () => {
     API.findCharacterBySeries(this.props.match.params.charactername, this.props.match.params.seriesname)
-      .then(res => this.setState({ volumes: res.data })
+      .then(res => this.setState({ series: res.data })
       )
       .catch(err => console.log(err));
   };
@@ -41,9 +41,10 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-            {this.state.volumes.length ? (
+              {console.log(this.state.series)}
+            {this.state.series.length ? (
               <List>
-                {this.state.volumes.map(vol => (
+                {this.state.series.map(vol => (
                   <ListItem key={vol._id}>
                     {/* <Link to={"/series/"+ vol.seriesname+"/" character}> */}
                       <strong>

@@ -24,8 +24,11 @@ export default {
     return axios.get("/api/series");
   },
   getheroinfo: function() {
-    // return(console.log(name))
     return axios.get("http://superheroapi.com/api/10214859933028426/search/batman/id/biography")
+  },
+  getSeriesByid: function(id){
+    return axios.get("/api/series/" + id);
+
   }
 
 };

@@ -17,6 +17,7 @@ function App() {
      <Route exact path="/" component={Character} />
      <Route exact path="/character" component={Character} />
      <Route exact path="/character/:id" component={Detail} />
+     <Route exact path="/series/:id" component={Detail} />
      <Route exact path="/api/series/:seriesname/:charactername" component={Detail} />
      <Route exact path="*" component={NoMatch} />
 

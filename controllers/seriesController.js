@@ -3,7 +3,7 @@ const db = require("../models");
 // Defining methods for the SeriessController
 module.exports = {
   findCharacterBySeries: function(req, res) {
-    console.log(res)
+    // console.log(res)
     console.log(req.params)
     console.log(req.params.seriesname)
     db.Series
