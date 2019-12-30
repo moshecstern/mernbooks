@@ -43,6 +43,15 @@ const Home = () => {
   //       .catch(err => console.log(err));
   //   };
 
+  const getseriesbyid = (id) => {
+    API.getSeriesByid(id)
+    .then(res => {
+      this.setState({ volumes: res.data});
+    })
+    .catch(err => console.log(err));
+
+  }
+
   const getseriesbyname = () => {
     API.findCharacterBySeries()
       .then(res => {
@@ -88,6 +97,7 @@ const Home = () => {
           <GridListTile key={item._id}>
             <img src={item.img} alt={item.name} />
             <GridListTileBar
+            
               title={item.name}
               classes={
                 {

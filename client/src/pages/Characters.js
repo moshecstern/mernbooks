@@ -46,6 +46,15 @@ class Characters extends Component {
       .catch(err => console.log(err));
   }
 
+  getseriesbyid = (id) => {
+    API.getSeriesByid(id)
+    .then(res => {
+      this.setState({volumes: res.data})
+    })
+    .catch(err => console.log(err));
+
+  }
+
   getseriesbyname = () => {
     API.findCharacterBySeries()
       .then(res => {
@@ -177,6 +186,9 @@ class Characters extends Component {
                     
                     {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
                     {/* {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)} */}
+                    {/* {character.series.map(series => <Link to={`/api/series/${series.id}`}> {series}, </Link>)} */}
+                    {/* <Link to={"/series/" + series._id}> */}
+
                     {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)}
 
                     {/* {character.series.map(series => {series})} */}

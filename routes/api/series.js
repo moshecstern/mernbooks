@@ -15,6 +15,12 @@ router
 
   router
   .route("/:seriesname/:charactername")
-  .get(seriesController.findCharacterBySeries)
+  .get(seriesController.findCharacterBySeries);
+
+  router
+  .route("/:id")
+  .get(seriesController.findById)
+  // .put(characterController.update)
+  // .delete(characterController.remove);
 
 module.exports = router;
