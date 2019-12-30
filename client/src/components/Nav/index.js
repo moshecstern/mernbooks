@@ -6,13 +6,18 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core";
+import ComicbookpagesModified from "../../images/ComicbookpagesModified.jpg";
+import "typeface-roboto";
 
 const useStyles = makeStyles(theme => {
   return {
     root: {
       backgroundColor: "red"
     },
-    title: { backgroundImage: "", padding: theme.spacing(15, 0, 15, 0) }
+    title: {
+      backgroundImage: `url(${ComicbookpagesModified})`,
+      padding: theme.spacing(15, 0, 15, 0)
+    }
   };
 });
 
