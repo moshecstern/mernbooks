@@ -17,17 +17,17 @@ class Detail extends Component {
   // The Character id for this route can be accessed using this.props.match.params.id
   componentDidMount() {
     // this.loadMySeries();
-    this.loadMyCharacter();
+    this.loadMyCharacter()
     // this.refresh();
   }
   
-  refresh = () => {
-    this.setState({state: this.state})
-    this.forceUpdate();
-}
+//   refresh = () => {
+//     this.setState({state: this.state})
+//     this.forceUpdate();
+// }
 
-  loadMyCharacter = () => {
-    API.getCharacter(this.props.match.params.id)
+  async loadMyCharacter() {
+   await API.getCharacter(this.props.match.params.id)
       .then(res => this.setState({ character: res.data })
       )
       .catch(err => console.log(err));
@@ -50,7 +50,7 @@ class Detail extends Component {
             {/* {this.state.character.length ? ( */}
               {/* <List> */}
 
-              {console.log(this.state.character)}
+              { console.log(this.state.character) }
                 {this.state.character.name}, 
                 {this.state.character.series},
 
