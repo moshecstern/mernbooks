@@ -7,27 +7,34 @@ import { List, ListItem } from "../components/List";
 
 class Detail extends Component {
   state = {
-    character: {},
-    volumes: {},
-    series: {}
+    character: [],
+    volumes: [],
+    series: [],
+    singlevolume: [],
   };
   // Add code to get the Character with an _id equal to the id in the route param
   // e.g. http://localhost:3000/Characters/:id
   // The Character id for this route can be accessed using this.props.match.params.id
   componentDidMount() {
-    this.loadMySeries();
-    // this.loadMyCharacter();
+    // this.loadMySeries();
+    this.loadMyCharacter()
+    // this.refresh();
   }
+  
+//   refresh = () => {
+//     this.setState({state: this.state})
+//     this.forceUpdate();
+// }
 
-  // loadMyCharacter = () => {
-  //   API.getCharacter(this.props.match.params.id)
-  //     .then(res => this.setState({ character: res.data })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
+  async loadMyCharacter() {
+   await API.getCharacter(this.props.match.params.id)
+      .then(res => this.setState({ character: res.data })
+      )
+      .catch(err => console.log(err));
+  };
   loadMySeries = () => {
     API.findCharacterBySeries(this.props.match.params.charactername, this.props.match.params.seriesname)
-      .then(res => this.setState({ volumes: res.data })
+      .then(res => this.setState({ series: res.data })
       )
       .catch(err => console.log(err));
   };
@@ -40,29 +47,72 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-            {this.state.volumes.length ? (
-              <List>
-                {this.state.volumes.map(vol => (
-                  <ListItem key={vol._id}>
+            {/* {this.state.character.length ? ( */}
+              {/* <List> */}
+
+              { console.log(this.state.character) }
+                {this.state.character.name}, 
+                {this.state.character.series},
+
+              {/* {this.state.character.series.map((value, i) =><div class="row" key={i}></div>)} */}
+
+                {/* {this.state.character.series.map(item => ( */}
+                  {/* <ListItem key={this.state.character.series> */}
                     {/* <Link to={"/series/"+ vol.seriesname+"/" character}> */}
-                      <strong>
-                        {vol.name}
+                      
+                        {/* {this.state.character.series.map(vol => ( */}
+                         {/* <h2>
+                           {vol.vol}
+                         </h2>
+                        ))} */}
+                        {/* {this.state.character.series} */}
                         {/* <br></br>
                         {vol.series} */}
-                        {console.log(vol.name)}
-                      </strong>
+                        {/* {console.log(item)} */}
+                      
                     {/* </Link> */}
                     {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
                     {/* {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}>{series}</Link>)} */}
                     {/* {character.series.map(series => {series})} */}
                     
+                  {/* </ListItem> */}
+                {/* ))} */}
+             
+              {/* </List> */}
+             {/* // ) : (
+            //   <h3>No Results to Display</h3>
+            // )} */}
+{this.state.character.length ? (
+<List>
+                {this.state.character.map(character => (
+                  <ListItem key={character._id} onChange={this.loadMyCharacter}eachcharacter={character.name} onclick={this.getseriesbyname}>
+                    <Link to={"/character/" + character._id}>
+                      <strong>
+                        {character.name} by {character.info}:
+                        {/* <SearchResults onChange={this.runheroinfo(character.name)} results={this.state.results} /> */}
+
+                        {/* <br></br>
+                        {character.series} */}
+                        {console.log(character.series)}
+                      </strong>
+                    </Link>
+                    
+                    {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
+                    {/* {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)} */}
+                    {/* {character.series.map(series => <Link to={`/api/series/${series.id}`}> {series}, </Link>)} */}
+                    {/* <Link to={"/series/" + series._id}> */}
+
+                    {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)}
+
+                    {/* {character.series.map(series => {series})} */}
+
                   </ListItem>
                 ))}
-             
               </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+              ) : (
+                <h3>No Results to Display</h3>
+               )}
+
             </Jumbotron>
           </Col>
         </Row>
@@ -83,27 +133,3 @@ class Detail extends Component {
 export default Detail;
 
 
-{/* <h1>
-HELLO!
-{console.log(this.state.volumes)}
-{console.log(this.state.series.length)}
-{console.log(this.state.volumes)}
-{this.state.volumes.map(volume => (
-  <p>{volume.seriesname}</p>
-  <p>hello 2</p>
-))}
-</h1>
-<List>
-{this.state.volumes.map(volume => (
-<ListItem onClick={this.loadMyCharacter}>
-
-  <article>
-    <h1>Synopsis</h1>
-    <p>{volume}</p>
-    <p>HIII!</p>
-
-  </article>
-</ListItem>
-))}
-</List> 
-{console.log(this.state.volumes)} */}

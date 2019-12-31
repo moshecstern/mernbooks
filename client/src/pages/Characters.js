@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import SearchResults from "../components/SearchResults";
 
 class Characters extends Component {
   state = {
@@ -15,11 +16,16 @@ class Characters extends Component {
     img: "",
     info: "",
     series: [],
-    volumes: []
+    volumes: [],
+    results: [],
+    hero: ""
   };
 
   componentDidMount() {
     this.loadCharacters();
+    this.loadSeries();
+    // this.getseriesbyname()
+    this.runheroinfo();
   }
 
   loadCharacters = () => {
@@ -32,12 +38,29 @@ class Characters extends Component {
       .catch(err => console.log(err));
   };
 
-  getseriesbyname = () => {
-    API.findCharacterBySeries()
-    .then(res=> {
+  loadSeries = () => {
+    API.getSeries()
+      .then(res => {
+        this.setState({ series: res.data })
+      })
+      .catch(err => console.log(err));
+  }
+
+  getseriesbyid = (id) => {
+    API.getSeriesByid(id)
+    .then(res => {
       this.setState({volumes: res.data})
     })
     .catch(err => console.log(err));
+
+  }
+
+  getseriesbyname = () => {
+    API.findCharacterBySeries()
+      .then(res => {
+        this.setState({ volumes: res.data })
+      })
+      .catch(err => console.log(err));
   }
 
   deleteCharacter = id => {
@@ -66,15 +89,56 @@ class Characters extends Component {
     }
   };
 
+  runheroinfo = () => {
+    // this.setState({hero: this.eachcharacter});
+    // console.log("this character is !!!!!!")
+    // console.log(this.eachcharacter);
+    // console.log("this character is !!!!!!")
+    API.getheroinfo()
+    .then(res => {
+      //console.log(res);
+      this.setState({ results: res.data })
+      console.log(res.data);
+      console.log(res.data.results[0])
+    }
+    )
+    .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What characters Should I Read?</h1>
+              <h1>Story lines</h1>
             </Jumbotron>
-            <form>
+
+            {this.state.series.length ? (
+              <List>
+                {this.state.series.map(series => (
+                  <ListItem key={series.volumes.vol}>
+                    {series.name} by {series.series}
+                    {/* {this.runheroinfo(series.name)} */}
+                    {/* <strong>Series
+                        </strong> */}
+                    {series.volumes.map(vol => (
+                      <ListItem key={vol.vol}>
+                        <p>
+                          {vol}
+                          {/* {vol.vol} */}
+                        </p>
+                      </ListItem>
+                    ))}
+
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+                <h3>No Results to Display</h3>
+              )}
+
+            {/* <form>
               <Input
                 value={this.state.name}
                 onChange={this.handleInputChange}
@@ -99,28 +163,36 @@ class Characters extends Component {
               >
                 Submit character
               </FormBtn>
-            </form>
+            </form> */}
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>characters On My List</h1>
+              <h1>characters</h1>
             </Jumbotron>
             {this.state.characters.length ? (
               <List>
                 {this.state.characters.map(character => (
-                  <ListItem key={character._id} onclick={this.getseriesbyname}>
+                  <ListItem key={character._id} onChange={this.runheroinfo}eachcharacter={character.name} onclick={this.getseriesbyname}>
                     <Link to={"/character/" + character._id}>
                       <strong>
-                        {character.name} by {character.info}
+                        {character.name} by {character.info}:
+                        <SearchResults onChange={this.runheroinfo(character.name)} results={this.state.results} />
+
                         {/* <br></br>
                         {character.series} */}
                         {console.log(character.series)}
                       </strong>
                     </Link>
-                    {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
-                    {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}>{series}</Link>)}
-                    {/* {character.series.map(series => {series})} */}
                     
+                    {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
+                    {/* {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)} */}
+                    {/* {character.series.map(series => <Link to={`/api/series/${series.id}`}> {series}, </Link>)} */}
+                    {/* <Link to={"/series/" + series._id}> */}
+
+                    {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)}
+
+                    {/* {character.series.map(series => {series})} */}
+
                   </ListItem>
                 ))}
                 {/* {this.state.characters.map(characterarray => (
@@ -135,8 +207,8 @@ class Characters extends Component {
                 ))} */}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>

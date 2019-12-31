@@ -1,7 +1,8 @@
 import React from "react";
 // import React, { Component } from "react";
-// import logo from "./logo.svg";
+import logo from "./logo.svg";
 import "./App.css";
+import Character from "./pages/Characters";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
@@ -20,6 +21,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/character" component={Home} />
           <Route exact path="/character/:id" component={Detail} />
+          {/* <Route exact path="/character/:id" component={Detail} /> */}
+
           <Route
             exact
             path="/api/series/:seriesname/:charactername"
