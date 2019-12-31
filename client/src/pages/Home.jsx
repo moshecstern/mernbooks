@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
-import {Link}  from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -17,6 +17,8 @@ import {
 import useAxios from "axios-hooks";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { ObjectId } from "mongoose";
+import Modal from "../components/Modals";
+import SimpleModal from "../components/Modals";
 
 const Home = () => {
   const [{ data: characters, loading }, getCharacters] = useAxios(
@@ -44,14 +46,13 @@ const Home = () => {
   //       .catch(err => console.log(err));
   //   };
 
-  const getseriesbyid = (id) => {
+  const getseriesbyid = id => {
     API.getSeriesByid(id)
-    .then(res => {
-      this.setState({ volumes: res.data});
-    })
-    .catch(err => console.log(err));
-
-  }
+      .then(res => {
+        this.setState({ volumes: res.data });
+      })
+      .catch(err => console.log(err));
+  };
 
   const getseriesbyname = () => {
     API.findCharacterBySeries()
@@ -97,15 +98,9 @@ const Home = () => {
         {characters.map(item => (
           <GridListTile key={item._id}>
             <img src={item.img} alt={item.name} />
-                <Link to={"/character/" + item._id}>
-                  {item.name}
-                  </Link>
+            <Link to={"/character/" + item._id}>{item.name}</Link>
             <GridListTileBar
-         
-
               title={item.name}
-              
-
               classes={
                 {
                   //   root: classes.titleBar,
@@ -147,6 +142,7 @@ const Home = () => {
           </Grid>
         </Paper>
       )}
+      <Modal />
     </>
   );
 };
