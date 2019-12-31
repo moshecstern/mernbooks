@@ -85,7 +85,7 @@ class Detail extends Component {
 {this.state.character.length ? (
 <List>
                 {this.state.character.map(character => (
-                  <ListItem key={character._id} onChange={this.runheroinfo}eachcharacter={character.name} onclick={this.getseriesbyname}>
+                  <ListItem key={character._id} onChange={this.loadMyCharacter}eachcharacter={character.name} onclick={this.getseriesbyname}>
                     <Link to={"/character/" + character._id}>
                       <strong>
                         {character.name} by {character.info}:
