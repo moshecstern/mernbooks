@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import {Link}  from "react-router-dom";
 import {
   Container,
   Grid,
@@ -13,6 +13,7 @@ import {
   Paper,
   Typography
 } from "@material-ui/core";
+
 import useAxios from "axios-hooks";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { ObjectId } from "mongoose";
@@ -96,9 +97,15 @@ const Home = () => {
         {characters.map(item => (
           <GridListTile key={item._id}>
             <img src={item.img} alt={item.name} />
+                <Link to={"/character/" + item._id}>
+                  {item.name}
+                  </Link>
             <GridListTileBar
-            
+          
+
               title={item.name}
+              
+
               classes={
                 {
                   //   root: classes.titleBar,
@@ -124,7 +131,7 @@ const Home = () => {
               <Typography variant="h3">Info</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h4">Name {data.name}</Typography>
+              <Typography variant="h4"> Name {data.name}</Typography>
             </Grid>
             <Grid item>
               <Typography variant="h4">Link {data.Link}</Typography>
