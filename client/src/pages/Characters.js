@@ -18,7 +18,7 @@ class Characters extends Component {
     series: [],
     volumes: [],
     results: [],
-    hero: ""
+    hero: ""      
   };
 
   componentDidMount() {
