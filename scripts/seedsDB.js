@@ -25,17 +25,87 @@ mongoose.connect(
       {
           name: "batman",
           link: "https://dc.fandom.com/wiki/Batman",
-          img: "#.png",
-          info: "badass hero kicks villains butt",
-          series: ["new52", "rebirth"]
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/7/7b/Batman_Vol_2_9_Textless_Variant.jpg/revision/latest/scale-to-width-down/150?cb=20120510175322",
+          info: "the super-hero protector of Gotham City, a man dressed like a bat who fights against evil and strikes terror into the hearts of criminals everywhere.",
+          series: ["new52", "rebirth", "All-Star Batman"]
       },
       {
         name: "superman",
         link: "https://dc.fandom.com/wiki/Superman",
-        img: "#.png",
-        info: "smallville",
+        img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/9/9d/Superman_0008.jpg/revision/latest/scale-to-width-down/150?cb=20120825192746",
+        info: "also known as the Man of Steel, is one of the most powerful superheroes in the DC Universe.",
         series: ["new52", "rebirth"]
-      }
+      },
+      {
+        name: "wonderwoman",
+        link: "https://dc.fandom.com/wiki/Wonder_Woman",
+        img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/e/ec/Wonder_Woman_0007.jpg/revision/latest/scale-to-width-down/150?cb=20130928221412",
+        info: " is an Amazon warrior princess and one of the most powerful superheroes in the DC Universe.",
+        series: ["nesmallvillew52", "rebirth"]
+      },
+        {
+          name: "Aquaman",
+          link: "https://dc.fandom.com/wiki/Aquaman",
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/5/51/Aquaman_0024.jpg/revision/latest?cb=20130516170558",
+          info: "also known as Arthur Curry and Orin, is a superhero and the ruler of the seas.",
+          series: ["rebirth"]
+        },
+        {
+          name: "Flash",
+          link: "https://dc.fandom.com/wiki/Flash",
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/6/6e/Flash_0012.jpg/revision/latest/scale-to-width-down/150?cb=20130708162057",
+          info: "the fastest man alive. He is the protector of Central City and Keystone City, fighting against evil using his super-speed and a dedicated sense of heroism",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Green Lantern",
+          link: "https://dc.fandom.com/wiki/Green_Lantern",
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/8/83/Hal_Jordan_and_the_Green_Lantern_Corps_Vol_1_45_Textless_Variant.jpg/revision/latest/scale-to-width-down/329?cb=20180523193425",
+          info: "a name that has been used by many characters in the DC Universe, and two distinct franchises.",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Booster Gold",
+          link: "https://dc.fandom.com/wiki/Booster_Gold",
+          img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/1/13/Booster_Gold_Futures_End_Vol_1_1_Present_Textless.jpg/revision/latest/scale-to-width-down/329?cb=20140926203505",
+          info: "a time-traveling super-hero from the 25th Century who uses high-tech equipment to fight crime, alongside his robotic side-kick Skeets.",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Shazam",
+          link: "https://dc.fandom.com/wiki/Shazam",
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/6/61/Shazam%21_Vol_3_1_Textless_Variant.jpg/revision/latest/scale-to-width-down/329?cb=20181205234924",
+          info: "The name originally belonged to an ancient wizard, who lived in the Rock of Eternity and guarded the Seven Deadly Sins.",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Teen Titans",
+          link: "https://dc.fandom.com/wiki/Teen_Titans",
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/6/61/Teen_Titans_Rebirth_Vol_1_1_Textless.jpg/revision/latest/scale-to-width-down/150?cb=20160518052637",
+          info: "The Teen Titans are an organization of young vigilantes banded together to fight crime",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Green Arrow",
+          link: "https://dc.fandom.com/wiki/Green_Arrow",
+          img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/2/29/Green_Arrow_Vol_6_1_Textless_Variant.jpg/revision/latest/scale-to-width-down/333?cb=20160617025432",
+          info: "Green Arrow is a vigilante superhero who fights crime using archery, technology, and martial arts.",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Swamp Thing",
+          link: "https://dc.fandom.com/wiki/Swamp_Thing",
+          img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/0/0b/Swamp_Thing_Vol_5_25_Textless.jpg/revision/latest/scale-to-width-down/330?cb=20131106222450",
+          info: "Swamp Thing is an elemental creature who shares a connection to all plant life on the planet Earth through a network called the Green.",
+          series: ["new52", "rebirth"]
+        },
+        {
+          name: "Red Tornado",
+          link: "https://dc.fandom.com/wiki/Red_Tornado",
+          img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/4/42/Red_Tornado_003.jpg/revision/latest/scale-to-width-down/329?cb=20180306225132",
+          info: "Red Tornado is an android super-hero with wind-manipulation powers in addition to incredible strength and speed.",
+          series: ["new52", "rebirth"]
+        },
   ];
 
 const seriesSeed = [
