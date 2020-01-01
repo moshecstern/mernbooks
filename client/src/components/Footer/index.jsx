@@ -3,9 +3,11 @@ import { Grid, Typography, Link } from "@material-ui/core";
 
 const Footer = () => {
   return (
-    <Grid container justify="space-between">
+    <Grid container justify="space-between" alignItems="baseline">
       <Grid item>
-        <Link>View Repository</Link>
+        <Link href="https://github.com/moshecstern/mernbooks">
+          View Repository
+        </Link>
       </Grid>
       <Grid item>
         <Typography variant="subtitle2">

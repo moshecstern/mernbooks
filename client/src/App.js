@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
 import { Container } from "@material-ui/core";
 import "typeface-roboto";
+import News from "./components/News";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           />
           <Route exact path="*" component={NoMatch} />
         </Switch>
+        <News />
         <Footer />
       </Router>
     </Container>

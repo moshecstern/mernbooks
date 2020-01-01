@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
-import {Link}  from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -17,6 +17,8 @@ import {
 import useAxios from "axios-hooks";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { ObjectId } from "mongoose";
+import Modal from "../components/Modals";
+import SimpleModal from "../components/Modals";
 
 const Home = () => {
   const [{ data: characters, loading }, getCharacters] = useAxios(
@@ -44,14 +46,13 @@ const Home = () => {
   //       .catch(err => console.log(err));
   //   };
 
-  const getseriesbyid = (id) => {
+  const getseriesbyid = id => {
     API.getSeriesByid(id)
-    .then(res => {
-      this.setState({ volumes: res.data});
-    })
-    .catch(err => console.log(err));
-
-  }
+      .then(res => {
+        this.setState({ volumes: res.data });
+      })
+      .catch(err => console.log(err));
+  };
 
  const loadCharacters = () => {
     API.getCharacters()
@@ -133,18 +134,18 @@ const Home = () => {
                 </IconButton>
               }
             />
-              <Link to={"/character/" + item._id}>
+              {/* <Link to={"/character/" + item._id}>
                 {item.name}
-                  </Link>
+                  </Link> */}
           </GridListTile>
         ))}
       </GridList>
       {!currentId ? null : (
         <Paper>
         {characters.map(item => (
-          <Grid container>
+          <Grid container key={item._id}>
             <Grid item>
-              <Typography variant="h3">Info</Typography>
+              <Typography variant="h3">{}</Typography>
               {console.log(item)}
             </Grid>
             <Grid item>
@@ -156,7 +157,7 @@ const Home = () => {
             {/* <Grid item container>
               <Grid item>
                 <Typography variant="h4">Series</Typography>
-                {this.state.character.series.map(item => (
+                {characters.series.map(item => (
                   <Grid item>{item}</Grid>
                 ))}
               </Grid>
