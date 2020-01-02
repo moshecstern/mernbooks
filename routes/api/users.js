@@ -11,7 +11,7 @@ const user = required("../../models/users");
 
 router.post("/register", (req, res) => {
 
-    const { error, isValid } = validateMember(req.body)
+    const { error, isValid } = validateNewMember(req.body)
     if (!isValid) {
         return res.status(401).json(error)
     }
