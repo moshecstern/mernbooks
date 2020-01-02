@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Col, Row } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import {
@@ -23,36 +23,44 @@ import Modal from "../components/Modals";
 import SimpleModal from "../components/Modals";
 
 const Detail = () => {
-  const [{ data: series, loading }, getseries] = useAxios(
-    "/api/series"
+  const [{ data: series, loading }, randomtext] = useAxios(
+        { url: "/api/series/"}
   );
+
   // const { location } = props;
   // const { query } = getParams(location);
-
   const [currentname, setCurrentname] = useState();
   //  {
   //   query: searchParams.get('query') || '',
   // };
 
+  // const searchParams = newURLSearchParams(location.search)
 
-// const searchParams = newURLSearchParams(location.search)
+  // const [{ data, loading: dataLoading }, getData] = useAxios(
+  //   { url: "/api/series/" + currentname },
+  //   { manual: true }
+  // );
 
-  const [{ data, loading: dataLoading }, getData] = useAxios(
-    { url: "/api/series/" + ":name" },
-    { manual: true }
-  );
+  const LoadChosenSeries = () => {
+    API.getseriesbyname(this.props.match.name)
+      .then(
+        res => setCurrentname(res)
+        // this.setState({ series: res.data })
+      )
+      .catch(err => console.log(err));
+  };
+  // const  LoadChosenSeries = () => {
+  //   API.getseriesbyname(this.props.match.name)
+  //   .then(res => this.setState({ series: res.data })
+  //   )
+  //   .catch(err => console.log(err));
+  // }
 
   // const serieshandler = name => () => {
   //   setCurrentname(name);
   //   console.log(name);
   //   getData();
   // };
-  function getParams(location) {
-    const searchParams = new URLSearchParams(location.search);
-    return {
-      query: searchParams.get('query') || '',
-    };
-  }
 
   const getallseriesbycharacterName = () => {
     API.getallseriesbycharacter()
@@ -70,17 +78,16 @@ const Detail = () => {
       .catch(err => console.log(err));
   };
 
- const loadCharacters = () => {
+  const loadCharacters = () => {
     API.getCharacters()
       .then(res => {
         //console.log(res);
-        this.setState({ characters: res.data, name: "", info: "", link: "" })
-      }
-      )
+        this.setState({ characters: res.data, name: "", info: "", link: "" });
+      })
       .catch(err => console.log(err));
   };
 
-  const getseriesbyname = (name) => {
+  const getseriesbyname = name => {
     API.getseriesbyname(name)
       .then(res => {
         // this.setState({ series: res.data });
@@ -114,13 +121,6 @@ const Detail = () => {
         .catch(err => console.log(err));
     }
   };
-
-  const  LoadChosenSeries = () => {
-    API.getseriesbyname(this.props.match.name)
-    .then(res => this.setState({ series: res.data })
-    )
-    .catch(err => console.log(err));
-  }
 
   if (loading) {
     return <></>;
@@ -161,36 +161,35 @@ const Detail = () => {
         ))}
       </GridList> */}
 
-{console.log("current name")}
-{console.log(currentname)}
+      {/* working code  */}
       {/* {name   synopsis  volumes  extras} */}
-      {series.map(item=> (
-      <List key={item._id}>
-        {item.character}, {item.name}, {item.synopsis}
-        {item.volumes.map(vol=>(
-        <ListItem>
-        {vol}
-        </ListItem>
-        ))}
-      </List>
+      {console.log("current name")}
+      {console.log(currentname)}
+      {series.map(item => (
+        <List key={item._id}>
+          {item.character}, {item.name}, {item.synopsis}
+          {item.volumes.map(vol => (
+            <ListItem>{vol}</ListItem>
+          ))}
+        </List>
       ))}
-
+      {/* working code  */}
 
       {!currentname ? null : (
         <Paper>
-        {series.map(item => (
-          <Grid container key={item._id}>
-            <Grid item>
-              <Typography variant="h3">{}</Typography>
-              {console.log(item)}
-            </Grid>
-            <Grid item>
-              <Typography variant="h4"> Name {item.character}</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h4">series {item.series}</Typography>
-            </Grid>
-            {/* <Grid item container>
+          {series.map(item => (
+            <Grid container key={item._id}>
+              <Grid item>
+                <Typography variant="h3">{}</Typography>
+                {console.log(item)}
+              </Grid>
+              <Grid item>
+                <Typography variant="h4"> Name {item.character}</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h4">series {item.series}</Typography>
+              </Grid>
+              {/* <Grid item container>
               <Grid item>
                 <Typography variant="h4">Series</Typography>
                 {characters.series.map(item => (
@@ -198,18 +197,15 @@ const Detail = () => {
                 ))}
               </Grid>
             </Grid> */}
-          </Grid>
-         ))}
+            </Grid>
+          ))}
         </Paper>
-       )} 
+      )}
     </>
   );
 };
 
 export default Detail;
-
-
-
 
 // import React, { Component } from "react";
 // import { Link } from "react-router-dom";
@@ -243,7 +239,7 @@ export default Detail;
 //     this.LoadChosenSeries();
 //     // this.loadCharacters()
 //     // this.render()
-    
+
 //   }
 //   loadCharacters = () => {
 //     if(!this.state.character.length){
@@ -301,10 +297,9 @@ export default Detail;
 //     })
 // }
 
-
 //   render() {
 //     return (
-      
+
 //       // <React.Suspense fallback={<div>Loading...</div>}>
 //       <Container fluid>
 //         <Row>
@@ -315,12 +310,12 @@ export default Detail;
 //               {/* <List> */}
 
 //               { console.log(this.state.series) }
-//                 {this.state.series.character}, 
+//                 {this.state.series.character},
 //                {/* { (this.state.character.series.length){ */}
 // {this.state.series.map(series => (
 // {series}
 // ))}
-                
+
 //                  {/* <List onClick={this.loadMyCharacter}> */}
 //                   {/* {console.log(this.state.character)}
 //                   {console.log("character")} */}
@@ -328,19 +323,18 @@ export default Detail;
 //                   {this.state.character.series},
 //                   {console.log(this.state.character.series)}
 //             {this.state && this.state.character &&
-            
+
 //                     <ListItem>
 //                  {this.state.character.series.map(vol => (
-                
+
 //                   {vol}
-//                   ))} 
+//                   ))}
 //                     </ListItem>
-//             } 
+//             }
 //                   </List> */}
 //               {/* {this.state.character.series} */}
 //                 {/* {this._renderObject()} */}
 //               {/* {this.state.character.series.map((value, i) =><div class="row" key={i}></div>)} */}
-
 
 //              {/* // ) : (
 //             //   <h3>No Results to Display</h3>
@@ -359,7 +353,7 @@ export default Detail;
 //                         {console.log(character.series)}
 //                       </strong>
 //                     </Link>
-                    
+
 //                     {/* <DeleteBtn onClick={() => this.deletecharacter(character._id)} /> */}
 //                     {/* {character.series.map(series => <Link to={`/api/series/${series}/${character.name}`}> {series}, </Link>)} */}
 //                     {/* {character.series.map(series => <Link to={`/api/series/${series.id}`}> {series}, </Link>)} */}
@@ -390,11 +384,9 @@ export default Detail;
 //         </Row>
 //       </Container>
 //     // </React.Suspense>
-   
+
 //     );
 //   }
 // }
 
 // export default Detail;
-
-

@@ -48,8 +48,7 @@ module.exports = {
   },
   getbyname: function (req, res) {
     db.Series
-    .find({character: req.params.name})
-    .then(dbResult => dbResult.remove())
+    .find({character: req.params.name}, req.body)
     .then(dbResult => res.json(dbResult))
 .catch(err => res.status(422).json(err));
   }

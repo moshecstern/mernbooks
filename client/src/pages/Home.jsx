@@ -80,9 +80,12 @@ const Home = () => {
   };
 
   const getseriesbyname = (name) => {
+    console.log("Get series by name!");
+    console.log(name);
     API.getseriesbyname(name)
       .then(res => {
-        // this.setState({ series: res.data });
+        this.setState({ series: res.data });
+        console.log("This is the res: ")
         console.log(res);
       })
       .catch(err => console.log(err));
@@ -122,10 +125,12 @@ const Home = () => {
     <>
       <GridList cols={4}>
         {characters.map(item => (
-          <GridListTile key={item.name} onClick={getseriesbyname(item.name)}>
+          /* <GridListTile key={item.name} onClick={getseriesbyname(item.name)}> */
+          <GridListTile key={item.name} onClick={() => getseriesbyname(item.name)}>
+
             <img src={item.img} alt={item.name} />
                 {/* <Link to={"/character/" + item._id}> */}
-                <Link to={`/api/series//${item.name}`}>
+                <Link to={`/api/series/${item.name}`}>
                 {item.name}
                   </Link>
             <GridListTileBar

@@ -31,6 +31,7 @@ export default {
 
   },
   getseriesbyname: function(name){
+    console.log(name)
     return axios.get("/api/series/" + name);
   }
 
