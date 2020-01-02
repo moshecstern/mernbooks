@@ -15,12 +15,28 @@ class Detail extends Component {
   // Add code to get the Character with an _id equal to the id in the route param
   // e.g. http://localhost:3000/Characters/:id
   // The Character id for this route can be accessed using this.props.match.params.id
-  componentDidMount() {
+ async componentDidMount() {
     // this.loadMySeries();
+    // this.loadCharacters()
     this.loadMyCharacter()
+    this.render()
     // this.refresh();
   }
-  
+  loadCharacters = () => {
+    if(!this.state.character.length){
+console.log("gettin all characters")
+      API.getCharacters()
+      .then(res => {
+        //console.log(res);
+        this.setState({ characters: res.data, name: "", info: "", link: "" })
+      }
+      )
+      .catch(err => console.log(err));
+    } else{
+      console.log("characters.length has data!")
+      console.log(this.state.character)
+    }
+  };
 //   refresh = () => {
 //     this.setState({state: this.state})
 //     this.forceUpdate();
@@ -38,7 +54,16 @@ class Detail extends Component {
       )
       .catch(err => console.log(err));
   };
-
+  _renderObject(){
+    const {character} = this.props;
+    return Object.entries(character.series).map(([key, value], i) => {
+        return (
+            <div key={key}>
+                {this.state.character}
+            </div>
+        )
+    })
+}
 
 
   render() {
@@ -53,7 +78,7 @@ class Detail extends Component {
               { console.log(this.state.character) }
                 {this.state.character.name}, 
                 {this.state.character.series},
-
+                {/* {this._renderObject()} */}
               {/* {this.state.character.series.map((value, i) =><div class="row" key={i}></div>)} */}
 
                 {/* {this.state.character.series.map(item => ( */}
@@ -83,7 +108,7 @@ class Detail extends Component {
             //   <h3>No Results to Display</h3>
             // )} */}
 {this.state.character.length ? (
-<List>
+<List onChange={this.loadMyCharacter}>
                 {this.state.character.map(character => (
                   <ListItem key={character._id} onChange={this.loadMyCharacter}eachcharacter={character.name} onclick={this.getseriesbyname}>
                     <Link to={"/character/" + character._id}>

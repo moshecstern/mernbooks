@@ -54,6 +54,16 @@ const Home = () => {
       .catch(err => console.log(err));
   };
 
+ const loadCharacters = () => {
+    API.getCharacters()
+      .then(res => {
+        //console.log(res);
+        this.setState({ characters: res.data, name: "", info: "", link: "" })
+      }
+      )
+      .catch(err => console.log(err));
+  };
+
   const getseriesbyname = () => {
     API.findCharacterBySeries()
       .then(res => {
@@ -98,9 +108,15 @@ const Home = () => {
         {characters.map(item => (
           <GridListTile key={item._id}>
             <img src={item.img} alt={item.name} />
-            <Link to={"/character/" + item._id}>{item.name}</Link>
+                <Link to={"/character/" + item._id}>
+                {item.name}
+                  </Link>
             <GridListTileBar
-              title={item.name}
+         
+         
+              title={<Link to={"/character/" + item._id}>{item.name}</Link>}
+              
+
               classes={
                 {
                   //   root: classes.titleBar,
@@ -111,38 +127,45 @@ const Home = () => {
                 <IconButton
                   aria-label={`star ${item.title}`}
                   onClick={iconHandler(item._id)}
+                  // onClick={loadCharacters(item._id)}
+                  // onClick={<Link to={"/character/" + item._id}></Link>}
                 >
                   <FindInPageIcon />
                 </IconButton>
               }
             />
+              {/* <Link to={"/character/" + item._id}>
+                {item.name}
+                  </Link> */}
           </GridListTile>
         ))}
       </GridList>
       {!currentId ? null : (
         <Paper>
-          <Grid container>
+        {characters.map(item => (
+          <Grid container key={item._id}>
             <Grid item>
-              <Typography variant="h3">Info</Typography>
+              <Typography variant="h3">{}</Typography>
+              {console.log(item)}
             </Grid>
             <Grid item>
-              <Typography variant="h4"> Name {data.name}</Typography>
+              <Typography variant="h4"> Name {item.name}</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h4">Link {data.Link}</Typography>
+              <Typography variant="h4">Link {item.Link}</Typography>
             </Grid>
-            <Grid item container>
+            {/* <Grid item container>
               <Grid item>
                 <Typography variant="h4">Series</Typography>
-                {data.series.map(item => (
+                {characters.series.map(item => (
                   <Grid item>{item}</Grid>
                 ))}
               </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
+         ))}
         </Paper>
-      )}
-      <Modal />
+       )} 
     </>
   );
 };
