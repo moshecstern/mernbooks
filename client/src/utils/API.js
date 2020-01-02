@@ -29,6 +29,10 @@ export default {
   getSeriesByid: function(id){
     return axios.get("/api/series/" + id);
 
+  },
+  getseriesbyname: function(name){
+    console.log(name)
+    return axios.get("/api/series/" + name);
   }
 
 };

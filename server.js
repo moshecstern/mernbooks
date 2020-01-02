@@ -20,7 +20,8 @@ if (process.env.NODE_ENV === "production") {
 }
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/comicbookdb", { useNewUrlParser: true });
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/comicbookdb", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/comicbookdb", {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 
 // Define API routes here
 // const characterController= require("./controllers/characterController");
