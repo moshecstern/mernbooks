@@ -22,5 +22,8 @@ router
   .get(seriesController.findById)
   // .put(characterController.update)
   // .delete(characterController.remove);
-
+router
+  .route("/:name")
+  .get(seriesController.getbyname);
+  
 module.exports = router;

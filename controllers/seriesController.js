@@ -45,5 +45,12 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  getbyname: function (req, res) {
+    db.Series
+    .find({character: req.params.name})
+    .then(dbResult => dbResult.remove())
+    .then(dbResult => res.json(dbResult))
+.catch(err => res.status(422).json(err));
   }
 };
