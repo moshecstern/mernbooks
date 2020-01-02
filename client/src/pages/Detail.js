@@ -21,12 +21,18 @@ import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { ObjectId } from "mongoose";
 import Modal from "../components/Modals";
 import SimpleModal from "../components/Modals";
+import SearchResults from "../components/SearchResults";
 
-const Detail = () => {
+const Detail = (props) => {
   const [{ data: series, loading }, randomtext] = useAxios(
-        { url: "/api/series/"}
+        // { url: "/api/series/"}
+        { url: "/api/series/" + props.match.params.name}
+       
   );
-
+  console.log("this is a test");
+  console.log(props)
+  console.log(props.match.params.name);
+  console.log(series)
   // const { location } = props;
   // const { query } = getParams(location);
   const [currentname, setCurrentname] = useState();
@@ -35,19 +41,25 @@ const Detail = () => {
   // };
 
   // const searchParams = newURLSearchParams(location.search)
+console.log(currentname)
+console.log("currentname")
+const argvparams = window.location.pathname.split("/").slice(-1)[0];
 
-  // const [{ data, loading: dataLoading }, getData] = useAxios(
-  //   { url: "/api/series/" + currentname },
-  //   { manual: true }
-  // );
+  const [{ data, loading: dataLoading }, getData] = useAxios(
+    { url: "/api/series/" + currentname },
+    { manual: true }
+ );
 
-  const LoadChosenSeries = () => {
-    API.getseriesbyname(this.props.match.name)
-      .then(
-        res => setCurrentname(res)
-        // this.setState({ series: res.data })
-      )
-      .catch(err => console.log(err));
+
+  const LoadChosenSeries = (name) => {
+    setCurrentname(name)
+    console.log(name)
+    getData();
+    // API.getseriesbyname(argvparams)
+    //   .then(
+    //     res => setCurrentname(res)
+    //   )
+    //   .catch(err => console.log(err));
   };
   // const  LoadChosenSeries = () => {
   //   API.getseriesbyname(this.props.match.name)
@@ -121,10 +133,13 @@ const Detail = () => {
         .catch(err => console.log(err));
     }
   };
+  // const tempCharacter = series.filter(item => item.character === argvparams);
 
   if (loading) {
     return <></>;
   }
+
+
 
   return (
     <>
@@ -163,13 +178,18 @@ const Detail = () => {
 
       {/* working code  */}
       {/* {name   synopsis  volumes  extras} */}
+      {/* {console.log(this.process.argv)} */}
+{/* {add modal on click of vol. that takes in item.series + item.character+ vol. ... pass through to goodreads api and diplays results} */}
+      { console.log( window.location.pathname.split("/").slice(-1)[0])}
       {console.log("current name")}
       {console.log(currentname)}
+  {console.log(argvparams)}
+  {/* {<div onClick={LoadChosenSeries(series.character)}> CLICK ME!</div>} */}
       {series.map(item => (
-        <List key={item._id}>
+        <List key={item._id} >
           {item.character}, {item.name}, {item.synopsis}
           {item.volumes.map(vol => (
-            <ListItem>{vol}</ListItem>
+            <ListItem key={vol} >{vol}</ListItem>
           ))}
         </List>
       ))}

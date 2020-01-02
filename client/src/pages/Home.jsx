@@ -21,7 +21,7 @@ import Modal from "../components/Modals";
 import SimpleModal from "../components/Modals";
 
 const Home = () => {
-  const [{ data: characters, loading }, getCharacters] = useAxios(
+  const [{ data: characters, loading }, getbyname] = useAxios(
     "/api/characters"
   );
 
@@ -130,13 +130,13 @@ const Home = () => {
 
             <img src={item.img} alt={item.name} />
                 {/* <Link to={"/character/" + item._id}> */}
-                <Link to={`/api/series/${item.name}`}>
+                {/* <Link to={`/api/series/${item.name}`}> */}
                 {item.name}
-                  </Link>
+                  {/* </Link> */}
             <GridListTileBar
          
          
-              title={<Link to={"/api/series/" + item.name}>{item.name}</Link>}
+              title={<Link to={"/series/" + item.name}>{item.name}</Link>}
               
 
               classes={

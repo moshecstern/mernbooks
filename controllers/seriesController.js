@@ -47,9 +47,11 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   getbyname: function (req, res) {
+    console.log("req.params")
+    console.log(req.params)
     db.Series
     .find({character: req.params.name}, req.body)
     .then(dbResult => res.json(dbResult))
-.catch(err => res.status(422).json(err));
+.catch(err => res.status(404).json(err));
   }
 };
