@@ -1,4 +1,7 @@
+
+
 import React, { Component, useState } from "react";
+import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
 import API from "../utils/API";
 import Superheroapi from "../components/Superheroapi";
 import { Link, useParams } from "react-router-dom";
@@ -26,6 +29,7 @@ import SimpleModal from "../components/Modals";
 import SearchResults from "../components/SearchResults";
 import { render } from "react-dom";
 import Axios from "axios";
+// require('dotenv').config()
 
 const Detail = props => {
   const [{ data: series, loading }, randomtext] = useAxios(
@@ -42,6 +46,7 @@ const Detail = props => {
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
+  const [currentSeries, setCurrentSeries]= useState();
   //  {
   //   query: searchParams.get('query') || '',
   // };
@@ -157,6 +162,7 @@ const Detail = props => {
   // const tempCharacter = series.filter(item => item.character === argvparams);
 
   const showvolumes = (id, series) => {
+
     // setseriesid(id);
     console.log("this is whatever series is" + id);
     console.log(series);
@@ -165,6 +171,9 @@ const Detail = props => {
     console.log("this is theVolume:");
     console.log(theVolumes[0].volumes);
     setseriesid(theVolumes[0].volumes);
+    setCurrentname(theVolumes[0].name);
+    setCurrentSeries(theVolumes[0].series);
+
     // getData();
 
     return (
@@ -178,18 +187,31 @@ const Detail = props => {
         )}
       </div>
     );
-    //     }
 
-    //     return (
-    //       <div>
-    //   <List>
-    //   {item.volumes.map(vol => (
-    //     <ListItem key={vol}>{vol}</ListItem>
-    //   ))}
-    // </List>
-    //       </div>
-    //     )
   };
+
+  //figure out what you need to pass as variable 'seriesid' from the button
+  const showvolumeinformation = (vol, name, series) => {
+    //this is where you do your google reader call or however you are going to display infromation.
+    //reference showvolumes method above
+    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY)
+    console.log(vol);
+    console.log(name)
+    console.log(series)
+    console.log("name________________________")
+    // let searchvol = props.match.params.name +" "+ vol + " " + name
+    let searchvol = name + " "+ vol + " " + series
+    console.log(searchvol)
+  //  Axios.get( "https://www.googleapis.com/books/v1/volumes?q='batman vol 1: court of owls'+ intitle&key=AIzaSyCq_gzWvARyw-0GjOxoZ9GN7PJfR8z1y7A")
+    Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "+intitle&orderBy=relevance")
+    .then(function(response) {
+      console.log(response)
+      console.log(response.data)
+      console.log("props.match.params.name")
+      console.log(props.match.params.name)
+    })
+    // googlebooks_APP_API_KEY
+  }
 
   const getgooglebook = (vol) => {
     console.log(vol)
@@ -252,37 +274,32 @@ const Detail = props => {
       {series.map(item => (
         <List key={item._id}>
           <ListItem key={item._id}>
-            {item.character}, {item.name}, {item.series} ,{item.synopsis},{" "}
+            Character name: {item.character}, Series name: {item.series}, Series line: {item.name},{" "}
             {/* {<button onClick={() => seriesidhandler(item._id)}>Get Volumes</button>} */}
             {
-              <Button onClick={() => showvolumes(item._id, series)}>
+              <Button onClick={() => showvolumes(item._id, series, item.name)}>
                 Get Volumes
               </Button>
             }
-            {/* const theVolumes = series.filter(series => series._id === id);
-    console.log("this is theVolume:");
-    console.log(theVolumes[0].volumes); */}
-            {/* {!seriesid ? null : (
-       <List>
-        {series.filter(filterobject => filterobject._id = item(
-         { filterobject}
-        ))}
-       </List>
-     )} */}
-            {/* {seriesid.filter(vol => ( */}
-            {!seriesid ? null : (
-              <List>
-                {seriesid.map(vol => (
-                  <ListItem key={vol} onClick={getgooglebook(vol)}>
-                    {vol}
-                  </ListItem>
-                ))}
-              </List>
-            )}
+            {}
           </ListItem>
         </List>
       ))}
-
+      <h1>Volumes</h1>
+      {!seriesid ? null : (
+        <List>
+          {seriesid.map(vol => (
+            <ListItem key={vol}>
+              {vol}
+              {
+              <Button onClick={() => showvolumeinformation(vol, currentname, currentSeries)}>
+                Get Volumes Information
+              </Button>
+            }
+            </ListItem>
+          ))}
+        </List>
+      )}
       {}
       {/* 
       {!seriesid ? null : (
