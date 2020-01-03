@@ -203,7 +203,9 @@ const Detail = props => {
     let searchvol = name + " "+ vol + " " + series
     console.log(searchvol)
   //  Axios.get( "https://www.googleapis.com/books/v1/volumes?q='batman vol 1: court of owls'+ intitle&key=AIzaSyCq_gzWvARyw-0GjOxoZ9GN7PJfR8z1y7A")
-    Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "+intitle&orderBy=relevance")
+    // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "+intitle&orderBy=relevance")
+    Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "&orderBy=relevance")
+
     .then(function(response) {
       console.log(response)
       console.log(response.data)
