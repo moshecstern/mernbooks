@@ -27,31 +27,36 @@ import { render } from "react-dom";
 import Axios from "axios";
 import cors from "cors";
 
-const Superheroapi = (props) => {
+const Superheroapi = props => {
   const [{ data: heroinfo, loading }, randomtext] = useAxios(
-    { url: "https://cors-anywhere.herokuapp.com/http://superheroapi.com/api/10214859933028426/search/"+ props.props.match.params.name+"/id/biography" }
+    {
+      url:
+        "https://cors-anywhere.herokuapp.com/http://superheroapi.com/api/10214859933028426/search/" +
+        props.props.match.params.name +
+        "/id/biography"
+    }
     // { url: "/api/series/"}
-    )
+  );
 
   console.log("this is a test");
   console.log(props);
   console.log(props.props.match.params.name);
 
-  console.log("********************")
+  console.log("********************");
   console.log(heroinfo);
-console.log("********************")
+  console.log("********************");
 
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
-  const [currentId, setCurrentId] = useState()
- 
+  const [currentId, setCurrentId] = useState();
+
   console.log(currentname);
   console.log("currentname");
   const argvparams = window.location.pathname.split("/").slice(-1)[0];
 
   const seriesidhandler = id => () => {
     // setCurrentId(id)
-    console.log(id)
+    console.log(id);
     // getmyseries()
   };
 
@@ -69,55 +74,48 @@ console.log("********************")
   const showvolumes = (id, series) => {
     // setseriesid(id);
     console.log("this is whatever series is" + id);
-    console.log(series)
+    console.log(series);
     const theVolumes = series.filter(series => series._id === id);
     console.log("this is theVolume:");
     console.log(theVolumes[0].volumes);
-    setseriesid(theVolumes[0].volumes)
-  return (
-
-    <div>
-    {console.log( 
-    <List>
-      {theVolumes[0].volumes.map(vol =>(
-        <ListItem key={vol}>
-        {vol}
-        </ListItem>
-      ))}
-      </List>
-    )}
-  </div>
-    )
- }
+    setseriesid(theVolumes[0].volumes);
+    return (
+      <div>
+        {console.log(
+          <List>
+            {theVolumes[0].volumes.map(vol => (
+              <ListItem key={vol}>{vol}</ListItem>
+            ))}
+          </List>
+        )}
+      </div>
+    );
+  };
   if (loading) {
     return <></>;
   }
 
   return (
     <>
-    {/* {console.log("heroinfo")}
+      {/* {console.log("heroinfo")}
 {console.log(heroinfo)}
 {console.log("heroinfo")} */}
-   {/* {add modal on click of vol. that takes in item.series + item.character+ vol. ... pass through to goodreads api and diplays results} */}
+      {/* {add modal on click of vol. that takes in item.series + item.character+ vol. ... pass through to goodreads api and diplays results} */}
       {/* {console.log(window.location.pathname.split("/").slice(-1)[0])}
       {console.log("current name")} */}
-{console.log(heroinfo.results)}
-{/* ------------------- */}
+      {/* {console.log(heroinfo.results)} */}
+      {/* ------------------- */}
       {!heroinfo ? null : (
-          <List>
-      {heroinfo.results.map(item => (
-              <ListItem key={item}>
-
-        <div>Name : {item.name}, </div> 
-         {/* Full Name: {item.biography.full-name} */}
-<div>Base's: {item.work.base}</div>
-
-         
-         
-
-              </ListItem>
-      ))}
-          </List>
+        <List>
+          {heroinfo.results.map(item => (
+            <ListItem key={item}>
+              <div>Name : {item.name}, </div>
+              <div>Full Name: {item.biography['full-name']}</div>
+              <div>Base's: {item.work.base}</div>
+              <div><img src={item.image.url}></img></div>
+            </ListItem>
+          ))}
+        </List>
       )}
       {/* ------------------- */}
 
