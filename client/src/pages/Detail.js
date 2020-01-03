@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
+import Superheroapi from "../components/Superheroapi"
 import { Link, useParams } from "react-router-dom";
 import { Col, Row } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -24,12 +25,14 @@ import Modal from "../components/Modals";
 import SimpleModal from "../components/Modals";
 import SearchResults from "../components/SearchResults";
 import { render } from "react-dom";
+import Axios from "axios";
 
 const Detail = (props) => {
   const [{ data: series, loading }, randomtext] = useAxios(
-    // { url: "/api/series/"}
     { url: "/api/series/" + props.match.params.name }
-  );
+    // { url: "/api/series/"}
+    )
+
   console.log("this is a test");
   console.log(props);
   console.log(props.match.params.name);
@@ -200,6 +203,9 @@ const Detail = (props) => {
 
   return (
     <>
+    <Superheroapi props={props}>
+{props}
+    </Superheroapi>
       {/* <GridList cols={4}>
         {series.map(item => (
           <GridListTile key={item._id} onClick={getseriesbyname(item.name)}>
