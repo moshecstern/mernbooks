@@ -17,21 +17,21 @@ mongoose.connect(
 
 const characterSeed = [
   {
-    name: "batman",
+    name: "Batman",
     link: "https://dc.fandom.com/wiki/Batman",
     img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/7/7b/Batman_Vol_2_9_Textless_Variant.jpg/revision/latest/scale-to-width-down/150?cb=20120510175322",
     info: "the super-hero protector of Gotham City, a man dressed like a bat who fights against evil and strikes terror into the hearts of criminals everywhere.",
     series: ["new52", "rebirth", "All-Star Batman"]
   },
   {
-    name: "superman",
+    name: "Superman",
     link: "https://dc.fandom.com/wiki/Superman",
     img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/9/9d/Superman_0008.jpg/revision/latest/scale-to-width-down/150?cb=20120825192746",
     info: "also known as the Man of Steel, is one of the most powerful superheroes in the DC Universe.",
     series: ["new52", "rebirth"]
   },
   {
-    name: "wonderwoman",
+    name: "Wonder Woman",
     link: "https://dc.fandom.com/wiki/Wonder_Woman",
         img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/e/ec/Wonder_Woman_0007.jpg/revision/latest/scale-to-width-down/150?cb=20130928221412",
         info: " is an Amazon warrior princess and one of the most powerful superheroes in the DC Universe.",
@@ -105,29 +105,29 @@ const characterSeed = [
 const seriesSeed = [
   {
     series: "new52",
-    character: "batman",
-    name: "batman",
+    character: "Batman",
+    name: "Batman",
     synopsis: "batman fights joker...",
     volumes: ["Vol 1: Court of Owls", "Vol 2: City of Owls", "Vol 3: Death of the Family", "Vol 4: Zero Year - Secret City", "Vol 5: Zero Year - Dark City", "Vol 6: Graveyard Shift", "Vol 7: Endgame", "Vol 8: Superheavy", "Vol 9: Bloom", "Vol 10: Epilogue"],
     extras: ["DC Comics: Zero Year", "The Joker: Endgame", "Batman vs. Superman: The Greatest Battles", "Absolute Batman: The Court of Owls"]
   }, 
   {
     series: "new52",
-    character: "batman",
+    character: "Batman",
     name: "Batman: Detective Comics",
     synopsis: "batman fights joker...",
     volumes: ["Vol 1: Faces of Death", "Vol 2: Scare Tactics", "Vol 3: Emperor Penguin", "Vol 4: The Wrath", "Vol 5: Gothtopia", "Vol 6: Icarus", "Vol 7: Anarky", "Vol 8: Blood of Heroes", "Vol 9: Gordon at War", "Vol 10: Epilogue"],
   }, 
   {
     series: "rebirth",
-    character: "batman",
+    character: "Batman",
     name: "Batman",
     synopsis: "batman fights joker hahaha...",
     volumes: ["Vol 1: I am Gotham", "Vol 2: I Am Suicide", "Vol 3: I Am Bane", "Vol 4: The War of Jokes and Riddles", "Vol 5: Rules of Engagement", "Vol 6: Bride or Burglar", "Vol 7: The Wedding", "Vol 8: Cold Days", "Vol 9: The Tyrant Wing", "Vol 10: Knightmares", "Vol 11: The Fall and the Fallen"],
   }, 
   {
     series: "rebirth",
-    character: "batman",
+    character: "Batman",
     name: "All-Star Batman",
     synopsis: "batman fights joker hahaha... mwaahahha ",
     volumes: ["Vol 1: My Own Worst Enemy", "Vol 2: Ends of the Earth", "Vol 3: The First Ally"],
@@ -160,7 +160,7 @@ const seriesSeed = [
   // green lanterns
   {
   series: "rebirth",
-  character: "Green lanterns",
+  character: "Green lantern",
   name: "Green Lanterns",
   synopsis: "Green lanter nbladibladaaba ",
   volumes: ["Vol 1: Rage Planet", "Vol 2: The Phantom Lantern", "Vol 3: POLARITY", "Vol 4: THE FIRST RING", "Vol 5: OUT OF TIME", "Vol 6: A WORLD OF OUR", "Vol 7: SUPERHUMAN", "Vol 8: GHOSTS OF THE PAST", "Vol 9: EVIL’S MIGHT"],
@@ -172,8 +172,8 @@ const seriesSeed = [
 // https://www.comics.org/series/76455/details/
   {
   series: "new52",
-  character: "superman",
-  name: "Batman All-Star",
+  character: "Superman",
+  name: "All-Star Superman",
   synopsis: "superman hahahah ",
   volumes: ["Vol 1: SUPERMAN AND THE MEN OF STEEL", "Vol 2: BULLETPROOF", "Vol 3: AT THE END OF DAYS", "Vol 4: HYBRID", "Vol 5: WHAT LIES BENEATH", "Vol 6: SUPERDOOM", "Vol 7: UNDER THE SUN", "Vol 8: TRUTH", "Vol 9: LAST RITES"],
   extras: ["WORLD AGAINST SUPERMAN"]
