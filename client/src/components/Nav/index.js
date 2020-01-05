@@ -94,6 +94,18 @@ const Nav = () => {
       >
         <div style={modalStyle} className={classes.paper}>
           <h2 id="login-modal-title">Please enter your Info</h2>
+          <TextField
+            id="outlined-search"
+            label="Search field"
+            type="search"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-search"
+            label="Search field"
+            type="search"
+            variant="outlined"
+          />
           <p id="login-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>

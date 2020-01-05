@@ -50,7 +50,7 @@ const Home = () => {
     character: [],
     volumes: [],
     series: [],
-    singlevolume: [],
+    singlevolume: []
   };
 
   const getallseriesbycharacterName = () => {
@@ -69,23 +69,22 @@ const Home = () => {
       .catch(err => console.log(err));
   };
 
- const loadCharacters = () => {
+  const loadCharacters = () => {
     API.getCharacters()
       .then(res => {
         //console.log(res);
-        this.setState({ characters: res.data, name: "", info: "", link: "" })
-      }
-      )
+        this.setState({ characters: res.data, name: "", info: "", link: "" });
+      })
       .catch(err => console.log(err));
   };
 
-  const getseriesbyname = (name) => {
+  const getseriesbyname = name => {
     console.log("Get series by name!");
     console.log(name);
     API.getseriesbyname(name)
       .then(res => {
         this.setState({ series: res.data });
-        console.log("This is the res: ")
+        console.log("This is the res: ");
         console.log(res);
       })
       .catch(err => console.log(err));
@@ -126,23 +125,21 @@ const Home = () => {
       <GridList cols={4}>
         {characters.map(item => (
           /* <GridListTile key={item.name} onClick={getseriesbyname(item.name)}> */
-          <GridListTile key={item.name} onClick={() => getseriesbyname(item.name)}>
-
+          <GridListTile
+            key={item.name}
+            onClick={() => getseriesbyname(item.name)}
+          >
             <img src={item.img} alt={item.name} />
-                {/* <Link to={"/character/" + item._id}> */}
-                {/* <Link to={`/api/series/${item.name}`}> */}
-                {item.name}
-                  {/* </Link> */}
+            {/* <Link to={"/character/" + item._id}> */}
+            {/* <Link to={`/api/series/${item.name}`}> */}
+            {item.name}
+            {/* </Link> */}
             <GridListTileBar
-         
-         
               title={<Link to={"/series/" + item.name}>{item.name}</Link>}
-              
-
               classes={
                 {
-                  //   root: classes.titleBar,
-                  //   title: classes.title
+                  // root: classes.titleBar,
+                  // title: classes.title
                 }
               }
               actionIcon={
@@ -156,7 +153,7 @@ const Home = () => {
                 </IconButton>
               }
             />
-              {/* <Link to={"/character/" + item._id}>
+            {/* <Link to={"/character/" + item._id}>
                 {item.name}
                   </Link> */}
           </GridListTile>
@@ -164,19 +161,19 @@ const Home = () => {
       </GridList>
       {!currentId ? null : (
         <Paper>
-        {characters.map(item => (
-          <Grid container key={item._id}>
-            <Grid item>
-              <Typography variant="h3">{}</Typography>
-              {console.log(item)}
-            </Grid>
-            <Grid item>
-              <Typography variant="h4"> Name {item.name}</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h4">Link {item.Link}</Typography>
-            </Grid>
-            {/* <Grid item container>
+          {characters.map(item => (
+            <Grid container key={item._id}>
+              <Grid item>
+                <Typography variant="h3">{}</Typography>
+                {console.log(item)}
+              </Grid>
+              <Grid item>
+                <Typography variant="h4"> Name {item.name}</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h4">Link {item.Link}</Typography>
+              </Grid>
+              {/* <Grid item container>
               <Grid item>
                 <Typography variant="h4">Series</Typography>
                 {characters.series.map(item => (
@@ -184,10 +181,10 @@ const Home = () => {
                 ))}
               </Grid>
             </Grid> */}
-          </Grid>
-         ))}
+            </Grid>
+          ))}
         </Paper>
-       )} 
+      )}
     </>
   );
 };
