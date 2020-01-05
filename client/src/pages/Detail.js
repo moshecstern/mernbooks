@@ -1,5 +1,3 @@
-
-
 import React, { Component, useState } from "react";
 import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
 import API from "../utils/API";
@@ -18,7 +16,10 @@ import {
   Collapse,
   Paper,
   Typography,
-  Button
+  Button,
+  ListItemAvatar,
+  Avatar,
+  ListItemText
 } from "@material-ui/core";
 
 import useAxios from "axios-hooks";
@@ -29,9 +30,34 @@ import SimpleModal from "../components/Modals";
 import SearchResults from "../components/SearchResults";
 import { render } from "react-dom";
 import Axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+import FolderIcon from "@material-ui/icons/Folder";
+
+// function generate(element) {
+//   return [0, 1, 2].map(value =>
+//     React.cloneElement(element, {
+//       key: value
+//     })
+//   );
+// }
+
 // require('dotenv').config()
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    maxWidth: 752
+  },
+  demo: {
+    backgroundColor: theme.palette.background.paper
+  },
+  title: {
+    margin: theme.spacing(4, 0, 2)
+  }
+}));
 
 const Detail = props => {
+  const classes = useStyles();
+
   const [{ data: series, loading }, randomtext] = useAxios(
     { url: "/api/series/" + props.match.params.name }
     // { url: "/api/series/"}
@@ -46,7 +72,7 @@ const Detail = props => {
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
-  const [currentSeries, setCurrentSeries]= useState();
+  const [currentSeries, setCurrentSeries] = useState();
   //  {
   //   query: searchParams.get('query') || '',
   // };
@@ -60,10 +86,10 @@ const Detail = props => {
   //     "/api/characters"
   //     );
 
-  const [{ data, loading: dataLoading }, getmyseries] = useAxios(
-    { url: "/api/series/" + currentId },
-    { manual: true }
-  );
+  // const [{ data, loading: dataLoading }, getmyseries] = useAxios(
+  //   { url: "/api/series/" + currentId },
+  //   { manual: true }
+  // );
 
   // const [{ data, loading: dataLoading }, getData] = useAxios(
   //   { url: "/api/series/" + currentname },
@@ -76,16 +102,16 @@ const Detail = props => {
     // getmyseries()
   };
 
-  const LoadChosenSeries = name => {
-    setCurrentname(name);
-    console.log(name);
-    // getData();
-    // API.getseriesbyname(argvparams)
-    //   .then(
-    //     res => setCurrentname(res)
-    //   )
-    //   .catch(err => console.log(err));
-  };
+  // const LoadChosenSeries = name => {
+  //   setCurrentname(name);
+  //   console.log(name);
+  //   // getData();
+  //   // API.getseriesbyname(argvparams)
+  //   //   .then(
+  //   //     res => setCurrentname(res)
+  //   //   )
+  //   //   .catch(err => console.log(err));
+  // };
   // const  LoadChosenSeries = () => {
   //   API.getseriesbyname(this.props.match.name)
   //   .then(res => this.setState({ series: res.data })
@@ -162,7 +188,6 @@ const Detail = props => {
   // const tempCharacter = series.filter(item => item.character === argvparams);
 
   const showvolumes = (id, series) => {
-
     // setseriesid(id);
     console.log("this is whatever series is" + id);
     console.log(series);
@@ -187,36 +212,37 @@ const Detail = props => {
         )}
       </div>
     );
-
   };
 
   //figure out what you need to pass as variable 'seriesid' from the button
   const showvolumeinformation = (vol, name, series) => {
     //this is where you do your google reader call or however you are going to display infromation.
     //reference showvolumes method above
-    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY)
+    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
     console.log(vol);
-    console.log(name)
-    console.log(series)
-    console.log("name________________________")
+    console.log(name);
+    console.log(series);
+    console.log("name________________________");
     // let searchvol = props.match.params.name +" "+ vol + " " + name
-    let searchvol = name + " "+ vol + " " + series
-    console.log(searchvol)
-  //  Axios.get( "https://www.googleapis.com/books/v1/volumes?q='batman vol 1: court of owls'+ intitle&key=AIzaSyCq_gzWvARyw-0GjOxoZ9GN7PJfR8z1y7A")
+    let searchvol = name + " " + vol + " " + series;
+    console.log(searchvol);
+    //  Axios.get( "https://www.googleapis.com/books/v1/volumes?q='batman vol 1: court of owls'+ intitle&key=AIzaSyCq_gzWvARyw-0GjOxoZ9GN7PJfR8z1y7A")
     // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "+intitle&orderBy=relevance")
-    Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "&orderBy=relevance")
-
-    .then(function(response) {
-      console.log(response)
-      console.log(response.data)
-      console.log("props.match.params.name")
-      console.log(props.match.params.name)
-    })
+    Axios.get(
+      "https://www.googleapis.com/books/v1/volumes?q='" +
+        searchvol +
+        "&orderBy=relevance"
+    ).then(function(response) {
+      console.log(response);
+      console.log(response.data);
+      console.log("props.match.params.name");
+      console.log(props.match.params.name);
+    });
     // googlebooks_APP_API_KEY
-  }
+  };
 
-  const getgooglebook = (vol) => {
-    console.log(vol)
+  const getgooglebook = vol => {
+    console.log(vol);
   };
 
   if (loading) {
@@ -274,18 +300,68 @@ const Detail = props => {
       {/* working code  */}
 
       {series.map(item => (
-        <List key={item._id}>
-          <ListItem key={item._id}>
-            Character name: {item.character}, Series name: {item.series}, Series line: {item.name},{" "}
-            {/* {<button onClick={() => seriesidhandler(item._id)}>Get Volumes</button>} */}
-            {
-              <Button onClick={() => showvolumes(item._id, series, item.name)}>
-                Get Volumes
-              </Button>
-            }
-            {}
-          </ListItem>
-        </List>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h6" className={classes.title}>
+              Character name: {item.character}{" "}
+            </Typography>
+            <div className={classes.demo}>
+              <List>
+                <ListItem key={item._id}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon
+                        onClick={() => showvolumes(item._id, series, item.name)}
+                      />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          // className={classes.inline}
+                          color="textPrimary"
+                        >
+                          Series Name:{" "}
+                        </Typography>
+                        {item.series}
+                      </React.Fragment>
+                    }
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          className={classes.inline}
+                          color="textPrimary"
+                        >
+                          Series Line:{" "}
+                        </Typography>
+                        {item.name}
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </div>
+          </Grid>
+        </Grid>
+
+        // <List key={item._id}>
+        //   <ListItem key={item._id}>
+        //     Character name: {item.character}, Series name: {item.series}, Series
+        //     line: {item.name},{" "}
+        //     {/* {<button onClick={() => seriesidhandler(item._id)}>Get Volumes</button>} */}
+        //     {
+        //       <Button onClick={() => showvolumes(item._id, series, item.name)}>
+        //         Get Volumes
+        //       </Button>
+        //     }
+        //     {}
+        //   </ListItem>
+        // </List>
       ))}
       <h1>Volumes</h1>
       {!seriesid ? null : (
@@ -294,10 +370,14 @@ const Detail = props => {
             <ListItem key={vol}>
               {vol}
               {
-              <Button onClick={() => showvolumeinformation(vol, currentname, currentSeries)}>
-                Get Volumes Information
-              </Button>
-            }
+                <Button
+                  onClick={() =>
+                    showvolumeinformation(vol, currentname, currentSeries)
+                  }
+                >
+                  Get Volumes Information
+                </Button>
+              }
             </ListItem>
           ))}
         </List>
