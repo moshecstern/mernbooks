@@ -252,162 +252,104 @@ const Detail = props => {
   return (
     <>
       <Superheroapi props={props}>{props}</Superheroapi>
-      {/* <GridList cols={4}>
-        {series.map(item => (
-          <GridListTile key={item._id} onClick={getseriesbyname(item.name)}>
-
-                <Link to={`/api/series//${item.name}`}>
-                {item.character}
-                {item.volumes}
-                  </Link>
-            <GridListTileBar
-              title={<Link to={"/api/series/" + item.character}>{item.character}</Link>}
-              classes={
-                {
-                    root: classes.titleBar,
-                    title: classes.title
-                }
-              }
-              actionIcon={
-                <IconButton
-                  aria-label={`star ${item.character}`}
-                  onClick={serieshandler(item.series)}
-                >
-                  <FindInPageIcon />
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList> */}
-      {/* working code  */}
-      {/* {name   synopsis  volumes  extras} */}
-      {/* {console.log(this.process.argv)} */}
-      {/* {add modal on click of vol. that takes in item.series + item.character+ vol. ... pass through to goodreads api and diplays results} */}
-      {console.log(window.location.pathname.split("/").slice(-1)[0])}
-      {console.log("current name")}
-      {console.log(currentname)}
-      {console.log(argvparams)}
-      {/* {<div onClick={LoadChosenSeries(series.character)}> CLICK ME!</div>} */}
-      {/* {series.map(item => (
-        <List key={item._id} >
-          {item.character}, {item.name}, {item.synopsis}
-          {item.volumes.map(vol => (
-            <ListItem key={vol} >{vol}</ListItem>
-          ))}
-        </List>
-      ))} */}
-      {/* working code  */}
-
-      {series.map(item => (
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" className={classes.title}>
-              Character name: {item.character}{" "}
-            </Typography>
-            <div className={classes.demo}>
-              <List>
-                <ListItem key={item._id}>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon
-                        onClick={() => showvolumes(item._id, series, item.name)}
-                      />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={
-                      <React.Fragment>
-                        <Typography
-                          component="span"
-                          variant="body2"
-                          // className={classes.inline}
-                          color="textPrimary"
-                        >
-                          Series Name:{" "}
-                        </Typography>
-                        {item.series}
-                      </React.Fragment>
-                    }
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                          component="span"
-                          variant="body2"
-                          className={classes.inline}
-                          color="textPrimary"
-                        >
-                          Series Line:{" "}
-                        </Typography>
-                        {item.name}
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
-              </List>
-            </div>
-          </Grid>
-        </Grid>
-
-        // <List key={item._id}>
-        //   <ListItem key={item._id}>
-        //     Character name: {item.character}, Series name: {item.series}, Series
-        //     line: {item.name},{" "}
-        //     {/* {<button onClick={() => seriesidhandler(item._id)}>Get Volumes</button>} */}
-        //     {
-        //       <Button onClick={() => showvolumes(item._id, series, item.name)}>
-        //         Get Volumes
-        //       </Button>
-        //     }
-        //     {}
-        //   </ListItem>
-        // </List>
-      ))}
-      <h1>Volumes</h1>
-      {!seriesid ? null : (
-        <List>
-          {seriesid.map(vol => (
-            <ListItem key={vol}>
-              {vol}
-              {
-                <Button
-                  onClick={() =>
-                    showvolumeinformation(vol, currentname, currentSeries)
-                  }
-                >
-                  Get Volumes Information
-                </Button>
-              }
-            </ListItem>
-          ))}
-        </List>
-      )}
-      {}
-      {/* 
-      {!seriesid ? null : (
-
-       
-        <Paper>
-       
+      <Grid container spacing={2}>
+        <Grid xs={12} md={6}>
+          {" "}
           {series.map(item => (
-            <Grid container key={item._id}>
-            {console.log(item)}
-              <Grid item>
-                <Typography variant="h3">{}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> Name {item.name}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> series {item.series}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> volumes {item.volumes}</Typography>
-              </Grid>
-            </Grid>
+            <>
+              <Typography variant="h6" className={classes.title}>
+                Character name: {item.character}{" "}
+              </Typography>
+              <div className={classes.demo}>
+                <List>
+                  <ListItem key={item._id}>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <FolderIcon
+                          onClick={() =>
+                            showvolumes(item._id, series, item.name)
+                          }
+                        />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          >
+                            Series Name:{" "}
+                          </Typography>
+                          {item.series}
+                        </React.Fragment>
+                      }
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          >
+                            Series Line:{" "}
+                          </Typography>
+                          {item.name}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </>
           ))}
-        </Paper>
-      )} */}
+        </Grid>{" "}
+        <Grid xs={12} md={6}>
+          {" "}
+          <h1>Volumes</h1>
+          {!seriesid ? null : (
+            <List>
+              {seriesid.map(vol => (
+                <div className={classes.demo}>
+                  <ListItem key={vol}>
+                    {" "}
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          ></Typography>
+                          {vol}
+                        </React.Fragment>
+                      }
+                      secondary={
+                        <React.Fragment>
+                          <Button
+                            onClick={() =>
+                              showvolumeinformation(
+                                vol,
+                                currentname,
+                                currentSeries
+                              )
+                            }
+                          >
+                            Get Volumes Information
+                          </Button>
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </div>
+              ))}
+            </List>
+          )}
+        </Grid>
+      </Grid>
     </>
   );
 };

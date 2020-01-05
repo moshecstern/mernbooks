@@ -123,12 +123,12 @@ const News = () => {
           </GridListTile>
         ))}
       </GridList>
-      {/* <Grid item>
+      <Grid item>
         <Typography variant="h1">Item One </Typography>
       </Grid>
       <Grid item>
         <Typography variant="h1">Item two </Typography>
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 };

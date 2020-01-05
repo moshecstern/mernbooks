@@ -60,8 +60,8 @@ const Superheroapi = props => {
       backgroundColor: theme.palette.background.paper
     },
     gridList: {
-      width: 500,
-      height: 450
+      width: "auto",
+      height: "auto"
     },
     icon: {
       color: "rgba(255, 255, 255, 0.54)"
@@ -126,7 +126,7 @@ const Superheroapi = props => {
       {/* ------------------- */}
       {!heroinfo ? null : (
         <Grid className={classes.root} container>
-          <GridList cols={2} item cellHeight={180} className={classes.gridList}>
+          <GridList cols={2} item cellHeight={400} className={classes.gridList}>
             <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
               <ListSubheader component="div">
                 <Typography variant="h3">
