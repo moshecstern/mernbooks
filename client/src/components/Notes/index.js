@@ -1,6 +1,7 @@
 // import React from "react";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import API from "../../utils/API";
+import CustomForm from "../CustomForm";
 import { Link, useParams } from "react-router-dom";
 import { Col, Row } from "../Grid";
 import { List, ListItem } from "../List";
@@ -20,6 +21,10 @@ import {
 } from "@material-ui/core";
 
 import useAxios from "axios-hooks";
+// import { useInput } from './hooks/input-hook';
+// import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
+
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { ObjectId } from "mongoose";
 import Modal from "../Modals";
@@ -29,74 +34,94 @@ import { render } from "react-dom";
 import Axios from "axios";
 import cors from "cors";
 
-class Notes extends Component {
-// const Notes = props => {
-state = {
-name: "",
-message:"",
-notes: []
-}
-componentDidMount() {
-    this.loadNotes();
+const Notes = () => {
+  const [{data: allnotes, loading}, getallnotes] = useAxios(
+    "/api/notes"
+  );
+  
+  const [{data, loading: dataloading}, addmynote] = useAxios(
+    "/api/notes"
+    );
+    const [mynote, setmynote] = useState();
+    const [myname, setmyname]= useState();
+    const [mymessage, setmymessage] = useState();
     
-  }
-  loadNotes = () => {
-      API.getallnotes()
-      .then(res => {
-          this.setState({ notes: res.data})
-      })
-      .catch(err => console.log(err));
-  }
-  handleFormSubmit = event => {
+
+
+//  const loadNotes = () => {
+//       API.getallnotes()
+//       .then(res => {
+//           this.setState({ notes: res.data})
+//       })
+//       .catch(err => console.log(err));
+//   }
+   const handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.info) {
+    // if (this.state.name && this.state.info) {
       API.saveNote({
-        name: this.state.name,
-        message: this.state.message
+        name: myname,
+        message: mymessage
       })
-        .then(res => this.loadNotes())
+        // .then(res => this.loadNotes())
+        .then(res=>console.log(res))
         .catch(err => console.log(err));
-    }
+    // }
   };
-  handleInputChange = event => {
+ const handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    setmynote({[name]: value})
+    // this.setState({
+    //   [name]: value
+    // });
   };
   
-  deleteNote = id => {
+const  deleteNote = id => {
     API.deleteNote(id)
       .then(res => this.loadCharacters())
       .catch(err => console.log(err));
   };
+
+const handleInputChangename = event => {
+  setmyname(myname)
+}
+const handleInputChangemessage = event => {
+  setmymessage(mymessage)
+}
+
+  if (loading) {
+    return <></>;
+  }
   
-    return () {
       return (
         <>
+
       <form>
   <Input
-    value={this.state.name}
-    onChange={this.handleInputChange}
+    value={myname}
+    onChange={handleInputChangename}
     name="name"
     placeholder="name (required)"
   />
   <Input
-    value={this.state.message}
-    onChange={this.handleInputChange}
+    value={mymessage}
+    onChange={handleInputChangemessage}
     name="message"
     placeholder="message (required)"
   />
   <FormBtn
-    disabled={!(this.state.message && this.state.name)}
-    onClick={this.handleFormSubmit}
+    // disabled={!(this.state.message && this.state.name)}
+    // onClick={handleFormSubmit}
+    onClick={handleFormSubmit}
   >
     Submit Note
   </FormBtn>
 </form>
+
+
+
 <form>
       <List>
-            {this.state.notes.map(item => (
+            {allnotes.map(item => (
               <ListItem key={item}>
                 <div>Name : {item.name}, </div>
                 <div>message: {item.message}</div>
@@ -110,20 +135,9 @@ componentDidMount() {
             
 ) 
       }
-    }
+    
   export default Notes;
 
-//   {!notesinfo ? null : ( 
-//     <List>
-//      {.map(item => (
-//        <ListItem key={item}>
-//          <div>Name : {item.name}, </div>
-//          <div>message: {item.message}</div>
-//          <div>Base's: {item.date}</div>
-
-//        </ListItem>
-//      ))}
-//    </List> 
 
 
 
