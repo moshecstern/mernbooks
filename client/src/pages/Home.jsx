@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+import Notes from "../components/Notes";
 import {
   Container,
   Grid,

@@ -72,6 +72,7 @@ const Detail = props => {
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
+  const [currentsearchresults, setcurrentsearchresults]= useState();
   const [currentSeries, setCurrentSeries] = useState();
   //  {
   //   query: searchParams.get('query') || '',
@@ -226,8 +227,16 @@ const Detail = props => {
     // let searchvol = props.match.params.name +" "+ vol + " " + name
     let searchvol = name + " " + vol + " " + series;
     console.log(searchvol);
-    //  Axios.get( "https://www.googleapis.com/books/v1/volumes?q='batman vol 1: court of owls'+ intitle&key=AIzaSyCq_gzWvARyw-0GjOxoZ9GN7PJfR8z1y7A")
-    // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "+intitle&orderBy=relevance")
+
+    // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "&orderBy=relevance")
+
+    // .then(function(response) {
+    //   console.log(response)
+    //   console.log(response.data)
+    //   console.log("props.match.params.name")
+    //   console.log(props.match.params.name)
+    //   setcurrentsearchresults(response.data)
+    // })
     Axios.get(
       "https://www.googleapis.com/books/v1/volumes?q='" +
         searchvol +
@@ -237,6 +246,7 @@ const Detail = props => {
       console.log(response.data);
       console.log("props.match.params.name");
       console.log(props.match.params.name);
+      setcurrentsearchresults(response.data)
     });
     // googlebooks_APP_API_KEY
   };
@@ -350,6 +360,38 @@ const Detail = props => {
           )}
         </Grid>
       </Grid>
+
+
+      {!currentsearchresults ? null : (
+  <List>
+    {currentsearchresults.items.map(result=>(
+      <ListItem key={result}>
+{console.log(result)}
+<div>Title: {result.volumeInfo.title}</div>
+{/* <div><img src={result.volumeInfo.imageLinks.smallThumbnail}></img></div> */}
+{!result.volumeInfo.imageLinks ? null : (
+
+<div><img src={result.volumeInfo.imageLinks.thumbnail}></img></div>
+)}
+
+<div><a href={result.volumeInfo.previewLink} target="_blank">Google Books Link</a></div>
+<div>Authors: {result.volumeInfo.authors}</div>
+{/* <div>
+<List>
+{result.map(author=>(
+  <ListItem>
+  {author}, 
+  </ListItem>
+))}
+</List>
+</div> */}
+<div>Published Date: {result.volumeInfo.publishedDate}</div>
+<div>Description: {result.volumeInfo.description}</div>
+      </ListItem>
+    ))}
+  </List>
+)}
+
     </>
   );
 };

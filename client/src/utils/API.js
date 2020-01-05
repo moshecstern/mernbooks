@@ -39,6 +39,12 @@ export default {
     console.log(name);
     return axios.get("/api/series/" + name);
   },
+  getallnotes: function() {
+    return axios.get("/api/notes")
+  },
+  saveNote: function() {
+    return axios.post("/api/notes")
+  },
   getNews: function(proxyURL, url) {
     return rp(proxyURL + url);
   },

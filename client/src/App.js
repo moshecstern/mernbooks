@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import { Container } from "@material-ui/core";
 import "typeface-roboto";
 import News from "./components/News";
+import Notes from "./components/Notes";
 
 function App() {
   return (
