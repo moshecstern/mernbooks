@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+import Notes from "../components/Notes";
 import {
   Container,
   Grid,
@@ -46,12 +47,12 @@ const Home = () => {
   //       .catch(err => console.log(err));
   //   };
 
-  const state = {
-    character: [],
-    volumes: [],
-    series: [],
-    singlevolume: [],
-  };
+  // const state = {
+  //   character: [],
+  //   volumes: [],
+  //   series: [],
+  //   singlevolume: [],
+  // };
 
   const getallseriesbycharacterName = () => {
     API.getallseriesbycharacter()
@@ -188,6 +189,7 @@ const Home = () => {
          ))}
         </Paper>
        )} 
+       {/* <Notes></Notes> */}
     </>
   );
 };

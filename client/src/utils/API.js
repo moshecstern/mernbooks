@@ -33,6 +33,13 @@ export default {
   getseriesbyname: function(name){
     console.log(name)
     return axios.get("/api/series/" + name);
+  },
+  getallnotes: function() {
+    return axios.get("/api/notes")
+  },
+  saveNote: function() {
+    return axios.post("/api/notes")
   }
+
 
 };

@@ -47,6 +47,7 @@ const Detail = props => {
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
   const [currentSeries, setCurrentSeries]= useState();
+  const [currentsearchresults, setcurrentsearchresults]= useState();
   //  {
   //   query: searchParams.get('query') || '',
   // };
@@ -211,6 +212,7 @@ const Detail = props => {
       console.log(response.data)
       console.log("props.match.params.name")
       console.log(props.match.params.name)
+      setcurrentsearchresults(response.data)
     })
     // googlebooks_APP_API_KEY
   }
@@ -302,32 +304,35 @@ const Detail = props => {
           ))}
         </List>
       )}
-      {}
-      {/* 
-      {!seriesid ? null : (
+{!currentsearchresults ? null : (
+  <List>
+    {currentsearchresults.items.map(result=>(
+      <ListItem key={result}>
+{console.log(result)}
+<div>Title: {result.volumeInfo.title}</div>
+{/* <div><img src={result.volumeInfo.imageLinks.smallThumbnail}></img></div> */}
+<div><img src={result.volumeInfo.imageLinks.thumbnail}></img></div>
 
-       
-        <Paper>
-       
-          {series.map(item => (
-            <Grid container key={item._id}>
-            {console.log(item)}
-              <Grid item>
-                <Typography variant="h3">{}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> Name {item.name}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> series {item.series}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> volumes {item.volumes}</Typography>
-              </Grid>
-            </Grid>
-          ))}
-        </Paper>
-      )} */}
+<div><a href={result.volumeInfo.previewLink} target="_blank">Google Books Link</a></div>
+<div>Authors: {result.volumeInfo.authors}</div>
+{/* <div>
+<List>
+{result.map(author=>(
+  <ListItem>
+  {author}, 
+  </ListItem>
+))}
+</List>
+</div> */}
+<div>Published Date: {result.volumeInfo.publishedDate}</div>
+<div>Description: {result.volumeInfo.description}</div>
+      </ListItem>
+    ))}
+  </List>
+)}
+
+      {}
+      
     </>
   );
 };
