@@ -1,5 +1,3 @@
-
-
 import React, { Component, useState } from "react";
 import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
 import API from "../utils/API";
@@ -18,7 +16,10 @@ import {
   Collapse,
   Paper,
   Typography,
-  Button
+  Button,
+  ListItemAvatar,
+  Avatar,
+  ListItemText
 } from "@material-ui/core";
 
 import useAxios from "axios-hooks";
@@ -29,9 +30,34 @@ import SimpleModal from "../components/Modals";
 import SearchResults from "../components/SearchResults";
 import { render } from "react-dom";
 import Axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+import FolderIcon from "@material-ui/icons/Folder";
+
+// function generate(element) {
+//   return [0, 1, 2].map(value =>
+//     React.cloneElement(element, {
+//       key: value
+//     })
+//   );
+// }
+
 // require('dotenv').config()
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    maxWidth: 752
+  },
+  demo: {
+    backgroundColor: theme.palette.background.paper
+  },
+  title: {
+    margin: theme.spacing(4, 0, 2)
+  }
+}));
 
 const Detail = props => {
+  const classes = useStyles();
+
   const [{ data: series, loading }, randomtext] = useAxios(
     { url: "/api/series/" + props.match.params.name }
     // { url: "/api/series/"}
@@ -46,8 +72,8 @@ const Detail = props => {
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
-  const [currentSeries, setCurrentSeries]= useState();
   const [currentsearchresults, setcurrentsearchresults]= useState();
+  const [currentSeries, setCurrentSeries] = useState();
   //  {
   //   query: searchParams.get('query') || '',
   // };
@@ -61,10 +87,10 @@ const Detail = props => {
   //     "/api/characters"
   //     );
 
-  const [{ data, loading: dataLoading }, getmyseries] = useAxios(
-    { url: "/api/series/" + currentId },
-    { manual: true }
-  );
+  // const [{ data, loading: dataLoading }, getmyseries] = useAxios(
+  //   { url: "/api/series/" + currentId },
+  //   { manual: true }
+  // );
 
   // const [{ data, loading: dataLoading }, getData] = useAxios(
   //   { url: "/api/series/" + currentname },
@@ -77,16 +103,16 @@ const Detail = props => {
     // getmyseries()
   };
 
-  const LoadChosenSeries = name => {
-    setCurrentname(name);
-    console.log(name);
-    // getData();
-    // API.getseriesbyname(argvparams)
-    //   .then(
-    //     res => setCurrentname(res)
-    //   )
-    //   .catch(err => console.log(err));
-  };
+  // const LoadChosenSeries = name => {
+  //   setCurrentname(name);
+  //   console.log(name);
+  //   // getData();
+  //   // API.getseriesbyname(argvparams)
+  //   //   .then(
+  //   //     res => setCurrentname(res)
+  //   //   )
+  //   //   .catch(err => console.log(err));
+  // };
   // const  LoadChosenSeries = () => {
   //   API.getseriesbyname(this.props.match.name)
   //   .then(res => this.setState({ series: res.data })
@@ -163,7 +189,6 @@ const Detail = props => {
   // const tempCharacter = series.filter(item => item.character === argvparams);
 
   const showvolumes = (id, series) => {
-
     // setseriesid(id);
     console.log("this is whatever series is" + id);
     console.log(series);
@@ -188,37 +213,46 @@ const Detail = props => {
         )}
       </div>
     );
-
   };
 
   //figure out what you need to pass as variable 'seriesid' from the button
   const showvolumeinformation = (vol, name, series) => {
     //this is where you do your google reader call or however you are going to display infromation.
     //reference showvolumes method above
-    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY)
+    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
     console.log(vol);
-    console.log(name)
-    console.log(series)
-    console.log("name________________________")
+    console.log(name);
+    console.log(series);
+    console.log("name________________________");
     // let searchvol = props.match.params.name +" "+ vol + " " + name
-    let searchvol = name + " "+ vol + " " + series
-    console.log(searchvol)
-  //  Axios.get( "https://www.googleapis.com/books/v1/volumes?q='batman vol 1: court of owls'+ intitle&key=AIzaSyCq_gzWvARyw-0GjOxoZ9GN7PJfR8z1y7A")
-    // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "+intitle&orderBy=relevance")
-    Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "&orderBy=relevance")
+    let searchvol = name + " " + vol + " " + series;
+    console.log(searchvol);
 
-    .then(function(response) {
-      console.log(response)
-      console.log(response.data)
-      console.log("props.match.params.name")
-      console.log(props.match.params.name)
+    // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "&orderBy=relevance")
+
+    // .then(function(response) {
+    //   console.log(response)
+    //   console.log(response.data)
+    //   console.log("props.match.params.name")
+    //   console.log(props.match.params.name)
+    //   setcurrentsearchresults(response.data)
+    // })
+    Axios.get(
+      "https://www.googleapis.com/books/v1/volumes?q='" +
+        searchvol +
+        "&orderBy=relevance"
+    ).then(function(response) {
+      console.log(response);
+      console.log(response.data);
+      console.log("props.match.params.name");
+      console.log(props.match.params.name);
       setcurrentsearchresults(response.data)
-    })
+    });
     // googlebooks_APP_API_KEY
-  }
+  };
 
-  const getgooglebook = (vol) => {
-    console.log(vol)
+  const getgooglebook = vol => {
+    console.log(vol);
   };
 
   if (loading) {
@@ -228,90 +262,117 @@ const Detail = props => {
   return (
     <>
       <Superheroapi props={props}>{props}</Superheroapi>
-      {/* <GridList cols={4}>
-        {series.map(item => (
-          <GridListTile key={item._id} onClick={getseriesbyname(item.name)}>
-
-                <Link to={`/api/series//${item.name}`}>
-                {item.character}
-                {item.volumes}
-                  </Link>
-            <GridListTileBar
-              title={<Link to={"/api/series/" + item.character}>{item.character}</Link>}
-              classes={
-                {
-                    root: classes.titleBar,
-                    title: classes.title
-                }
-              }
-              actionIcon={
-                <IconButton
-                  aria-label={`star ${item.character}`}
-                  onClick={serieshandler(item.series)}
-                >
-                  <FindInPageIcon />
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList> */}
-      {/* working code  */}
-      {/* {name   synopsis  volumes  extras} */}
-      {/* {console.log(this.process.argv)} */}
-      {/* {add modal on click of vol. that takes in item.series + item.character+ vol. ... pass through to goodreads api and diplays results} */}
-      {console.log(window.location.pathname.split("/").slice(-1)[0])}
-      {console.log("current name")}
-      {console.log(currentname)}
-      {console.log(argvparams)}
-      {/* {<div onClick={LoadChosenSeries(series.character)}> CLICK ME!</div>} */}
-      {/* {series.map(item => (
-        <List key={item._id} >
-          {item.character}, {item.name}, {item.synopsis}
-          {item.volumes.map(vol => (
-            <ListItem key={vol} >{vol}</ListItem>
+      <Grid container spacing={2}>
+        <Grid xs={12} md={6}>
+          {" "}
+          {series.map(item => (
+            <>
+              <Typography variant="h6" className={classes.title}>
+                Character name: {item.character}{" "}
+              </Typography>
+              <div className={classes.demo}>
+                <List>
+                  <ListItem key={item._id}>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <FolderIcon
+                          onClick={() =>
+                            showvolumes(item._id, series, item.name)
+                          }
+                        />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          >
+                            Series Name:{" "}
+                          </Typography>
+                          {item.series}
+                        </React.Fragment>
+                      }
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          >
+                            Series Line:{" "}
+                          </Typography>
+                          {item.name}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </>
           ))}
-        </List>
-      ))} */}
-      {/* working code  */}
+        </Grid>{" "}
+        <Grid xs={12} md={6}>
+          {" "}
+          <h1>Volumes</h1>
+          {!seriesid ? null : (
+            <List>
+              {seriesid.map(vol => (
+                <div className={classes.demo}>
+                  <ListItem key={vol}>
+                    {" "}
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          ></Typography>
+                          {vol}
+                        </React.Fragment>
+                      }
+                      secondary={
+                        <React.Fragment>
+                          <Button
+                            onClick={() =>
+                              showvolumeinformation(
+                                vol,
+                                currentname,
+                                currentSeries
+                              )
+                            }
+                          >
+                            Get Volumes Information
+                          </Button>
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </div>
+              ))}
+            </List>
+          )}
+        </Grid>
+      </Grid>
 
-      {series.map(item => (
-        <List key={item._id}>
-          <ListItem key={item._id}>
-            Character name: {item.character}, Series name: {item.series}, Series line: {item.name},{" "}
-            {/* {<button onClick={() => seriesidhandler(item._id)}>Get Volumes</button>} */}
-            {
-              <Button onClick={() => showvolumes(item._id, series, item.name)}>
-                Get Volumes
-              </Button>
-            }
-            {}
-          </ListItem>
-        </List>
-      ))}
-      <h1>Volumes</h1>
-      {!seriesid ? null : (
-        <List>
-          {seriesid.map(vol => (
-            <ListItem key={vol}>
-              {vol}
-              {
-              <Button onClick={() => showvolumeinformation(vol, currentname, currentSeries)}>
-                Get Volumes Information
-              </Button>
-            }
-            </ListItem>
-          ))}
-        </List>
-      )}
-{!currentsearchresults ? null : (
+
+      {!currentsearchresults ? null : (
   <List>
     {currentsearchresults.items.map(result=>(
       <ListItem key={result}>
 {console.log(result)}
 <div>Title: {result.volumeInfo.title}</div>
 {/* <div><img src={result.volumeInfo.imageLinks.smallThumbnail}></img></div> */}
+{!result.volumeInfo.imageLinks ? null : (
+
 <div><img src={result.volumeInfo.imageLinks.thumbnail}></img></div>
+)}
 
 <div><a href={result.volumeInfo.previewLink} target="_blank">Google Books Link</a></div>
 <div>Authors: {result.volumeInfo.authors}</div>
@@ -331,8 +392,6 @@ const Detail = props => {
   </List>
 )}
 
-      {}
-      
     </>
   );
 };

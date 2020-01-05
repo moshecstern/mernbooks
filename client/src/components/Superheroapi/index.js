@@ -14,7 +14,8 @@ import {
   Collapse,
   Paper,
   Typography,
-  Button
+  Button,
+  ListSubheader
 } from "@material-ui/core";
 
 import useAxios from "axios-hooks";
@@ -26,6 +27,7 @@ import SearchResults from "../SearchResults";
 import { render } from "react-dom";
 import Axios from "axios";
 import cors from "cors";
+import { makeStyles } from "@material-ui/core/styles";
 
 const Superheroapi = props => {
   const [{ data: heroinfo, loading }, randomtext] = useAxios(
@@ -49,6 +51,22 @@ const Superheroapi = props => {
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
+  const useStyles = makeStyles(theme => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      overflow: "hidden",
+      backgroundColor: theme.palette.background.paper
+    },
+    gridList: {
+      width: "auto",
+      height: "auto"
+    },
+    icon: {
+      color: "rgba(255, 255, 255, 0.54)"
+    }
+  }));
 
   console.log(currentname);
   console.log("currentname");
@@ -70,6 +88,7 @@ const Superheroapi = props => {
     //   )
     //   .catch(err => console.log(err));
   };
+  const classes = useStyles();
 
   const showvolumes = (id, series) => {
     // setseriesid(id);
@@ -106,16 +125,53 @@ const Superheroapi = props => {
       {/* {console.log(heroinfo.results)} */}
       {/* ------------------- */}
       {!heroinfo ? null : (
-        <List>
-          {heroinfo.results.map(item => (
-            <ListItem key={item}>
-              <div>Name : {item.name}, </div>
-              <div>Full Name: {item.biography['full-name']}</div>
-              <div>Base's: {item.work.base}</div>
-              <div><img src={item.image.url}></img></div>
-            </ListItem>
-          ))}
-        </List>
+        <Grid className={classes.root} container>
+          <GridList cols={2} item cellHeight={400} className={classes.gridList}>
+            <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
+              <ListSubheader component="div">
+                <Typography variant="h3">
+                  {props.props.match.params.name}
+                </Typography>
+              </ListSubheader>
+            </GridListTile>
+            {heroinfo.results.map(item => (
+              <GridListTile key={item}>
+                <img src={item.image.url} alt={item.name} />
+                <GridListTileBar
+                  title={<Link to={"/series/" + item.name}>{item.name}</Link>}
+                  subtitle={
+                    <>
+                      <span>Full Name: {item.biography["full-name"]}</span>{" "}
+                      <br />
+                      <span>Bases: {item.work.base}</span>
+                    </>
+                  }
+                  classes={
+                    {
+                      // root: classes.titleBar,
+                      // title: classes.title
+                    }
+                  }
+                  // actionIcon={
+                  //   <IconButton
+                  //     aria-label={`star ${item.title}`}
+                  //     onClick={iconHandler(item._id)}
+                  //     // onClick={<Link to={"/character/" + item._id}></Link>}
+                  //   >
+                  //     <FindInPageIcon />
+                  //   </IconButton>
+                  // }
+                />
+                <div>Name : {item.name}, </div>
+                {/* <div>Full Name: {item.biography["full-name"]}</div> */}
+                <div>Bases: {item.work.base}</div>
+                {/* <div>
+                  <img src={item.image.url}></img>
+                </div> */}
+              </GridListTile>
+            ))}
+          </GridList>
+        </Grid>
       )}
       {/* ------------------- */}
 
@@ -134,8 +190,6 @@ const Superheroapi = props => {
           </ListItem>
         </List>
       ))} */}
-
-      {}
     </>
   );
 };
