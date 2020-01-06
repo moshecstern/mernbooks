@@ -28,7 +28,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => {
   return {
     root: {
-      backgroundColor: "#F2A74B"
+      backgroundColor: "#D92B6B"
     },
     title: {
       backgroundImage: `url(${ComicbookpagesModified})`,
