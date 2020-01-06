@@ -1,20 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
-import API from "../utils/API";
 import Superheroapi from "../components/Superheroapi";
-import { Link, useParams } from "react-router-dom";
-import { Col, Row } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import {
-  Container,
   Grid,
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  IconButton,
-  Loading,
-  Collapse,
-  Paper,
   Typography,
   Button,
   ListItemAvatar,
@@ -23,25 +12,10 @@ import {
 } from "@material-ui/core";
 
 import useAxios from "axios-hooks";
-import FindInPageIcon from "@material-ui/icons/FindInPage";
-import { ObjectId } from "mongoose";
-import Modal from "../components/Modals";
-import SimpleModal from "../components/Modals";
-import SearchResults from "../components/SearchResults";
-import { render } from "react-dom";
 import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 
-// function generate(element) {
-//   return [0, 1, 2].map(value =>
-//     React.cloneElement(element, {
-//       key: value
-//     })
-//   );
-// }
-
-// require('dotenv').config()
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -51,145 +25,33 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   title: {
-    margin: theme.spacing(4, 0, 2)
-  }
+    margin: theme.spacing(4, 0, 2),
+    height: theme.spacing(5)
+  },
+  volumes: { minWidth: "600px" }
 }));
 
 const Detail = props => {
   const classes = useStyles();
 
-  const [{ data: series, loading }, randomtext] = useAxios(
-    { url: "/api/series/" + props.match.params.name }
-    // { url: "/api/series/"}
-  );
+  const [{ data: series, loading }, randomtext] = useAxios({
+    url: "/api/series/" + props.match.params.name
+  });
 
   console.log("this is a test");
   console.log(props);
   console.log(props.match.params.name);
   console.log(series);
-  // const { location } = props;
-  // const { query } = getParams(location);
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
   const [currentsearchresults, setcurrentsearchresults]= useState();
   const [currentSeries, setCurrentSeries] = useState();
-  //  {
-  //   query: searchParams.get('query') || '',
-  // };
 
-  // const searchParams = newURLSearchParams(location.search)
   console.log(currentname);
   console.log("currentname");
-  const argvparams = window.location.pathname.split("/").slice(-1)[0];
-  // const Detail = () => {
-  //   const [{ data: series, loading }, getData] = useAxios(
-  //     "/api/characters"
-  //     );
-
-  // const [{ data, loading: dataLoading }, getmyseries] = useAxios(
-  //   { url: "/api/series/" + currentId },
-  //   { manual: true }
-  // );
-
-  // const [{ data, loading: dataLoading }, getData] = useAxios(
-  //   { url: "/api/series/" + currentname },
-  //   { manual: true }
-  // );
-
-  const seriesidhandler = id => () => {
-    // setCurrentId(id)
-    console.log(id);
-    // getmyseries()
-  };
-
-  // const LoadChosenSeries = name => {
-  //   setCurrentname(name);
-  //   console.log(name);
-  //   // getData();
-  //   // API.getseriesbyname(argvparams)
-  //   //   .then(
-  //   //     res => setCurrentname(res)
-  //   //   )
-  //   //   .catch(err => console.log(err));
-  // };
-  // const  LoadChosenSeries = () => {
-  //   API.getseriesbyname(this.props.match.name)
-  //   .then(res => this.setState({ series: res.data })
-  //   )
-  //   .catch(err => console.log(err));
-  // }
-
-  // const serieshandler = name => () => {
-  //   setCurrentname(name);
-  //   console.log(name);
-  //   getData();
-  // };
-
-  const getallseriesbycharacterName = () => {
-    API.getallseriesbycharacter()
-      .then(res => {
-        this.setState({ series: res.data });
-      })
-      .catch(err => console.log(err));
-  };
-
-  const getseriesbyid = id => {
-    API.getSeriesByid(id)
-      .then(res => {
-        this.setState({ volumes: res.data });
-      })
-      .catch(err => console.log(err));
-  };
-
-  const loadCharacters = () => {
-    API.getCharacters()
-      .then(res => {
-        //console.log(res);
-        this.setState({ characters: res.data, name: "", info: "", link: "" });
-      })
-      .catch(err => console.log(err));
-  };
-
-  const getseriesbyname = name => {
-    API.getseriesbyname(name)
-      .then(res => {
-        // this.setState({ series: res.data });
-        console.log(res);
-      })
-      .catch(err => console.log(err));
-  };
-
-  const deleteCharacter = id => {
-    API.deleteCharacter(id)
-      .then(res => this.loadCharacters())
-      .catch(err => console.log(err));
-  };
-
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  const handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.name && this.state.info) {
-      API.saveCharacter({
-        name: this.state.name,
-        link: this.state.link,
-        info: this.state.info
-      })
-        .then(res => this.loadCharacters())
-        .catch(err => console.log(err));
-    }
-  };
-
-  // const tempCharacter = series.filter(item => item.character === argvparams);
 
   const showvolumes = (id, series) => {
-    // setseriesid(id);
     console.log("this is whatever series is" + id);
     console.log(series);
 
@@ -199,20 +61,6 @@ const Detail = props => {
     setseriesid(theVolumes[0].volumes);
     setCurrentname(theVolumes[0].name);
     setCurrentSeries(theVolumes[0].series);
-
-    // getData();
-
-    return (
-      <div>
-        {console.log(
-          <List>
-            {theVolumes[0].volumes.map(vol => (
-              <ListItem key={vol}>{vol}</ListItem>
-            ))}
-          </List>
-        )}
-      </div>
-    );
   };
 
   //figure out what you need to pass as variable 'seriesid' from the button
@@ -263,100 +111,72 @@ const Detail = props => {
     <>
       <Superheroapi props={props}>{props}</Superheroapi>
       <Grid container spacing={2}>
-        <Grid xs={12} md={6}>
-          {" "}
-          {series.map(item => (
-            <>
-              <Typography variant="h6" className={classes.title}>
-                Character name: {item.character}{" "}
-              </Typography>
-              <div className={classes.demo}>
-                <List>
-                  <ListItem key={item._id}>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon
-                          onClick={() =>
-                            showvolumes(item._id, series, item.name)
-                          }
-                        />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <React.Fragment>
-                          <Typography
-                            component="span"
-                            variant="body2"
-                            className={classes.inline}
-                            color="textPrimary"
-                          >
-                            Series Name:{" "}
-                          </Typography>
-                          {item.series}
-                        </React.Fragment>
-                      }
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            component="span"
-                            variant="body2"
-                            className={classes.inline}
-                            color="textPrimary"
-                          >
-                            Series Line:{" "}
-                          </Typography>
-                          {item.name}
-                        </React.Fragment>
-                      }
+        <Grid item xs>
+          <Typography variant="h3" className={classes.title}>
+            Character name: {props.match.params.name}
+          </Typography>
+          <List dense>
+            {series.map(item => (
+              <ListItem key={item._id}>
+                <ListItemAvatar>
+                  <Avatar>
+                    <FolderIcon
+                      onClick={() => showvolumes(item._id, series, item.name)}
                     />
-                  </ListItem>
-                </List>
-              </div>
-            </>
-          ))}
-        </Grid>{" "}
-        <Grid xs={12} md={6}>
-          {" "}
-          <h1>Volumes</h1>
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={`Series Name: ${item.series}`}
+                  secondary={`Series Line: ${item.name}`}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+        <Grid item>
           {!seriesid ? null : (
-            <List>
-              {seriesid.map(vol => (
-                <div className={classes.demo}>
-                  <ListItem key={vol}>
-                    {" "}
-                    <ListItemText
-                      primary={
-                        <React.Fragment>
-                          <Typography
-                            component="span"
-                            variant="body2"
-                            className={classes.inline}
-                            color="textPrimary"
-                          ></Typography>
-                          {vol}
-                        </React.Fragment>
-                      }
-                      secondary={
-                        <React.Fragment>
-                          <Button
-                            onClick={() =>
-                              showvolumeinformation(
-                                vol,
-                                currentname,
-                                currentSeries
-                              )
-                            }
-                          >
-                            Get Volumes Information
-                          </Button>
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                </div>
-              ))}
-            </List>
+            <div className={classes.volumes}>
+              <Typography variant="h3" className={classes.title}>
+                Volumes
+              </Typography>
+              <List>
+                {seriesid.map(vol => (
+                  <div className={classes.demo}>
+                    <ListItem key={vol}>
+                      {" "}
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Typography
+                              component="span"
+                              variant="body2"
+                              className={classes.inline}
+                              color="textPrimary"
+                            ></Typography>
+                            {vol}
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Button
+                              onClick={() =>
+                                showvolumeinformation(
+                                  vol,
+                                  currentname,
+                                  currentSeries
+                                )
+                              }
+                            >
+                              Get Volumes Information
+                            </Button>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </div>
+                ))}
+              </List>
+            </div>
           )}
         </Grid>
       </Grid>
