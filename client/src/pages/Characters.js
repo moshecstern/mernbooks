@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import SearchResults from "../components/SearchResults";
+import Notes from "../components/Notes";
 
 class Characters extends Component {
   state = {
@@ -211,6 +212,7 @@ class Characters extends Component {
               )}
           </Col>
         </Row>
+
       </Container>
     );
   }

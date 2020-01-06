@@ -2,6 +2,11 @@ import React, { Component, useState } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import Notes from "../components/Notes";
+import CustomForm from "../components/CustomForm";
+
+import { Input, TextArea, FormBtn } from "../components/Form";
+
+// import { Col, Row } from "../components/Grid";
 import {
   Container,
   Grid,
@@ -20,6 +25,7 @@ import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { ObjectId } from "mongoose";
 import Modal from "../components/Modals";
 import SimpleModal from "../components/Modals";
+import { Col } from "../components/Grid";
 
 const Home = () => {
   const [{ data: characters, loading }, getbyname] = useAxios(
@@ -117,6 +123,24 @@ const Home = () => {
     }
   };
 
+//  const handleFormSubmit = event => {
+//     event.preventDefault();
+//     if (this.state.name && this.state.info) {
+//       API.saveNote({
+//         name: this.state.name,
+//         message: this.state.message
+//       })
+//         .then(res => this.loadNotes())
+//         .catch(err => console.log(err));
+//     }
+//   };
+  //  const handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
+
   if (loading) {
     return <></>;
   }
@@ -186,6 +210,16 @@ const Home = () => {
           ))}
         </Paper>
       )}
+      {/* <CustomForm   name="query"
+                            value={query}
+                            onChange={handleInputChange}
+                            onClick={handleFormSearch}
+                             /> */}
+
+      <Notes></Notes>
+
+
+    
     </>
   );
 };
