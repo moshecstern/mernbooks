@@ -13,7 +13,7 @@ import ComicbookpagesModified from "./images/Comicbookpages.jpg";
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
-  container: { backgroundColor: "white" }
+  container: { backgroundColor: "#F2F2F2" }
 }));
 
 function App() {

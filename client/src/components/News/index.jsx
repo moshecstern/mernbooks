@@ -52,7 +52,7 @@ const News = () => {
           <GridList item cols={4}>
             {comicUrls.map(item => (
               <GridListTile key={item.key}>
-                <img src={item.image} alt={item.title} />
+                <img srcset={item.image} alt={item.title} />
                 <GridListTileBar
                   title={
                     <Link href={`https://www.cbr.com${item.link}`}>
