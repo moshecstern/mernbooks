@@ -10,7 +10,6 @@ import {
   Avatar,
   ListItemText
 } from "@material-ui/core";
-
 import useAxios from "axios-hooks";
 import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
@@ -45,16 +44,14 @@ const Detail = props => {
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
-  const [currentsearchresults, setcurrentsearchresults]= useState();
+  const [currentsearchresults, setcurrentsearchresults] = useState();
   const [currentSeries, setCurrentSeries] = useState();
-
   console.log(currentname);
   console.log("currentname");
 
   const showvolumes = (id, series) => {
     console.log("this is whatever series is" + id);
     console.log(series);
-
     const theVolumes = series.filter(series => series._id === id);
     console.log("this is theVolume:");
     console.log(theVolumes[0].volumes);
@@ -75,16 +72,6 @@ const Detail = props => {
     // let searchvol = props.match.params.name +" "+ vol + " " + name
     let searchvol = name + " " + vol + " " + series;
     console.log(searchvol);
-
-    // Axios.get("https://www.googleapis.com/books/v1/volumes?q='"+searchvol+ "&orderBy=relevance")
-
-    // .then(function(response) {
-    //   console.log(response)
-    //   console.log(response.data)
-    //   console.log("props.match.params.name")
-    //   console.log(props.match.params.name)
-    //   setcurrentsearchresults(response.data)
-    // })
     Axios.get(
       "https://www.googleapis.com/books/v1/volumes?q='" +
         searchvol +
@@ -94,9 +81,8 @@ const Detail = props => {
       console.log(response.data);
       console.log("props.match.params.name");
       console.log(props.match.params.name);
-      setcurrentsearchresults(response.data)
+      setcurrentsearchresults(response.data);
     });
-    // googlebooks_APP_API_KEY
   };
 
   const getgooglebook = vol => {
@@ -181,22 +167,25 @@ const Detail = props => {
         </Grid>
       </Grid>
 
-
       {!currentsearchresults ? null : (
-  <List>
-    {currentsearchresults.items.map(result=>(
-      <ListItem key={result}>
-{console.log(result)}
-<div>Title: {result.volumeInfo.title}</div>
-{/* <div><img src={result.volumeInfo.imageLinks.smallThumbnail}></img></div> */}
-{!result.volumeInfo.imageLinks ? null : (
-
-<div><img src={result.volumeInfo.imageLinks.thumbnail}></img></div>
-)}
-
-<div><a href={result.volumeInfo.previewLink} target="_blank">Google Books Link</a></div>
-<div>Authors: {result.volumeInfo.authors}</div>
-{/* <div>
+        <List>
+          {currentsearchresults.items.map(result => (
+            <ListItem key={result}>
+              {console.log(result)}
+              <div>Title: {result.volumeInfo.title}</div>
+              {/* <div><img src={result.volumeInfo.imageLinks.smallThumbnail}></img></div> */}
+              {!result.volumeInfo.imageLinks ? null : (
+                <div>
+                  <img src={result.volumeInfo.imageLinks.thumbnail}></img>
+                </div>
+              )}
+              <div>
+                <a href={result.volumeInfo.previewLink} target="_blank">
+                  Google Books Link
+                </a>
+              </div>
+              <div>Authors: {result.volumeInfo.authors}</div>
+              {/* <div>
 <List>
 {result.map(author=>(
   <ListItem>
@@ -205,13 +194,12 @@ const Detail = props => {
 ))}
 </List>
 </div> */}
-<div>Published Date: {result.volumeInfo.publishedDate}</div>
-<div>Description: {result.volumeInfo.description}</div>
-      </ListItem>
-    ))}
-  </List>
-)}
-
+              <div>Published Date: {result.volumeInfo.publishedDate}</div>
+              <div>Description: {result.volumeInfo.description}</div>
+            </ListItem>
+          ))}
+        </List>
+      )}
     </>
   );
 };
