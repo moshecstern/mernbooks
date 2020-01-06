@@ -12,16 +12,13 @@ import Footer from "./components/Footer";
 import { Container, Box, makeStyles } from "@material-ui/core";
 import "typeface-roboto";
 import News from "./components/News";
-<<<<<<< HEAD
 import ComicbookpagesModified from "./images/Comicbookpages.jpg";
+import Notes from "./components/Notes";
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
   container: { backgroundColor: "white" }
 }));
-=======
-import Notes from "./components/Notes";
->>>>>>> 2b3a24113e55b3b8787bfefabed735a4fbb4a26f
 
 function App() {
   const classes = useStyles();
