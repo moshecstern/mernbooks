@@ -22,25 +22,38 @@ const useStyles = makeStyles(theme => ({
 const News = () => {
   const classes = useStyles;
   const [comicUrls, setComicUrls] = useState([]);
+  const [photoBook, setPhotoBook] = useState([]);
   useEffect(
     () =>
       API.getNews(proxyURL, url)
         .then(function(res) {
-          let data = cheerio("div > article", res);
+          let data = "div > article";
           const $ = cheerio.load(data);
-          console.log($("article > a", res).length);
-          console.log(data);
+          // console.log($("article > a", res).length);
+          // console.log(data);
+          let img = $("article > a > div > div > picture", res);
+          let img2 = $("picture", res)
+            .children()
+            .last();
+          // for (let i = 0; i < 64; i++) {
+          //   const album = { photo: img[i] };
+          //   console.log(album);
+          //   setPhotoBook(photoBook => [...photoBook, album]);
+          //   console.log(album.photo.attribs);
+          // }
           for (let i = 0; i < 8; i++) {
+            let j = i * 8;
             const item = {
-              key: $("article > a", res)[i].attribs.href,
+              key: $("article", res)[i].attribs.data,
               link: $("article > a", res)[i].attribs.href,
-              image: $("article > a > div > div > picture > source", res)[i]
-                .attribs.srcset,
+              image: img[i].children.last.attribs.srcset,
+              // image2: $('')
               title: $("article > div > h3 > a", res)[i].attribs.title
             };
             setComicUrls(comicUrls => [...comicUrls, item]);
+            console.log(item.image);
           }
-          console.log(comicUrls);
+          // console.log(comicUrls);
         })
         .catch(err => console.log(err)),
     []
@@ -51,7 +64,7 @@ const News = () => {
         {!comicUrls ? null : (
           <GridList item cols={4}>
             {comicUrls.map(item => (
-              <GridListTile key={item.key}>
+              <GridListTile key={item.title}>
                 <img srcset={item.image} alt={item.title} />
                 <GridListTileBar
                   title={
