@@ -1,7 +1,4 @@
 import axios from "axios";
-import useAxios from "axios-hooks";
-// const url = "https://www.cbr.com/category/comics/news/";
-// const proxyURL = "https://radiant-meadow-37937.herokuapp.com/";
 const rp = require("request-promise");
 
 export default {
@@ -47,8 +44,5 @@ export default {
   },
   getNews: function(proxyURL, url) {
     return rp(proxyURL + url);
-  },
-  getNews2: (proxyURL, url) => {
-    const [{ data: characters, loading }, getbyname] = useAxios(url);
   }
 };

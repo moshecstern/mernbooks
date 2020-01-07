@@ -28,7 +28,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => {
   return {
     root: {
-      backgroundColor: "red"
+      backgroundColor: "#D92B6B"
     },
     title: {
       backgroundImage: `url(${ComicbookpagesModified})`,
@@ -51,15 +51,12 @@ const Nav = () => {
   const userName = "anything";
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <Grid container direction="column">
       <Grid container item justify="space-between" className={classes.root}>
@@ -83,9 +80,9 @@ const Nav = () => {
       </Grid>
       <Grid item className={classes.title}>
         <Typography variant="h2" gutterBottom align="center">
-          Graphic Know-vel{" "}
+          Graphic Know-vel
         </Typography>
-      </Grid>{" "}
+      </Grid>
       <Modal
         aria-labelledby="login-modal-title"
         aria-describedby="login-modal-description"
@@ -93,22 +90,21 @@ const Nav = () => {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="login-modal-title">Please enter your Info</h2>
+          <h2 id="login-modal-title">Please enter your Info</h2>{" "}
+          <p id="login-modal-description">Sign In to view your Saved Novels</p>
           <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
+            id="outlined-userName"
+            label="Alter Ego"
+            type="userName"
             variant="outlined"
           />
           <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
+            id="outlined-password"
+            label="Codeword"
+            type="password"
             variant="outlined"
           />
-          <p id="login-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
+          <br />
           <Button type="button">Login</Button>
         </div>
       </Modal>
