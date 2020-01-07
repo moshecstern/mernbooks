@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.light
   }
 }));
+const Barticle = require("../News/Article.js");
 const News = () => {
   const classes = useStyles;
   const [comicUrls, setComicUrls] = useState([]);
@@ -32,12 +33,12 @@ const News = () => {
           // console.log($("article > a", res).length);
           // console.log(data);
           let img = $("article > a > div > div", res);
-          console.log(img);
+          // console.log(img);
           let img2 = $("picture", res);
           for (let i = 1; i < 9; i++) {
-            console.log(img[i]);
+            // console.log(img[i]);
             const item = {
-              key: $("article", res)[i].attribs.data,
+              // key: $("article", res)[i].attribs.data,
               link: $("article > a", res)[i].attribs.href,
               // image: $("article > a > div > div > picture", res)[i],
               // image2: $('')
@@ -49,7 +50,14 @@ const News = () => {
                 .data("srcset")
             };
             setComicUrls(comicUrls => [...comicUrls, item]);
-            console.log(item.image3);
+            // console.log(item.image3);
+            Barticle.create(comicUrls)
+              .then(function(dbArticle) {
+                console.log(dbArticle);
+              })
+              .catch(function(err) {
+                console.log(err);
+              });
           }
           // console.log(comicUrls);
         })
