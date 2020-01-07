@@ -93,15 +93,15 @@ const Nav = () => {
           <h2 id="login-modal-title">Please enter your Info</h2>{" "}
           <p id="login-modal-description">Sign In to view your Saved Novels</p>
           <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
+            id="outlined-userName"
+            label="Alter Ego"
+            type="userName"
             variant="outlined"
           />
           <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
+            id="outlined-password"
+            label="Codeword"
+            type="password"
             variant="outlined"
           />
           <br />

@@ -31,27 +31,25 @@ const News = () => {
           const $ = cheerio.load(data);
           // console.log($("article > a", res).length);
           // console.log(data);
-          let img = $("article > a > div > div > picture", res);
-          let img2 = $("picture", res)
-            .children()
-            .last();
-          // for (let i = 0; i < 64; i++) {
-          //   const album = { photo: img[i] };
-          //   console.log(album);
-          //   setPhotoBook(photoBook => [...photoBook, album]);
-          //   console.log(album.photo.attribs);
-          // }
-          for (let i = 0; i < 8; i++) {
-            let j = i * 8;
+          let img = $("article > a > div > div", res);
+          console.log(img);
+          let img2 = $("picture", res);
+          for (let i = 1; i < 9; i++) {
+            console.log(img[i]);
             const item = {
               key: $("article", res)[i].attribs.data,
               link: $("article > a", res)[i].attribs.href,
-              image: img[i].children.last.attribs.srcset,
+              // image: $("article > a > div > div > picture", res)[i],
               // image2: $('')
-              title: $("article > div > h3 > a", res)[i].attribs.title
+              title: $("article > div > h3 > a", res)[i].attribs.title,
+              image: $(img[i])
+                .children()
+                .children()
+                .first("source")
+                .data("srcset")
             };
             setComicUrls(comicUrls => [...comicUrls, item]);
-            console.log(item.image);
+            console.log(item.image3);
           }
           // console.log(comicUrls);
         })
