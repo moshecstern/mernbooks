@@ -1,29 +1,37 @@
-# Create React Express App
+# Graphic Know-Vels
 
-## About This Boilerplate
+### A Graphic Novel Exploration and Curation App
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+Graphic Know-vels is an application to help graphic novel readers navigate, explore, annote, and save personal collections of these novels. Graphic novels are books comprised of many different comics and these collections can be complex involving many different characters, different series, and different lines of comics all within the same graphic novel. Our application makes navigating this complexity easier and more rewarding.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+# A Link to the Past
 
-## Starting the app locally
+https://shrouded-taiga-88482.herokuapp.com/
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+### Organization
 
-```
-npm install
-```
+This MERN stack app uses React to render our Material-ui front end, a Mongo database with Mongoose, we're using Express for routing purposes, and finally Node and javascript make the world go round. The user views a single page application, available to all users with additional value and functionality when users sign up/sign in.
 
-This should install node modules within the server and the client folder.
+### How-to operate
 
-After both installations complete, run the following command in your terminal:
+Simply visit: https://shrouded-taiga-88482.herokuapp.com/
+and visit our application hosted generously on Heroku! Our landing page presents you with the ability to optionally sign up/login, but our core functionality is available to all users. The landing page displays the database collection of Characters as the entrance to exploring graphic novels, in addition, relevant comic book news is displayed, and a notetaking feature. Selecting a character will display more information on the character, picture, links to additional information, and a list of linked graphic novel series. The series' each link to the volumes specific to that character, and the volumes each contain a link to a modal that displays additional information, provided by the Google Books API.
 
-```
-npm start
-```
+If you wish to test this application locally, in your terminal: "git clone https://github.com/moshecstern/mernbooks.git" After cloning the repository, npm run seed, then npm install to load all required third-party software. Following installation the application will be loaded in the default browser.
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+### Proof Positive
 
-## Deployment (Heroku)
+Check it out on Heroku! https://shrouded-taiga-88482.herokuapp.com/
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+### Link to Github Repository
+
+Please clone and npm install to run.
+https://github.com/moshecstern/mernbooks
+
+### Technologies used
+
+This node.js app uses React for all rendering using Material-ui for our UI/UX, MongoDB, Mongoose, Cheerio for back-end jQuery, axios for API interaction, axios-hooks, cors(with a cors-proxy), Express for routing, Puppeteer for scraping, React-Hooks, request, request-promise, Prettier was a godsend, and of course javascript.
+
+### Our Roles
+
+Liam Wynne focused on back-end, especially user authentication, Moshe Stern focused on back-end, data creation, API calls, and Mongo interaction, Zachary Powers focused on project management and front-end, especially implementation of React/Material-ui, web scraping, API calls, and design.
