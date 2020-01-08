@@ -39,8 +39,9 @@ export default {
   getallnotes: function() {
     return axios.get("/api/notes")
   },
-  saveNote: function() {
-    return axios.post("/api/notes")
+  saveNote: function(mynote) {
+    console.log(mynote, "is my note");
+    return axios.post("/api/notes", mynote)
   },
   getNews: function(proxyURL, url) {
     return rp(proxyURL + url);
