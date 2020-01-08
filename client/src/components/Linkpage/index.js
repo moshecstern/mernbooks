@@ -13,11 +13,13 @@ import useAxios from "axios-hooks";
 import { makeStyles } from "@material-ui/core/styles";
 
 const Linkpage = props => {
-  const wikifandomdis = "https://batman.fandom.com/wiki/"+ props.props.match.params.name +"_(Disambiguation)";
-  const wikifandommain = "https://batman.fandom.com/wiki/"+ props.props.match.params.name;
+  // const wikifandomdis = "https://"+props.props.match.params.name+".fandom.com/wiki/"+ props.props.match.params.name +"_(Disambiguation)";
+  // const wikifandommain = "https://"+props.props.match.params.name+".fandom.com/wiki/"+ props.props.match.params.name;
+  const wikifandomdis = "https://superheroes.fandom.com/wiki/"+ props.props.match.params.name +"_(Disambiguation)";
+  const wikifandommain = "https://superheroes.fandom.com/wiki/"+ props.props.match.params.name;
   const readingList ="https://www.comicbookherald.com/reading-dc-comics/"+props.props.match.params.name+"-reading-order/";
   ;
-
+  
 
   return (
     <>
