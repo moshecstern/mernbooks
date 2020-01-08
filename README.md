@@ -1,29 +1,35 @@
-# Create React Express App
+# Scraper
 
-## About This Boilerplate
+In this assignment, you'll create a web app that lets users view and leave comments on the latest news. But you're not going to actually write any articles; instead, you'll flex your Mongoose and Cheerio muscles to scrape news from another site.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+# A Link to the Past
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+https://vast-lake-89002.herokuapp.com/
 
-## Starting the app locally
+### Organization
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+This node.js app uses a switch function to take a command line argument as a command, one of four options. The options allow the user to search for concerts, movies, and music using user-provided search terms.
 
-```
-npm install
-```
+### How-to operate
 
-This should install node modules within the server and the client folder.
+After cloning the repository, npm install to load all required third-party software. Following installation the user can initiate the program by entering "node liri.js " + (a command) + (a request).
+The command can only be one of four: "spotify-this", "concert-this", "spotify-this-song", and "do-what-it-says". An inappropriate command will result in an error message.
+The request should be pertinent to the command i.e. the name of a song, name of a band, or name of a movie.
+Relevant results will then be console logged to display to the user.
 
-After both installations complete, run the following command in your terminal:
+### Proof Positive
 
-```
-npm start
-```
+Check it out on Heroku! https://vast-lake-89002.herokuapp.com/
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+### Link to Github Repository
 
-## Deployment (Heroku)
+Please clone and npm install to run.
+https://github.com/MagicalPowers/Scraper
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+### Technologies used
+
+This node.js app uses a package.json to facilitate installing third-party software, MongoDB, Mongoose, Cheerio for back-end jQuery, Handlebars, Morgan, axios for API interaction, and of course javascript.
+
+### My Role
+
+This is a solo assignment.
