@@ -4,7 +4,8 @@ import {
   Button,
   Grid,
   makeStyles,
-  Typography
+  Typography,
+  Link
 } from "@material-ui/core";
 import ComicbookpagesModified from "../../images/ComicbookpagesModified.jpg";
 import "typeface-roboto";
@@ -79,9 +80,11 @@ const Nav = () => {
         )}
       </Grid>
       <Grid item className={classes.title}>
-        <Typography variant="h2" gutterBottom align="center">
-          Graphic Know-vel
-        </Typography>
+        <Link href="/" color="inherit">
+          <Typography variant="h2" gutterBottom align="center">
+            Graphic Know-vel
+          </Typography>
+        </Link>
       </Grid>
       <Modal
         aria-labelledby="login-modal-title"
