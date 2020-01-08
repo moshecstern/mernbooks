@@ -24,32 +24,43 @@ import useAxios from "axios-hooks";
 
 const Notes = () => {
   const [{ data: allnotes, loading }, getallnotes] = useAxios("/api/notes");
-  const [
-    { data: putData, loading: putLoading, error: putError },
-    addmynote
-  ] = useAxios({
-    url: "/api/notes",
-    method: "PUT"
-  });
+  // const [
+  //   { data: putData, loading: putLoading, error: putError },
+  //   addmynote
+  // ] = useAxios({
+  //   url: "/api/notes",
+  //   method: "PUT",
+  //   data: {
+  //     name: myname,
+  //     message: mymessage
+  //   }
+  // });
   const [mynote, setmynote] = useState();
   const [myname, setmyname] = useState();
   const [mymessage, setmymessage] = useState();
   const handleFormSubmit = event => {
     event.preventDefault();
+    // addmynote()
     API.saveNote({
       name: myname,
       message: mymessage
     })
       .then(res => console.log(res))
+      .then(getallnotes())
+      // .then(setmymessage(""), setmyname(""))
       .catch(err => console.log(err));
   };
   const handleInputChangename = event => {
+    event.preventDefault();
     setmyname(myname);
+    console.log(myname)
   };
   const handleInputChangemessage = event => {
+    event.preventDefault();
     setmymessage(mymessage);
   };
-  if (loading || putLoading) {
+   if (loading //|| putLoading
+    ) {
     return <></>;
   }
   return (
@@ -58,13 +69,17 @@ const Notes = () => {
         <form>
           <Input
             value={myname}
-            onChange={handleInputChangename}
+            // onChange={handleInputChangename}
+            onChange={(e)=> setmyname(e.target.value)}
+
             name="name"
             placeholder="name (required)"
           />
           <Input
             value={mymessage}
-            onChange={handleInputChangemessage}
+            // onChange={handleInputChangemessage}
+          onChange={(e)=> setmymessage(e.target.value)}
+
             name="message"
             placeholder="message (required)"
           />
@@ -75,7 +90,7 @@ const Notes = () => {
         <Typography variant="h5">Recent Notes</Typography>
         <List dense item container component="nav" aria-label="notesDisplay">
           {allnotes.map(item => (
-            <ListItem key={item}>
+            <ListItem key={item._id}>
               <ListItemIcon>
                 <NoteAddIcon />
               </ListItemIcon>
