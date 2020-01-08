@@ -173,27 +173,7 @@ const Detail = props => {
                             color="textPrimary"
                           >
                             {vol}
-<<<<<<< HEAD
-                          </React.Fragment>
-                        }
-                        secondary={
-                          <React.Fragment>
-                            <Button
-                              onClick={() =>
-                                showvolumeinformation(
-                                  vol,
-                                  currentname,
-                                  currentSeries,
-                                  currentextras
-                                )
-                              }
-                            >
-                              Get Volumes Information
-                            </Button>
-                          </React.Fragment>
-=======
                           </Typography>
->>>>>>> a9474b3a6d2b8496f7acdff78c11a9a541c5a82f
                         }
                       />
                       <Button
