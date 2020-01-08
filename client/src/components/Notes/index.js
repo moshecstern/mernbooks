@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
-import { List, ListItem } from "../List";
+// import { List, ListItem } from "../List";
 import { Input, FormBtn } from "../Form";
 import {
   Container,
@@ -13,9 +13,13 @@ import {
   Collapse,
   Paper,
   Typography,
-  Button
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText
 } from "@material-ui/core";
-
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import useAxios from "axios-hooks";
 
 const Notes = () => {
@@ -49,7 +53,7 @@ const Notes = () => {
     return <></>;
   }
   return (
-    <Grid container>
+    <Grid container direction="column">
       <Grid item>
         <form>
           <Input
@@ -67,13 +71,21 @@ const Notes = () => {
           <FormBtn onClick={handleFormSubmit}>Submit Note</FormBtn>
         </form>
       </Grid>
-      <Grid item>
-        <List>
+      <Grid item container>
+        <Typography variant="h5">Recent Notes</Typography>
+        <List dense item container component="nav" aria-label="notesDisplay">
           {allnotes.map(item => (
             <ListItem key={item}>
-              <div>Name : {item.name}, </div>
-              <div>message: {item.message}</div>
-              <div>Date: {item.date}</div>
+              <ListItemIcon>
+                <NoteAddIcon />
+              </ListItemIcon>
+              <Grid direction="column">
+                <ListItemText primary={item.name} secondary={item.message} />
+                <ListItemText secondary={item.date} />
+                {/* <Grid>Message: {item.message}</Grid> */}
+                {/* <Grid>Date: {item.date}</Grid> */}
+                {/* </Grid> */}
+              </Grid>
             </ListItem>
           ))}
         </List>
