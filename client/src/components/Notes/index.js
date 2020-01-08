@@ -49,24 +49,25 @@ const Notes = () => {
     return <></>;
   }
   return (
-    <>
-      <form>
-        <Input
-          value={myname}
-          onChange={handleInputChangename}
-          name="name"
-          placeholder="name (required)"
-        />
-        <Input
-          value={mymessage}
-          onChange={handleInputChangemessage}
-          name="message"
-          placeholder="message (required)"
-        />
-        <FormBtn onClick={handleFormSubmit}>Submit Note</FormBtn>
-      </form>
-
-      <form>
+    <Grid container>
+      <Grid item>
+        <form>
+          <Input
+            value={myname}
+            onChange={handleInputChangename}
+            name="name"
+            placeholder="name (required)"
+          />
+          <Input
+            value={mymessage}
+            onChange={handleInputChangemessage}
+            name="message"
+            placeholder="message (required)"
+          />
+          <FormBtn onClick={handleFormSubmit}>Submit Note</FormBtn>
+        </form>
+      </Grid>
+      <Grid item>
         <List>
           {allnotes.map(item => (
             <ListItem key={item}>
@@ -76,8 +77,8 @@ const Notes = () => {
             </ListItem>
           ))}
         </List>
-      </form>
-    </>
+      </Grid>
+    </Grid>
   );
 };
 

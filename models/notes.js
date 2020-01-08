@@ -5,6 +5,6 @@ const notesSchema = new Schema({
   message: { type: String, required: true },
   date: { type: Date, default: Date.now }
 });
-const Note = mongoose.model("Notes", notesSchema);
+const Notes = mongoose.model("Notes", notesSchema);
 
-module.exports = Note;
+module.exports = Notes;
