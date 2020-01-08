@@ -5,8 +5,7 @@ import {
   GridList,
   GridListTile,
   GridListTileBar,
-  Typography,
-  ListSubheader
+  Typography
 } from "@material-ui/core";
 import useAxios from "axios-hooks";
 import { makeStyles } from "@material-ui/core/styles";
@@ -31,9 +30,10 @@ const Superheroapi = props => {
     root: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-around",
+      justifyContent: "space-evenly",
       overflow: "hidden",
-      backgroundColor: theme.palette.background.paper
+      backgroundColor: "#F2F2F2",
+      textAlign: "center"
     },
     gridList: {
       width: "auto",
@@ -46,41 +46,20 @@ const Superheroapi = props => {
   console.log(currentname);
   console.log("currentname");
   const classes = useStyles();
-  // const showvolumes = (id, series) => {
-  //   console.log("this is whatever series is" + id);
-  //   console.log(series);
-  //   const theVolumes = series.filter(series => series._id === id);
-  //   console.log("this is theVolume:");
-  //   console.log(theVolumes[0].volumes);
-  //   setseriesid(theVolumes[0].volumes);
-  //   return (
-  //     <div>
-  //       {console.log(
-  //         <List>
-  //           {theVolumes[0].volumes.map(vol => (
-  //             <ListItem key={vol}>{vol}</ListItem>
-  //           ))}
-  //         </List>
-  //       )}
-  //     </div>
-  //   );
-  // };
   if (loading) {
     return <></>;
   }
-
   return (
     <>
       {!heroinfo ? null : (
-        <Grid className={classes.root} container>
-          <GridList cols={2} item cellHeight={400} className={classes.gridList}>
-            <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
-              <ListSubheader component="div">
-                <Typography variant="h3">
-                  {props.props.match.params.name}
-                </Typography>
-              </ListSubheader>
-            </GridListTile>
+        <Grid
+          direction="column"
+          className={classes.root}
+          container
+          justify="center"
+        >
+          <Typography variant="h3">{props.props.match.params.name}</Typography>
+          <GridList cellHeight={600} cols={3} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
                 <img src={item.image.url} alt={item.name} />
@@ -88,7 +67,7 @@ const Superheroapi = props => {
                   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   subtitle={
                     <>
-                      <span>Full Name: {item.biography["full-name"]}</span>{" "}
+                      <span>Full Name: {item.biography["full-name"]}</span>
                       <br />
                       <span>Bases: {item.work.base}</span>
                       <br />

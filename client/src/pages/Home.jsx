@@ -1,33 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import Notes from "../components/Notes";
-import {
-  Grid,
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  IconButton,
-  Paper,
-  Typography
-} from "@material-ui/core";
+import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
 import useAxios from "axios-hooks";
-import FindInPageIcon from "@material-ui/icons/FindInPage";
-
+import { makeStyles } from "@material-ui/styles";
+const useStyles = makeStyles(theme => ({
+  container: { backgroundColor: "#F2F2F2" }
+}));
 const Home = () => {
   const [{ data: characters, loading }, getbyname] = useAxios(
     "/api/characters"
   );
-  const [currentId, setCurrentId] = useState();
-  const [{ data, loading: dataLoading }, getData] = useAxios(
-    { url: "/api/characters/" + currentId },
-    { manual: true }
-  );
-  const iconHandler = id => () => {
-    setCurrentId(id);
-    console.log(id);
-    getData();
-  };
   const getseriesbyname = name => {
     console.log("Get series by name!");
     console.log(name);
@@ -39,11 +23,13 @@ const Home = () => {
       })
       .catch(err => console.log(err));
   };
+  const classes = useStyles;
   if (loading) {
     return <></>;
   }
   return (
-    <>
+    <div className={classes.container}>
+      <br />
       <GridList cols={4}>
         {characters.map(item => (
           <GridListTile
@@ -54,38 +40,13 @@ const Home = () => {
             {item.name}
             <GridListTileBar
               title={<Link to={"/series/" + item.name}>{item.name}</Link>}
-              actionIcon={
-                <IconButton
-                  aria-label={`star ${item.title}`}
-                  onClick={iconHandler(item._id)}
-                >
-                  <FindInPageIcon />
-                </IconButton>
-              }
             />
           </GridListTile>
         ))}
       </GridList>
-      {!currentId ? null : (
-        <Paper>
-          {characters.map(item => (
-            <Grid container key={item._id}>
-              <Grid item>
-                <Typography variant="h3">{}</Typography>
-                {console.log(item)}
-              </Grid>
-              <Grid item>
-                <Typography variant="h4"> Name {item.name}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h4">Link {item.Link}</Typography>
-              </Grid>
-            </Grid>
-          ))}
-        </Paper>
-      )}
+      <br />
       <Notes></Notes>
-    </>
+    </div>
   );
 };
 

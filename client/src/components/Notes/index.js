@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
-import { List, ListItem } from "../List";
+// import { List, ListItem } from "../List";
 import { Input, FormBtn } from "../Form";
 import {
   Container,
@@ -13,14 +13,24 @@ import {
   Collapse,
   Paper,
   Typography,
-  Button
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText
 } from "@material-ui/core";
-
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import useAxios from "axios-hooks";
 
 const Notes = () => {
   const [{ data: allnotes, loading }, getallnotes] = useAxios("/api/notes");
-  const [{ newdata, myname: dataloading }, addmynote] = useAxios({url:"/api/notes", method: "POST"});
+  const [
+    { data: putData, loading: putLoading, error: putError },
+    addmynote
+  ] = useAxios({
+    url: "/api/notes",
+    method: "PUT"
+  });
   const [mynote, setmynote] = useState();
   const [myname, setmyname] = useState("");
   const [mymessage, setmymessage] = useState("");
@@ -51,12 +61,12 @@ const Notes = () => {
     console.log(mymessage)
     setmymessage(mymessage);
   };
-  if (loading) {
+  if (loading || putLoading) {
     return <></>;
   }
   return (
-    <>
-      <form>
+    // <>
+      {/* <form>
         <Input
           value={myname}
           onChange={(e)=> setmyname(e.target.value)}
@@ -73,18 +83,46 @@ const Notes = () => {
         <FormBtn onClick={handleFormSubmit}>Submit Note</FormBtn>
       </form>
 
-      <form>
+      <form> */}
         <List>
+    <Grid container direction="column">
+      <Grid item>
+        <form>
+          <Input
+            value={myname}
+            onChange={handleInputChangename}
+            name="name"
+            placeholder="name (required)"
+          />
+          <Input
+            value={mymessage}
+            onChange={handleInputChangemessage}
+            name="message"
+            placeholder="message (required)"
+          />
+          <FormBtn onClick={handleFormSubmit}>Submit Note</FormBtn>
+        </form>
+      </Grid>
+      <Grid item container>
+        <Typography variant="h5">Recent Notes</Typography>
+        <List dense item container component="nav" aria-label="notesDisplay">
           {allnotes.map(item => (
             <ListItem key={item}>
-              <div>Name : {item.name}, </div>
-              <div>message: {item.message}</div>
-              <div>Date: {item.date}</div>
+              <ListItemIcon>
+                <NoteAddIcon />
+              </ListItemIcon>
+              <Grid direction="column">
+                <ListItemText primary={item.name} secondary={item.message} />
+                <ListItemText secondary={item.date} />
+                {/* <Grid>Message: {item.message}</Grid> */}
+                {/* <Grid>Date: {item.date}</Grid> */}
+                {/* </Grid> */}
+              </Grid>
             </ListItem>
           ))}
         </List>
-      </form>
-    </>
+      </Grid>
+    </Grid>
   );
 };
 
