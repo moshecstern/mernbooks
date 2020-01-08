@@ -20,23 +20,35 @@ import useAxios from "axios-hooks";
 
 const Notes = () => {
   const [{ data: allnotes, loading }, getallnotes] = useAxios("/api/notes");
-  const [{ data, loading: dataloading }, addmynote] = useAxios("/api/notes");
+  const [{ newdata, myname: dataloading }, addmynote] = useAxios({url:"/api/notes", method: "POST"});
   const [mynote, setmynote] = useState();
-  const [myname, setmyname] = useState();
-  const [mymessage, setmymessage] = useState();
-  const handleFormSubmit = event => {
+  const [myname, setmyname] = useState("");
+  const [mymessage, setmymessage] = useState("");
+
+  let handleFormSubmit = async event => {
     event.preventDefault();
-    API.saveNote({
-      name: myname,
-      message: mymessage
-    })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    let { data: results } = await API.saveNote(mymessage, myname)
+    setmynote(results.items)
+    console.log(mynote)
+    setmyname("")
+    setmymessage("")
+  // }
+
+  // const handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   API.saveNote({
+  //     name: myname,
+  //     message: mymessage
+  //   })
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err));
   };
   const handleInputChangename = event => {
+    console.log(myname)
     setmyname(myname);
   };
   const handleInputChangemessage = event => {
+    console.log(mymessage)
     setmymessage(mymessage);
   };
   if (loading) {
@@ -47,13 +59,14 @@ const Notes = () => {
       <form>
         <Input
           value={myname}
-          onChange={handleInputChangename}
+          onChange={(e)=> setmyname(e.target.value)}
           name="name"
           placeholder="name (required)"
         />
         <Input
           value={mymessage}
-          onChange={handleInputChangemessage}
+          // onChange={handleInputChangemessage}
+          onChange={(e)=> setmymessage(e.target.value)}
           name="message"
           placeholder="message (required)"
         />
