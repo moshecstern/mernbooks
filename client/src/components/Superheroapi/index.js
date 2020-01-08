@@ -70,6 +70,11 @@ const Superheroapi = props => {
                       <span>Full Name: {item.biography["full-name"]}</span>
                       <br />
                       <span>Bases: {item.work.base}</span>
+                      <br />
+                      <span>Groups: {item.connections["group-affiliation"]}</span>
+                      {/* <br />
+                      <span>alter egos{item.biography["alter-egos"]}</span>
+                    <br /> */}
                     </>
                   }
                   classes={{
@@ -78,8 +83,9 @@ const Superheroapi = props => {
                   }}
                 />
                 <div>Name : {item.name}, </div>
-                {/* <div>Full Name: {item.biography["full-name"]}</div> */}
+                <div>Full Name: {item.biography["full-name"]}</div>
                 <div>Bases: {item.work.base}</div>
+                <div> Groups: {item.connections["group-affiliation"]} </div>
               </GridListTile>
             ))}
           </GridList>

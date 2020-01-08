@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const seriesController = require("../../controllers/notesController");
+const notesController = require("../../controllers/notesController");
 // Matches with "api/notes"
 router
   .route("/")
-  .get(seriesController.findAll)
-  .post(seriesController.create);
+  .get(notesController.findAll)
+  .post(notesController.create);
 
 module.exports = router;

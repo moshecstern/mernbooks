@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
 import Superheroapi from "../components/Superheroapi";
 import { List, ListItem } from "../components/List";
+import Linkpage from "../components/Linkpage";
 import {
   Grid,
   Typography,
@@ -73,6 +74,7 @@ const Detail = props => {
   console.log(props);
   console.log(props.match.params.name);
   console.log(series);
+  const [currentextras, setcurrentextras] = useState();
   const [currentname, setCurrentname] = useState();
   const [seriesid, setseriesid] = useState();
   const [currentId, setCurrentId] = useState();
@@ -86,6 +88,8 @@ const Detail = props => {
     console.log(series);
     const theVolumes = series.filter(series => series._id === id);
     console.log("this is theVolume:");
+    console.log(theVolumes[0].extras)
+    setcurrentextras(theVolumes[0].extras);
     console.log(theVolumes[0].volumes);
     setseriesid(theVolumes[0].volumes);
     setCurrentname(theVolumes[0].name);
@@ -125,11 +129,12 @@ const Detail = props => {
   }
   return (
     <>
+    <Linkpage props={props}>{props}</Linkpage>
       <Superheroapi props={props}>{props}</Superheroapi>
       <Grid container spacing={2}>
         <Grid item xs>
           <Typography variant="h3" className={classes.title}>
-            Character name: {props.match.params.name}
+            Character name: {props.match.params.name} 
           </Typography>
           <List dense className={classes.root}>
             {series.map(item => (
