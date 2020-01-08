@@ -137,7 +137,10 @@ const Detail = props => {
             Character name: {props.match.params.name} 
           </Typography>
           <List dense className={classes.root}>
+          {console.log(series)}
+          {console.log("?!!?!?!?!??!?!?!?!?!?")}
             {series.map(item => (
+              
               <ListItem key={item._id}>
                 <ListItemAvatar>
                   <Avatar>
