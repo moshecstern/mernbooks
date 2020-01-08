@@ -14,24 +14,56 @@ import useAxios from "axios-hooks";
 import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
+import Modal from "@material-ui/core/Modal";
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`
+  };
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    maxWidth: 752
+    flexGrow: "100%",
+    maxWidth: 360
   },
   demo: {
     backgroundColor: theme.palette.background.paper
   },
   title: {
-    margin: theme.spacing(4, 0, 2),
-    height: theme.spacing(5)
+    // margin: theme.spacing(4, 0, 2),
+    // height: theme.spacing(5),
+    backgroundColor: "#F2F2F2",
+    textAlign: "center"
   },
-  volumes: { minWidth: "600px" }
+  volumes: { minWidth: "400px" },
+  paper: {
+    position: "absolute",
+    width: "auto",
+    backgroundColor: "#D9D9D9",
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3)
+  }
 }));
 
 const Detail = props => {
   const classes = useStyles();
+  const [modalStyle] = React.useState(getModalStyle);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const [{ data: series, loading }, randomtext] = useAxios({
     url: "/api/series/" + props.match.params.name
@@ -82,17 +114,15 @@ const Detail = props => {
       console.log("props.match.params.name");
       console.log(props.match.params.name);
       setcurrentsearchresults(response.data);
+      handleOpen();
     });
   };
-
   const getgooglebook = vol => {
     console.log(vol);
   };
-
   if (loading) {
     return <></>;
   }
-
   return (
     <>
       <Superheroapi props={props}>{props}</Superheroapi>
@@ -101,7 +131,7 @@ const Detail = props => {
           <Typography variant="h3" className={classes.title}>
             Character name: {props.match.params.name}
           </Typography>
-          <List dense>
+          <List dense className={classes.root}>
             {series.map(item => (
               <ListItem key={item._id}>
                 <ListItemAvatar>
@@ -125,39 +155,29 @@ const Detail = props => {
               <Typography variant="h3" className={classes.title}>
                 Volumes
               </Typography>
-              <List>
+              <List dense>
                 {seriesid.map(vol => (
                   <div className={classes.demo}>
                     <ListItem key={vol}>
-                      {" "}
                       <ListItemText
                         primary={
-                          <React.Fragment>
-                            <Typography
-                              component="span"
-                              variant="body2"
-                              className={classes.inline}
-                              color="textPrimary"
-                            ></Typography>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          >
                             {vol}
-                          </React.Fragment>
-                        }
-                        secondary={
-                          <React.Fragment>
-                            <Button
-                              onClick={() =>
-                                showvolumeinformation(
-                                  vol,
-                                  currentname,
-                                  currentSeries
-                                )
-                              }
-                            >
-                              Get Volumes Information
-                            </Button>
-                          </React.Fragment>
+                          </Typography>
                         }
                       />
+                      <Button
+                        onClick={() =>
+                          showvolumeinformation(vol, currentname, currentSeries)
+                        }
+                      >
+                        Get Volumes Information
+                      </Button>
                     </ListItem>
                   </div>
                 ))}
@@ -168,37 +188,36 @@ const Detail = props => {
       </Grid>
 
       {!currentsearchresults ? null : (
-        <List>
-          {currentsearchresults.items.map(result => (
-            <ListItem key={result}>
-              {console.log(result)}
-              <div>Title: {result.volumeInfo.title}</div>
-              {/* <div><img src={result.volumeInfo.imageLinks.smallThumbnail}></img></div> */}
-              {!result.volumeInfo.imageLinks ? null : (
-                <div>
-                  <img src={result.volumeInfo.imageLinks.thumbnail}></img>
-                </div>
-              )}
-              <div>
-                <a href={result.volumeInfo.previewLink} target="_blank">
-                  Google Books Link
-                </a>
-              </div>
-              <div>Authors: {result.volumeInfo.authors}</div>
-              {/* <div>
-<List>
-{result.map(author=>(
-  <ListItem>
-  {author}, 
-  </ListItem>
-))}
-</List>
-</div> */}
-              <div>Published Date: {result.volumeInfo.publishedDate}</div>
-              <div>Description: {result.volumeInfo.description}</div>
-            </ListItem>
-          ))}
-        </List>
+        <Modal
+          aria-labelledby="volumes-modal-title"
+          aria-describedby="volumes-modal-description"
+          open={open}
+          onClose={handleClose}
+        >
+          <div style={modalStyle} className={classes.paper}>
+            <List>
+              {currentsearchresults.items.map(result => (
+                <ListItem key={result}>
+                  {console.log(result)}
+                  <div>Title: {result.volumeInfo.title}</div>
+                  {!result.volumeInfo.imageLinks ? null : (
+                    <div>
+                      <img src={result.volumeInfo.imageLinks.thumbnail}></img>
+                    </div>
+                  )}
+                  <div>
+                    <a href={result.volumeInfo.previewLink} target="_blank">
+                      Google Books Link
+                    </a>
+                  </div>
+                  <div>Authors: {result.volumeInfo.authors}</div>
+                  <div>Published Date: {result.volumeInfo.publishedDate}</div>
+                  <div>Description: {result.volumeInfo.description}</div>
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        </Modal>
       )}
     </>
   );

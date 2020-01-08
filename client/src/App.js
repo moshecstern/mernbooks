@@ -6,7 +6,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
-import { Container, Box, makeStyles } from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import "typeface-roboto";
 import News from "./components/News";
 import ComicbookpagesModified from "./images/Comicbookpages.jpg";
@@ -23,7 +23,7 @@ function App() {
       <Container className={classes.container}>
         <Router>
           <Nav />
-          <Switch>
+          <Switch className={classes.container}>
             <Route exact path="/" component={Home} />
             <Route exact path="/character" component={Home} />
             <Route exact path="/series/:name" component={Detail} />

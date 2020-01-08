@@ -20,7 +20,13 @@ import useAxios from "axios-hooks";
 
 const Notes = () => {
   const [{ data: allnotes, loading }, getallnotes] = useAxios("/api/notes");
-  const [{ data, loading: dataloading }, addmynote] = useAxios("/api/notes");
+  const [
+    { data: putData, loading: putLoading, error: putError },
+    addmynote
+  ] = useAxios({
+    url: "/api/notes",
+    method: "PUT"
+  });
   const [mynote, setmynote] = useState();
   const [myname, setmyname] = useState();
   const [mymessage, setmymessage] = useState();
@@ -39,7 +45,7 @@ const Notes = () => {
   const handleInputChangemessage = event => {
     setmymessage(mymessage);
   };
-  if (loading) {
+  if (loading || putLoading) {
     return <></>;
   }
   return (
