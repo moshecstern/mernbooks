@@ -1,35 +1,37 @@
-# Scraper
+# Graphic Know-Vels
 
-In this assignment, you'll create a web app that lets users view and leave comments on the latest news. But you're not going to actually write any articles; instead, you'll flex your Mongoose and Cheerio muscles to scrape news from another site.
+### A Graphic Novel Exploration and Curation App
+
+Graphic Know-vels is an application to help graphic novel readers navigate, explore, annote, and save personal collections of these novels. Graphic novels are books comprised of many different comics and these collections can be complex involving many different characters, different series, and different lines of comics all within the same graphic novel. Our application makes navigating this complexity easier and more rewarding.
 
 # A Link to the Past
 
-https://vast-lake-89002.herokuapp.com/
+https://shrouded-taiga-88482.herokuapp.com/
 
 ### Organization
 
-This node.js app uses a switch function to take a command line argument as a command, one of four options. The options allow the user to search for concerts, movies, and music using user-provided search terms.
+This MERN stack app uses React to render our Material-ui front end, a Mongo database with Mongoose, we're using Express for routing purposes, and finally Node and javascript make the world go round. The user views a single page application, available to all users with additional value and functionality when users sign up/sign in.
 
 ### How-to operate
 
-After cloning the repository, npm install to load all required third-party software. Following installation the user can initiate the program by entering "node liri.js " + (a command) + (a request).
-The command can only be one of four: "spotify-this", "concert-this", "spotify-this-song", and "do-what-it-says". An inappropriate command will result in an error message.
-The request should be pertinent to the command i.e. the name of a song, name of a band, or name of a movie.
-Relevant results will then be console logged to display to the user.
+Simply visit: https://shrouded-taiga-88482.herokuapp.com/
+and visit our application hosted generously on Heroku! Our landing page presents you with the ability to optionally sign up/login, but our core functionality is available to all users. The landing page displays the database collection of Characters as the entrance to exploring graphic novels, in addition, relevant comic book news is displayed, and a notetaking feature. Selecting a character will display more information on the character, picture, links to additional information, and a list of linked graphic novel series. The series' each link to the volumes specific to that character, and the volumes each contain a link to a modal that displays additional information, provided by the Google Books API.
+
+If you wish to test this application locally, in your terminal: "git clone https://github.com/moshecstern/mernbooks.git" After cloning the repository, npm run seed, then npm install to load all required third-party software. Following installation the application will be loaded in the default browser.
 
 ### Proof Positive
 
-Check it out on Heroku! https://vast-lake-89002.herokuapp.com/
+Check it out on Heroku! https://shrouded-taiga-88482.herokuapp.com/
 
 ### Link to Github Repository
 
 Please clone and npm install to run.
-https://github.com/MagicalPowers/Scraper
+https://github.com/moshecstern/mernbooks
 
 ### Technologies used
 
-This node.js app uses a package.json to facilitate installing third-party software, MongoDB, Mongoose, Cheerio for back-end jQuery, Handlebars, Morgan, axios for API interaction, and of course javascript.
+This node.js app uses React for all rendering using Material-ui for our UI/UX, MongoDB, Mongoose, Cheerio for back-end jQuery, axios for API interaction, axios-hooks, cors(with a cors-proxy), Express for routing, Puppeteer for scraping, React-Hooks, request, request-promise, Prettier was a godsend, and of course javascript.
 
-### My Role
+### Our Roles
 
-This is a solo assignment.
+Liam Wynne focused on back-end, especially user authentication, Moshe Stern focused on back-end, data creation,
