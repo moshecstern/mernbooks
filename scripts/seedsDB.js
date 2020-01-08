@@ -12,7 +12,10 @@ mongoose.connect(
 // good reads 
 // GCD indexing??  https://docs.comics.org/wiki/Developer%27s_Guide_to_the_Code
 //https://docs.comics.org/wiki/Indexing
-
+// dc comics listing of seriesmanual q
+// https://www.dccomics.com/comics?seriesid=232253#browse
+//scrape this website, doing more research
+// https://www.comics.org/series/76455/details/
 
 
 const characterSeed = [
@@ -108,7 +111,7 @@ const seriesSeed = [
     character: "Batman",
     name: "Batman",
     synopsis: "batman fights joker...",
-    volumes: ["Vol 1: Court of Owls", "Vol 2: City of Owls", "Vol 3: Death of the Family", "Vol 4: Zero Year - Secret City", "Vol 5: Zero Year - Dark City", "Vol 6: Graveyard Shift", "Vol 7: Endgame", "Vol 8: Superheavy", "Vol 9: Bloom", "Vol 10: Epilogue"],
+    volumes: ["Vol 1: Court of Owls", "Vol 2: City of Owls", "Vol 3: Death of the Family", "Vol 4: Zero Year - Secret City", "Vol 5: Zero Year - Dark City", "Vol 6: Graveyard Shift", "Vol 7: Endgame", "Vol 8: Superheavy", "Vol 9: Bloom", "Vol 10: Epilogue","DC Comics: Zero Year", "The Joker: Endgame", "Batman vs. Superman: The Greatest Battles", "Absolute Batman: The Court of Owls"],
     extras: ["DC Comics: Zero Year", "The Joker: Endgame", "Batman vs. Superman: The Greatest Battles", "Absolute Batman: The Court of Owls"]
   }, 
   {
@@ -154,7 +157,7 @@ const seriesSeed = [
     character: "Aquaman",
     name: "Aquaman",
     synopsis: "yadadawabababa",
-    volumes: ["Vol 1: the drowning", "Vol 2: Black Manta Rising", "Vol 3: Crown of Atlantis", "Vol 4: Underworld", "Vol 5: The Crown Comes Down", "Vol 6: Kingslayer"],
+    volumes: ["Vol 1: the drowning", "Vol 2: Black Manta Rising", "Vol 3: Crown of Atlantis", "Vol 4: Underworld", "Vol 5: The Crown Comes Down", "Vol 6: Kingslayer","Aquaman/Suicide Squad: Sink Atlantis"],
     extras: ["Aquaman/Suicide Squad: Sink Atlantis"]
   },
   // green lanterns
@@ -166,16 +169,13 @@ const seriesSeed = [
   volumes: ["Vol 1: Rage Planet", "Vol 2: The Phantom Lantern", "Vol 3: POLARITY", "Vol 4: THE FIRST RING", "Vol 5: OUT OF TIME", "Vol 6: A WORLD OF OUR", "Vol 7: SUPERHUMAN", "Vol 8: GHOSTS OF THE PAST", "Vol 9: EVIL’S MIGHT"],
 }, 
 // superman
-// dc comics listing of seriesmanual q
-// https://www.dccomics.com/comics?seriesid=232253#browse
-//scrape this website, doing more research
-// https://www.comics.org/series/76455/details/
+
   {
   series: "new52",
   character: "Superman",
   name: "All-Star Superman",
   synopsis: "superman hahahah ",
-  volumes: ["Vol 1: SUPERMAN AND THE MEN OF STEEL", "Vol 2: BULLETPROOF", "Vol 3: AT THE END OF DAYS", "Vol 4: HYBRID", "Vol 5: WHAT LIES BENEATH", "Vol 6: SUPERDOOM", "Vol 7: UNDER THE SUN", "Vol 8: TRUTH", "Vol 9: LAST RITES"],
+  volumes: ["Vol 1: SUPERMAN AND THE MEN OF STEEL", "Vol 2: BULLETPROOF", "Vol 3: AT THE END OF DAYS", "Vol 4: HYBRID", "Vol 5: WHAT LIES BENEATH", "Vol 6: SUPERDOOM", "Vol 7: UNDER THE SUN", "Vol 8: TRUTH", "Vol 9: LAST RITES","WORLD AGAINST SUPERMAN"],
   extras: ["WORLD AGAINST SUPERMAN"]
 },
 ]
