@@ -78,13 +78,6 @@ const characterSeed = [
           series: ["new52", "rebirth"]
         },
         {
-          name: "Teen Titans",
-          link: "https://dc.fandom.com/wiki/Teen_Titans",
-          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/6/61/Teen_Titans_Rebirth_Vol_1_1_Textless.jpg/revision/latest/scale-to-width-down/150?cb=20160518052637",
-          info: "The Teen Titans are an organization of young vigilantes banded together to fight crime",
-          series: ["new52", "rebirth"]
-        },
-        {
           name: "Green Arrow",
           link: "https://dc.fandom.com/wiki/Green_Arrow",
           img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/2/29/Green_Arrow_Vol_6_1_Textless_Variant.jpg/revision/latest/scale-to-width-down/333?cb=20160617025432",
@@ -105,8 +98,15 @@ const characterSeed = [
           info: "Red Tornado is an android super-hero with wind-manipulation powers in addition to incredible strength and speed.",
           series: ["new52", "rebirth"]
         },
-  ];
-  
+        {
+          name: "Scooby-Doo",
+          link: "https://dc.fandom.com/wiki/Scooby_Doo",
+          img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/1/1e/Scooby-Doo_Vol_1_159.jpg/revision/latest/scale-to-width-down/328?cb=20111222180514",
+          info: "Mystery Inc Solving Mysteries",
+          series: ["new52", "rebirth"]
+        },
+      ];
+      
 const seriesSeed = [
   {
     series: "new52",
@@ -302,6 +302,21 @@ volumes: ["Vol 1: Move Forward", "Vol 2: Rogues Revolution", "Vol 3: Gorilla War
   synopsis: "superman hahahah ",
   volumes: ["Lightning In a Bottle", "Full Throttle"],
 },
+// Scooby Doo
+{
+series: "2013",
+character: "Scooby-Doo",
+name: "Scooby-Doo Team Up",
+synopsis: "Teaming up with dc heroes to solve crimes.",
+volumes: ["Scooby-Doo Team Up", "Vol. 2", "Vol. 3", "Vol. 4", "Vol. 5", "Vol. 6"],
+},
+{
+  series: "2010",
+  character: "Scooby-Doo",
+  name: "Scooby-Doo, Where Are You?",
+  synopsis: "Teaming up with dc heroes to solve crimes.",
+  volumes: ["Scooby-Doo, Where Are You?"],
+  },
 ]
 // copy modal                    "H'el on Earth", is vol 3
 // {
