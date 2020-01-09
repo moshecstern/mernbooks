@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./style.css"
 import {
   Grid,
   GridList,
@@ -74,14 +74,15 @@ const Superheroapi = props => {
               <GridListTile key={item}>
                 <img src={item.image.medium_url} alt={item.name} />
                 <GridListTileBar
-                  title={<Link to={"/series/" + item.name}>{item.name}</Link>}
+                //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
+                  title={item.name}
                   subtitle={
                     <>
                       <span>Aliases: {item.aliases}</span> 
                       <br />
                       {/* <span>Link: {item.api_detail_url}</span> */}
-                      <a href={item.api_detail_url} target="_blank">Link</a>
-                      <br />
+                      {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
+                      {/* <br /> */}
 
                       <span>Bio: {item.deck} </span>
 

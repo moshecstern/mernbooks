@@ -1,0 +1,10 @@
+.MuiGridListTileBar-subtitle {
+    overflow: hidden;
+    font-size: 0.75rem;
+    line-height: 1;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+}
+.MuiGridListTileBar-rootSubtitle {
+    height: 193px !important;
+}
