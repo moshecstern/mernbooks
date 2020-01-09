@@ -16,6 +16,8 @@ mongoose.connect(
 // https://www.dccomics.com/comics?seriesid=232253#browse
 //scrape this website, doing more research
 // https://www.comics.org/series/76455/details/
+// list of batman comics- go to collections/ collected
+// https://en.wikipedia.org/wiki/List_of_Batman_comics
 
 
 const characterSeed = [
@@ -122,6 +124,13 @@ const seriesSeed = [
     volumes: ["Vol 1: Faces of Death", "Vol 2: Scare Tactics", "Vol 3: Emperor Penguin", "Vol 4: The Wrath", "Vol 5: Gothtopia", "Vol 6: Icarus", "Vol 7: Anarky", "Vol 8: Blood of Heroes", "Vol 9: Gordon at War", "Vol 10: Epilogue"],
   }, 
   {
+    series: "new52",
+    character: "Batman",
+    name: "Batman and Robin",
+    synopsis: "batman fights joker...",
+    volumes: ["Vol 1: Born to Kill", "Vol 2: Pearl", "Vol 3: Death of the Family", "Vol 4: Requiem for Damian", "Vol 5: The Big Burn", "Vol 6: The Hunt for Robin", "Vol 7: Robin Rises", "Bad Blood"],
+}, 
+  {
     series: "rebirth",
     character: "Batman",
     name: "Batman",
@@ -134,6 +143,27 @@ const seriesSeed = [
     name: "All-Star Batman",
     synopsis: "batman fights joker hahaha... mwaahahha ",
     volumes: ["Vol 1: My Own Worst Enemy", "Vol 2: Ends of the Earth", "Vol 3: The First Ally"],
+  },
+  {
+    series: "1996",
+    character: "Batman",
+    name: "The Long Halloween",
+    synopsis: "batman fights joker hahaha... mwaahahha ",
+    volumes: ["Batman: The Long Halloween", "Batman: Haunted Knight","Absolute Batman: The Long Halloween", "Batman Noir: The Long Halloween", "Batman By Jeph Loeb and Tim Sale Omnibus", "Batman: The Long Halloween (DC Modern Classics Edition)"],
+  }, 
+  {
+    series: "Detective Comics",
+    character: "Batman",
+    name: "Batman: Hush",
+    synopsis: "batman fights joker hahaha... mwaahahha ",
+    volumes: ["Batman: Hush", "Heart of Hush"],
+  }, 
+  {
+    series: "2017",
+    character: "Batman",
+    name: "Batman: The Dark Prince Charming",
+    synopsis: "batman fights joker hahaha... mwaahahha ",
+    volumes: ["Book One", "Book Two"],
   }, 
   
   // Wonder Woman
@@ -164,22 +194,116 @@ const seriesSeed = [
   {
   series: "rebirth",
   character: "Green lantern",
-  name: "Green Lanterns",
+  name: "Green Lantern",
   synopsis: "Green lanter nbladibladaaba ",
   volumes: ["Vol 1: Rage Planet", "Vol 2: The Phantom Lantern", "Vol 3: POLARITY", "Vol 4: THE FIRST RING", "Vol 5: OUT OF TIME", "Vol 6: A WORLD OF OUR", "Vol 7: SUPERHUMAN", "Vol 8: GHOSTS OF THE PAST", "Vol 9: EVIL’S MIGHT"],
 }, 
+{
+  series: "new52",
+  character: "Green lantern",
+  name: "Green Lantern",
+  synopsis: "Green lanter nbladibladaaba ",
+  volumes: ["Vol 1: Sinestro", "Vol 2: The Revenge of Black Hand", "Vol 3: The End", "Vol 4: Dark Days", "Vol 5: Test of Wills", "Vol 6: The Life Equation", "Vol 7: Renegade", "Vol 8: Reflections"],
+},
 // superman
 
   {
   series: "new52",
   character: "Superman",
-  name: "All-Star Superman",
+  name: "Superman: Action Comics",
+  // name: "All-Star Superman",
   synopsis: "superman hahahah ",
   volumes: ["Vol 1: SUPERMAN AND THE MEN OF STEEL", "Vol 2: BULLETPROOF", "Vol 3: AT THE END OF DAYS", "Vol 4: HYBRID", "Vol 5: WHAT LIES BENEATH", "Vol 6: SUPERDOOM", "Vol 7: UNDER THE SUN", "Vol 8: TRUTH", "Vol 9: LAST RITES","WORLD AGAINST SUPERMAN"],
   extras: ["WORLD AGAINST SUPERMAN"]
 },
+{
+  series: "new52",
+  character: "Superman",
+  name: "Superman",
+  synopsis: "superman hahahah ",
+  volumes: ["Vol 1: What Price Tomorrow?", "Vol 2: Secrets and Lies", "Vol 3: Fury At World's End", "Vol 4: Psi-War", "Vol 5: Under Fire", "Doomed", "The Men of Tomorrow", "Vol 1: Before Truth", "Vol 2: Return to Glory", "Savage Dawn", "The Final Days Of Superman", "Savage Dawn"],  
+},
+{
+  series: "rebirth",
+  character: "Superman",
+  name: "Superman",
+  synopsis: "superman hahahah ",
+  volumes: ["Vol 1: Son of Superman", "Vol 2: Trials of the Super Sons", "Vol 3: Multiplicity", "Vol 4: Black Dawn", "Vol 5: Hopes and Fears", "Vol 6: Imperius Lex", "Vol 7: Bizarroverse"],  
+},
+{
+  series: "rebirth",
+  character: "Superman",
+  name: "Superman: Action Comics",
+  synopsis: "superman hahahah ",
+  volumes: ["Vol 1: Path of Doom", "Vol 2: Welcome to the Planet", "Vol 3: Men of Steel", "Vol 4: The New World", "Vol 5: Booster Shot", "Superman Reborn", "Vol 1: Invisible Mafia"],
+},
+{
+  series: "rebirth",
+  character: "Superman",
+  name: "New Super-man",
+  synopsis: "superman hahahah ",
+  volumes: ["Kryptonite"],
+},
+{
+  series: "2006",
+  character: "Superman",
+  name: "Superman",
+  synopsis: "superman hahahah ",
+  volumes: ["Vol 1: Made In China", "Vol 2: Coming To America", "Vol 3: Equilibrium", "New Super-Man and The Justice League of China"],
+},
+// Flash
+{
+series: "new52",
+character: "Flash",
+name: "The Flash",
+synopsis: "superman hahahah ",
+volumes: ["Vol 1: Move Forward", "Vol 2: Rogues Revolution", "Vol 3: Gorilla Warfare", "Vol 4: Reverse", "Vol 5: History Lessons", "Vol 6: Out of Time", "Vol 7: Savage World", "Vol 8: Zoom", "Vol 9: Full Stop"],
+},
+{
+  series: "new52",
+  character: "Flash",
+  name: "The Flash By Geoff Johns Omnibus",
+  synopsis: "superman hahahah ",
+  volumes: ["Vol 1", "Vol 2", "Vol 3"],
+},
+{
+  series: "rebirth",
+  character: "Flash",
+  name: "The Flash",
+  synopsis: "superman hahahah ",
+  volumes: ["Vol 1: Lightning Strikes Twice", "Vol 2: Speed of Darkness", "Vol 3: Rogues Reloaded", "Vol 4: Running Scared", "Vol 5: Negative", "Vol 6: A Cold Day In Hell", "Vol 7: Perfect Storm", "Vol 8: Flash War", "Vol 9: Reckoning Of The Forces"],
+},
+{
+  series: "rebirth",
+  character: "Flash",
+  name: "The Flash By Mark Waid",
+  synopsis: "superman hahahah ",
+  volumes: ["Book 1", "Book 2", "Book 3", "Book 4", "Book 5", "Book 6"],
+},
+{
+  series: "2009",
+  character: "Flash",
+  name: "The Flash",
+  synopsis: "superman hahahah ",
+  volumes: ["Rebirth"],
+},
+
+{
+  series: "2010",
+  character: "Flash",
+  name: "The Flash",
+  synopsis: "superman hahahah ",
+  volumes: ["The Dasterdly Death Of The Rogues", "The Road to Flashpoint"],
+},
+{
+  series: "2006",
+  character: "Flash",
+  name: "The Flash The Fastest Man Alive",
+  synopsis: "superman hahahah ",
+  volumes: ["Lightning In a Bottle", "Full Throttle"],
+},
 ]
-// copy modal
+// copy modal                    "H'el on Earth", is vol 3
 // {
 //   series: "rebirth",
 //   character: "batman",
