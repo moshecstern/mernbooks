@@ -102,11 +102,15 @@ const Detail = props => {
     //reference showvolumes method above
     console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
     console.log(vol);
+    console.log("vol")
     console.log(name);
-    console.log(series);
     console.log("name________________________");
+    console.log(series);
+    console.log("series")
     // let searchvol = props.match.params.name +" "+ vol + " " + name
     let searchvol = name + " " + vol + " " + series;
+    // let searchvol = name + " " + vol;
+
     console.log(searchvol);
     Axios.get(
       "https://www.googleapis.com/books/v1/volumes?q='" +
@@ -150,7 +154,7 @@ const Detail = props => {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary={`Series Name: ${item.series}`}
+                  primary={`Series Era: ${item.series}`}
                   secondary={`Series Line: ${item.name}`}
                 />
               </ListItem>
@@ -207,7 +211,7 @@ const Detail = props => {
               {currentsearchresults.items.map(result => (
                 <ListItem key={result}>
                   {console.log(result)}
-                  <div>Title: {result.volumeInfo.title}</div>
+                  <div>Title: {result.volumeInfo.title}: {result.volumeInfo.subtitle}</div>
                   {!result.volumeInfo.imageLinks ? null : (
                     <div>
                       <img src={result.volumeInfo.imageLinks.thumbnail}></img>
