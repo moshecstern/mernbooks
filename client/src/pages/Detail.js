@@ -3,6 +3,8 @@ import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
 import Superheroapi from "../components/Superheroapi";
 import { List, ListItem } from "../components/List";
 import Linkpage from "../components/Linkpage";
+import Comicbookvineapi from "../components/Comicvineapi";
+
 import {
   Grid,
   Typography,
@@ -134,7 +136,9 @@ const Detail = props => {
   return (
     <>
     <Linkpage props={props}>{props}</Linkpage>
-      <Superheroapi props={props}>{props}</Superheroapi>
+      {/* <Superheroapi props={props}>{props}</Superheroapi> */}
+      <Comicbookvineapi props={props}>{props}</Comicbookvineapi>
+
       <Grid container spacing={2}>
         <Grid item xs>
           <Typography variant="h3" className={classes.title}>
