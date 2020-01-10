@@ -193,14 +193,14 @@ const seriesSeed = [
   // green lanterns
   {
   series: "rebirth",
-  character: "Green lantern",
+  character: "Green Lantern",
   name: "Green Lantern",
   synopsis: "Green lanter nbladibladaaba ",
   volumes: ["Vol 1: Rage Planet", "Vol 2: The Phantom Lantern", "Vol 3: POLARITY", "Vol 4: THE FIRST RING", "Vol 5: OUT OF TIME", "Vol 6: A WORLD OF OUR", "Vol 7: SUPERHUMAN", "Vol 8: GHOSTS OF THE PAST", "Vol 9: EVIL’S MIGHT"],
 }, 
 {
   series: "new52",
-  character: "Green lantern",
+  character: "Green Lantern",
   name: "Green Lantern",
   synopsis: "Green lanter nbladibladaaba ",
   volumes: ["Vol 1: Sinestro", "Vol 2: The Revenge of Black Hand", "Vol 3: The End", "Vol 4: Dark Days", "Vol 5: Test of Wills", "Vol 6: The Life Equation", "Vol 7: Renegade", "Vol 8: Reflections"],

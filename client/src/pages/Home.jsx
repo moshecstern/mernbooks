@@ -24,14 +24,30 @@ const Home = () => {
       .catch(err => console.log(err));
   };
   const classes = useStyles;
+
+  // shuffling 
+  function shuffleArray(array) {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+// end shuffle
+
   if (loading) {
     return <></>;
   }
+  const shuffledPosts = shuffleArray(characters);
+  const sliced = shuffledPosts
   return (
     <div className={classes.container}>
       <br />
       <GridList cols={4}>
-        {characters.map(item => (
+        {shuffledPosts.slice(4).map(item => (
           <GridListTile
             key={item.name}
             onClick={() => getseriesbyname(item.name)}
