@@ -162,13 +162,17 @@ const showMyModal = myinfo => {
                   </>}
                   subtitle={
                     <>
-                      <span>Aliases: {item.aliases}</span> 
+                      <span>Aliases: </span>
+                      <br />
+                      <span>{item.aliases}</span> 
                       <br />
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
-                      {/* <br /> */}
+                      <br />
 
-                      <span>Bio: {item.deck} </span>
+                      <span>Bio: </span>
+                      <br />
+                      <span>{item.deck} </span>
 
                       {/* <span>Bio: {handleparser(item.description)} </span> */}
 

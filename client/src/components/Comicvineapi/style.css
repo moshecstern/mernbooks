@@ -7,4 +7,6 @@
 }
 .MuiGridListTileBar-rootSubtitle {
     height: 193px !important;
+    display: inline-block;
+    /* 216px  */
 }
