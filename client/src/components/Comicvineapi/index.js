@@ -14,6 +14,7 @@ import useAxios from "axios-hooks";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
+import InfoIcon from '@material-ui/icons/Info';
 import {
     Button,
     ListItemAvatar,
@@ -134,6 +135,9 @@ const showMyModal = myinfo => {
 //     innerHTML = input;
 //     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 //   }
+const options = () => {
+console.log("HI")
+}
 
   if (loading) {
     return <></>;
@@ -156,15 +160,28 @@ const showMyModal = myinfo => {
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
                   <span>{item.name}</span>
-                  <FolderIcon
+                  {/* <br /> */}
+                  <span>
+                  <InfoIcon
                       onClick={() => showMyModal(item.description)}
                     />
+                  </span>
+
                   </>}
                   subtitle={
                     <>
+                     {/* <span>
+Click   
+                  <InfoIcon
+                      onClick={() => showMyModal(item.description)}
+                    />
+                    for All Info
+                  </span>
+                  <br /><br /> */}
                       <span>Aliases: </span>
                       <br />
-                      <span>{item.aliases}</span> 
+                      <span>{item.real_name}</span>
+                      <span> {item.aliases} </span> 
                       <br />
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
@@ -209,7 +226,12 @@ const showMyModal = myinfo => {
           {/* <div>{TextDecoderStream(characterinfo)} */}
           {/* {characterinfo} */}
           {/* </div> */}
-          <div> { ReactHtmlParser (characterinfo) } </div>
+          {/* <div> { ReactHtmlParser (characterinfo, [options= function transform(node) {
+  if (node.type === 'tag' && node.name === 'b') {
+    return <div>This was a bold tag</div>;
+  }
+}]) } </div> */}
+<div> { ReactHtmlParser (characterinfo)}</div>
           </List>
           {console.log(characterinfo)}
          
