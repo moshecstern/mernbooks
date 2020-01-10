@@ -23,6 +23,7 @@ mongoose.connect(
 const characterSeed = [
   {
     name: "Batman",
+    publisher: "DC",
     link: "https://dc.fandom.com/wiki/Batman",
     img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/7/7b/Batman_Vol_2_9_Textless_Variant.jpg/revision/latest/scale-to-width-down/150?cb=20120510175322",
     info: "the super-hero protector of Gotham City, a man dressed like a bat who fights against evil and strikes terror into the hearts of criminals everywhere.",
@@ -30,6 +31,7 @@ const characterSeed = [
   },
   {
     name: "Superman",
+    publisher: "DC",
     link: "https://dc.fandom.com/wiki/Superman",
     img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/9/9d/Superman_0008.jpg/revision/latest/scale-to-width-down/150?cb=20120825192746",
     info: "also known as the Man of Steel, is one of the most powerful superheroes in the DC Universe.",
@@ -37,6 +39,7 @@ const characterSeed = [
   },
   {
     name: "Wonder Woman",
+    publisher: "DC",
     link: "https://dc.fandom.com/wiki/Wonder_Woman",
         img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/e/ec/Wonder_Woman_0007.jpg/revision/latest/scale-to-width-down/150?cb=20130928221412",
         info: " is an Amazon warrior princess and one of the most powerful superheroes in the DC Universe.",
@@ -44,6 +47,7 @@ const characterSeed = [
       },
       {
           name: "Aquaman",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Aquaman",
           img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/5/51/Aquaman_0024.jpg/revision/latest?cb=20130516170558",
           info: "also known as Arthur Curry and Orin, is a superhero and the ruler of the seas.",
@@ -51,6 +55,7 @@ const characterSeed = [
         },
         {
           name: "Flash",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Flash",
           img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/6/6e/Flash_0012.jpg/revision/latest/scale-to-width-down/150?cb=20130708162057",
           info: "the fastest man alive. He is the protector of Central City and Keystone City, fighting against evil using his super-speed and a dedicated sense of heroism",
@@ -58,6 +63,7 @@ const characterSeed = [
         },
         {
           name: "Green Lantern",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Green_Lantern",
           img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/8/83/Hal_Jordan_and_the_Green_Lantern_Corps_Vol_1_45_Textless_Variant.jpg/revision/latest/scale-to-width-down/329?cb=20180523193425",
           info: "a name that has been used by many characters in the DC Universe, and two distinct franchises.",
@@ -65,6 +71,7 @@ const characterSeed = [
         },
         {
           name: "Booster Gold",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Booster_Gold",
           img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/1/13/Booster_Gold_Futures_End_Vol_1_1_Present_Textless.jpg/revision/latest/scale-to-width-down/329?cb=20140926203505",
           info: "a time-traveling super-hero from the 25th Century who uses high-tech equipment to fight crime, alongside his robotic side-kick Skeets.",
@@ -72,6 +79,7 @@ const characterSeed = [
         },
         {
           name: "Shazam",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Shazam",
           img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/6/61/Shazam%21_Vol_3_1_Textless_Variant.jpg/revision/latest/scale-to-width-down/329?cb=20181205234924",
           info: "The name originally belonged to an ancient wizard, who lived in the Rock of Eternity and guarded the Seven Deadly Sins.",
@@ -79,6 +87,7 @@ const characterSeed = [
         },
         {
           name: "Green Arrow",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Green_Arrow",
           img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/2/29/Green_Arrow_Vol_6_1_Textless_Variant.jpg/revision/latest/scale-to-width-down/333?cb=20160617025432",
           info: "Green Arrow is a vigilante superhero who fights crime using archery, technology, and martial arts.",
@@ -86,6 +95,7 @@ const characterSeed = [
         },
         {
           name: "Swamp Thing",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Swamp_Thing",
           img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/0/0b/Swamp_Thing_Vol_5_25_Textless.jpg/revision/latest/scale-to-width-down/330?cb=20131106222450",
           info: "Swamp Thing is an elemental creature who shares a connection to all plant life on the planet Earth through a network called the Green.",
@@ -93,6 +103,7 @@ const characterSeed = [
         },
         {
           name: "Red Tornado",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Red_Tornado",
           img:   "https://vignette.wikia.nocookie.net/marvel_dc/images/4/42/Red_Tornado_003.jpg/revision/latest/scale-to-width-down/329?cb=20180306225132",
           info: "Red Tornado is an android super-hero with wind-manipulation powers in addition to incredible strength and speed.",
@@ -100,11 +111,110 @@ const characterSeed = [
         },
         {
           name: "Scooby-Doo",
+          publisher: "DC",
           link: "https://dc.fandom.com/wiki/Scooby_Doo",
           img:  "https://vignette.wikia.nocookie.net/marvel_dc/images/1/1e/Scooby-Doo_Vol_1_159.jpg/revision/latest/scale-to-width-down/328?cb=20111222180514",
           info: "Mystery Inc Solving Mysteries",
           series: ["new52", "rebirth"]
         },
+        // marvel superheroes 8
+        {
+          name: "Deadpool",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Wade_Wilson_(Earth-616)",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/e/e3/Despicable_Deadpool_Vol_1_300_Liefeld_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20180603160322",
+          info: "As 'The Merc with a Mouth' he set out as Deadpool to kill and have a good time doing it. Deadpool was created by Fabian Nicieza and Rob Liefeld, first appearing in New Mutants #98 (1991).",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Spider-Man",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Spider-Man",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/c/c8/Amazing_Spider-Man_Vol_3_1_Ross_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140124154956",
+          info: "As a result of a radioactive spider bite, high schooler Peter Parker developed powers and abilities similar to that of a spider.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Iron-Man",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Iron_Man",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/a/a8/Superior_Iron_Man_Vol_1_1_Marvel_Comics_75th_Anniversary_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140819193357",
+          info: "Stark built an armored suit to escape captivity, which doubled as a device to keep his heart beating keeping him alive. Once he returned to the United States, Stark reinvented himself as the armor-clad superhero Iron Man.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Thor",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Thor",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/a/ae/Thor_Vol_4_1_Ross_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140909103520",
+          info: "Leaping from the legends of Norse mythology, the Asgardian God of Thunder, Thor Odinson, is the son of Odin the All-Father and Jord, Elder Goddess and spirit of the Earth.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Hulk",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Hulk",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/c/ce/Savage_Hulk_Vol_2_1_Marvel_Comics_75th_Anniversary_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140825205702",
+          info: "Bruce Banner was a scientist who was working on a gamma bomb when he noticed teenager Rick Jones out on the test range.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Black Widow",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Black_Widow",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/5/54/Black_Widow_Vol_5_13_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140916201519",
+          info: "A former KGB agent, Natalia Romanova otherwise known as Black Widow defected to the United States from the Soviet Union (later known as Russia) to join S.H.I.E.L.D..",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Avengers",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Avengers",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/1/12/Avengers_Vol_8_10_Ross_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20180823183630",
+          info: "The Avengers are Earth's foremost major organization of costumed superhuman crimefighters, adventurers and heroes dedicated to safeguarding the world from any threat beyond the power of conventional peacekeeping forces or any which any of them can't handle alone.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Fantastic Four",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Fantastic_Four",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/7/72/Fantastic_Four_Vol_6_1_Virgin_Variant.jpg/revision/latest/scale-to-width-down/400?cb=20180523101754",
+          info: "The Fantastic Four are a team of adventurers and super-heroes. During an accident on an experimental rocket, they were all given fantastic powers through exposure to cosmic rays.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Wolverine",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Wolverine",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/1/1d/Death_of_Wolverine_Vol_1_4_Land_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20141003044738",
+          info: "Wolverine was created by Len Wein, John Romita and Herb Trimpe, first cameo appearence in Incredible Hulk #180 (Oct 1974) and first full appearence in Incredible Hulk #181 (Nov 1974).",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Captain America",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Captain_America",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/9/90/Captain_America_Vol_7_22_Marvel_Comics_75th_Anniversary_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140423170823",
+          info: "As a symbol of freedom and patriotism, a number of men have taken the mantle of Captain America in Rogers' various absences. Of note are William Nasland and Jeffrey Mace, Bucky Barnes, and Sam Wilson.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "X-Men",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/X-Men",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/d/d6/Uncanny_X-Men_Vol_3_29_Ross_Variant_Textless.jpg/revision/latest/scale-to-width-down/400?cb=20140916233146",
+          info: "Hated and feared for powers given to them by an X-gene in their chromosomes, the X-Men were assembled by Charles Xavier, with the dream that one day Mutants and Humans could live together in peace.",
+          series: ["Secret Wars"]
+        },
+        {
+          name: "Captain Marvel",
+          publisher: "Marvel",
+          link: "https://marvel.fandom.com/wiki/Captain_Marvel",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/f/f2/Captain_Marvel_Vol_9_3_McKelvie_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20160310183503",
+          info: "cool cat",
+          series: ["Secret Wars"]
+        },
+        //       Captain Marvel
       ];
       
 const seriesSeed = [

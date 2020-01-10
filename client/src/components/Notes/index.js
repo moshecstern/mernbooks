@@ -64,7 +64,12 @@ const Notes = () => {
     return <></>;
   }
   return (
-    <Grid container direction="column">
+    <div className="row">
+
+    
+    
+    {/* <Grid container direction="column"> */}
+    <div className="col">
       <Grid item>
         <form>
           <Input
@@ -86,6 +91,8 @@ const Notes = () => {
           <FormBtn onClick={handleFormSubmit}>Submit Note</FormBtn>
         </form>
       </Grid>
+      </div>
+      <div className="col">
       <Grid item container>
         <Typography variant="h5">Recent Notes</Typography>
         <List dense item container component="nav" aria-label="notesDisplay">
@@ -105,7 +112,10 @@ const Notes = () => {
           ))}
         </List>
       </Grid>
-    </Grid>
+      </div>
+    {/* </Grid> */}
+    </div>
+    // end of row
   );
 };
 

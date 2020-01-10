@@ -135,7 +135,7 @@ const Detail = props => {
   }
   return (
     <>
-    <Linkpage props={props}>{props}</Linkpage>
+    {/* <Linkpage props={props}>{props}</Linkpage> */}
       {/* <Superheroapi props={props}>{props}</Superheroapi> */}
       <Comicbookvineapi props={props}>{props}</Comicbookvineapi>
 
