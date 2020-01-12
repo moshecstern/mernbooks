@@ -15,13 +15,13 @@ const CharactersBoard = () => {
     "/api/characters"
   );
   const getseriesbyname = name => {
-    console.log("Get series by name!");
-    console.log(name);
+    // console.log("Get series by name!");
+    // console.log(name);
     API.getseriesbyname(name)
       .then(res => {
         this.setState({ series: res.data });
-        console.log("This is the res: ");
-        console.log(res);
+        // console.log("This is the res: ");
+        // console.log(res);
       })
       .catch(err => console.log(err));
   };
