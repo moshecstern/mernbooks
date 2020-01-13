@@ -1,5 +1,6 @@
 import React from "react";
 import Searchbar from "../Searchbar";
+import Signinmodal from "../Signinmodal";
 import { Link } from "react-router-dom";
 import {
   TextField,
@@ -16,20 +17,20 @@ import Input from "@material-ui/core/Input";
 import useAxios from "axios-hooks";
 import Axios from "axios";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+// function rand() {
+//   return Math.round(Math.random() * 20) - 10;
+// }
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+// function getModalStyle() {
+//   const top = 50 + rand();
+//   const left = 50 + rand();
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
+//   return {
+//     top: `${top}%`,
+//     left: `${left}%`,
+//     transform: `translate(-${top}%, -${left}%)`
+//   };
+// }
 
 const useStyles = makeStyles(theme => {
   return {
@@ -52,43 +53,43 @@ const useStyles = makeStyles(theme => {
 });
 
 const Nav = e => {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  // const [{} ,searchForCharacter] = useAxios("/series/"+searchTerm);
+  // const [searchTerm, setSearchTerm] = React.useState("");
+  // // const [{} ,searchForCharacter] = useAxios("/series/"+searchTerm);
   const classes = useStyles();
-  const login = false;
-  const userName = "anything";
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  // const login = false;
+  // const userName = "anything";
+  // const [modalStyle] = React.useState(getModalStyle);
+  // const [open, setOpen] = React.useState(false);
   // function App() {
   //    const handleChange = event => {
   //      setSearchTerm(event.target.value);
   //    };
-  const handleInputChange = event => {
-    // event.preventDefault()
-    console.log("Hi' yall");
-    // console.log(event.target.value)
-    setSearchTerm(event.target.value);
-    console.log(searchTerm);
-  };
-  const handleSearch = (event, value) => {
-    // event.preventDefault()
-    console.log("Hi' yall whats up");
-    console.log(value);
-    console.log(searchTerm);
-    // useAxios.get(window.location+"/series/"+searchTerm)
-    // useAxios("/series/:"+ value)
-    // Axios.request("/series/"+ searchTerm.valueOf)
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleInputChange = event => {
+  //   // event.preventDefault()
+  //   console.log("Hi' yall");
+  //   // console.log(event.target.value)
+  //   setSearchTerm(event.target.value);
+  //   console.log(searchTerm);
+  // };
+  // const handleSearch = (event, value) => {
+  //   // event.preventDefault()
+  //   console.log("Hi' yall whats up");
+  //   console.log(value);
+  //   console.log(searchTerm);
+  //   // useAxios.get(window.location+"/series/"+searchTerm)
+  //   // useAxios("/series/:"+ value)
+  //   // Axios.request("/series/"+ searchTerm.valueOf)
+  // };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   return (
     <Grid container direction="column">
       <Grid container item justify="space-between" className={classes.root}>
-        <Grid item>
+        {/* <Grid item>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               id="outlined-search"
@@ -96,10 +97,7 @@ const Nav = e => {
               type="search"
               variant="outlined"
               onChange={handleInputChange}
-              // onSubmit={Axios.get("/series/" + searchTerm)}
-              // onSubmit={handleSearch(Event)}
             />
-            {/* <Button type="button" value={searchTerm} onClick={handleSearch(searchTerm)}> */}
             <Button>
               <h4>
                 {
@@ -109,10 +107,12 @@ const Nav = e => {
                 }
               </h4>
             </Button>
-            {/* </Button> */}
+            
           </form>
-        </Grid>
-        {login ? (
+        </Grid> */}
+        <Searchbar />
+        <Signinmodal />
+        {/* {login ? (
           `Hello ${userName}`
         ) : (
           <Grid item>
@@ -153,7 +153,8 @@ const Nav = e => {
           <br />
           <Button type="button">Login</Button>
         </div>
-      </Modal>
+      </Modal> */}
+      </Grid>
     </Grid>
   );
 };

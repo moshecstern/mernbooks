@@ -159,25 +159,19 @@ console.log("HI")
                 <GridListTileBar
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
-                  <span>{item.name}</span>
                   {/* <br /> */}
+                  {!item.description ? null : (
                   <span>
                   <InfoIcon
                       onClick={() => showMyModal(item.description)}
                     />
                   </span>
+                  )}
+                  <span>{item.name}</span>
 
                   </>}
                   subtitle={
                     <>
-                     {/* <span>
-Click   
-                  <InfoIcon
-                      onClick={() => showMyModal(item.description)}
-                    />
-                    for All Info
-                  </span>
-                  <br /><br /> */}
                       <span>Aliases: </span>
                       <br />
                       <span>{item.real_name}</span>
@@ -191,15 +185,6 @@ Click
                       <br />
                       <span>{item.deck} </span>
 
-                      {/* <span>Bio: {handleparser(item.description)} </span> */}
-
-                      
-                      
-                      {/* <span>Groups: {item.connections["group-affiliation"]}</span> */}
-
-                      {/* <br />
-                      <span>alter egos{item.biography["alter-egos"]}</span>
-                    <br /> */}
                     </>
                   }
                   classes={{
@@ -222,15 +207,6 @@ Click
         >
           <div style={modalStyle} className={classes.paper}>
           <List>
-          {/* <div dangerouslySetInnerHTML={{ __html: htmlDecode(characterinfo) }} /> */}
-          {/* <div>{TextDecoderStream(characterinfo)} */}
-          {/* {characterinfo} */}
-          {/* </div> */}
-          {/* <div> { ReactHtmlParser (characterinfo, [options= function transform(node) {
-  if (node.type === 'tag' && node.name === 'b') {
-    return <div>This was a bold tag</div>;
-  }
-}]) } </div> */}
 <div> { ReactHtmlParser (characterinfo)}</div>
           </List>
           {console.log(characterinfo)}
