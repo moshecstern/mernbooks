@@ -83,6 +83,7 @@ const Superheroapi = props => {
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
     url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/characters/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
   });
+  
   console.log("this is a test");
   console.log(props);
   console.log(props.props.match.params.name);
