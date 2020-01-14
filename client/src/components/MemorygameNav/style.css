@@ -1,0 +1,14 @@
+@media only screen and (max-width: 768px) {
+    .navbar {
+        position: absolute;
+    }
+}
+
+.navbar {
+    background-color: firebrick;
+    /* margin: 14px; */
+    font-weight: bold;
+    text-align: center;
+    /* position: fixed; */
+    width: 100%;
+}
