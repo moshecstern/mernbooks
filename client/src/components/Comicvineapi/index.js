@@ -83,6 +83,7 @@ const Superheroapi = props => {
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
     url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/characters/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
   });
+  
   console.log("this is a test");
   console.log(props);
   console.log(props.props.match.params.name);
@@ -159,25 +160,19 @@ console.log("HI")
                 <GridListTileBar
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
-                  <span>{item.name}</span>
                   {/* <br /> */}
+                  {!item.description ? null : (
                   <span>
                   <InfoIcon
                       onClick={() => showMyModal(item.description)}
                     />
                   </span>
+                  )}
+                  <span>{item.name}</span>
 
                   </>}
                   subtitle={
                     <>
-                     {/* <span>
-Click   
-                  <InfoIcon
-                      onClick={() => showMyModal(item.description)}
-                    />
-                    for All Info
-                  </span>
-                  <br /><br /> */}
                       <span>Aliases: </span>
                       <br />
                       <span>{item.real_name}</span>
@@ -191,15 +186,6 @@ Click
                       <br />
                       <span>{item.deck} </span>
 
-                      {/* <span>Bio: {handleparser(item.description)} </span> */}
-
-                      
-                      
-                      {/* <span>Groups: {item.connections["group-affiliation"]}</span> */}
-
-                      {/* <br />
-                      <span>alter egos{item.biography["alter-egos"]}</span>
-                    <br /> */}
                     </>
                   }
                   classes={{
@@ -222,15 +208,6 @@ Click
         >
           <div style={modalStyle} className={classes.paper}>
           <List>
-          {/* <div dangerouslySetInnerHTML={{ __html: htmlDecode(characterinfo) }} /> */}
-          {/* <div>{TextDecoderStream(characterinfo)} */}
-          {/* {characterinfo} */}
-          {/* </div> */}
-          {/* <div> { ReactHtmlParser (characterinfo, [options= function transform(node) {
-  if (node.type === 'tag' && node.name === 'b') {
-    return <div>This was a bold tag</div>;
-  }
-}]) } </div> */}
 <div> { ReactHtmlParser (characterinfo)}</div>
           </List>
           {console.log(characterinfo)}

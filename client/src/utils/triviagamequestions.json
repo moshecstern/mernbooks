@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "question": "Which one of these is not from dc comics?",
+      "answer": ["Batman", "Superman", "Ant-man", "Flash"],
+      "correctAnswer": "Ant-man",
+      "answered": false
+    },
+    {
+      "id": 2,
+      "question": "Which one of these is not from marval comics?",
+        "answer": ["Deadpool", "Cyborg", "Hulk", "X-Men"],
+        "correctAnswer": "Cyborg",
+      "answered": false
+    },
+    {
+      "id": 3,
+      "question": "Which one of these heroes can fly?",
+      "answer": ["Thor", "Aquaman", "Spider-Man", "Wolverine"],
+      "correctAnswer": "Thor",
+      "answered": false
+    },
+    {
+      "id": 4,
+      "question": "What does Billie Batson say in order to run into?",
+     "answer": ["I am Groot", "Wassssuuup", "Hickory Dickory Dock", "Shazam"],
+      "correctAnswer": "Shazam",
+      "answered": false
+    },
+    {
+      "id": 5,
+      "question": "Who has radioactive blood?",
+      "answer": ["Spider-Man", "Hulk", "Deadpool", "Superman"],
+      "correctAnswer": "Spider-Man",
+      "answered": false
+    },
+    {
+      "id": 6,
+      "question": "Which hero did not lose his parents at an early age?",
+      "answer": ["Iron Man", "Daredevil", "Batman", "Thor"],
+      "correctAnswer": "Thor",
+      "answered": false
+    },
+    {
+      "id": 7,
+      "question": "Which one of these newspapers is not real in the superhero universe?",
+      "answer": ["Daily Bugle", "Gotham Gazette", "Daily Planet", "Cornwood Times"],
+      "correctAnswer": "Cornwood Times",
+      "answered": false
+    },
+    {
+      "id": 8,
+      "question": "Who was the earliest popular superhero?",
+      "answer": ["Mandrake the Magician", "Batman", "Superman", "The Human Torch"],
+      "correctAnswer": "Mandrake the Magician",
+      "answered": false
+    },
+    {
+      "id": 9,
+      "question": "Who is the most powerful female superhero?",
+      "answer": ["Super Girl", "Rogue", "Captain Marvel", "Wonder Woman"],
+      "correctAnswer": "Wonder Woman",
+      "answered": false
+    },
+    {
+      "id": 10,
+      "question": "Which hero was a star quarterback at Gotham University?",
+        "answer": ["Booster Gold", "Nightwing", "Blue Beetle", "Red Arrow"],
+        "correctAnswer": "Booster Gold",
+      "answered": false
+    }
+  ]
+  

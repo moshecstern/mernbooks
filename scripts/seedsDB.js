@@ -135,7 +135,7 @@ const characterSeed = [
           series: ["Secret Wars"]
         },
         {
-          name: "Iron-Man",
+          name: "Iron Man",
           publisher: "Marvel",
           link: "https://marvel.fandom.com/wiki/Iron_Man",
           img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/a/a8/Superior_Iron_Man_Vol_1_1_Marvel_Comics_75th_Anniversary_Variant_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20140819193357",
@@ -199,11 +199,11 @@ const characterSeed = [
           series: ["Secret Wars"]
         },
         {
-          name: "X-Men",
+          name: "Storm",
           publisher: "Marvel",
-          link: "https://marvel.fandom.com/wiki/X-Men",
-          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/d/d6/Uncanny_X-Men_Vol_3_29_Ross_Variant_Textless.jpg/revision/latest/scale-to-width-down/400?cb=20140916233146",
-          info: "Hated and feared for powers given to them by an X-gene in their chromosomes, the X-Men were assembled by Charles Xavier, with the dream that one day Mutants and Humans could live together in peace.",
+          link: "https://marvel.fandom.com/wiki/storm",
+          img:  "https://vignette.wikia.nocookie.net/marveldatabase/images/b/b1/Fearless_Vol_1_2_Textless.jpg/revision/latest/scale-to-width-down/250?cb=20190524181911",
+          info: "After her parents were murdered in the rubble of a plane crash, Ororo Munroe began life as a thief with a severe case of claustrophobia, until she was worshiped as a goddess in a tribe in Africa. ",
           series: ["Secret Wars"]
         },
         {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
-import Superheroapi from "../components/Superheroapi";
-import { List, ListItem } from "../components/List";
-import Linkpage from "../components/Linkpage";
-import Comicbookvineapi from "../components/Comicvineapi";
-import DisplayallSeries from "../components/DisplayallSeries"
+import Superheroapi from "../Superheroapi";
+import { List, ListItem } from "../List";
+import Linkpage from "../Linkpage";
+import Comicbookvineapi from "../Comicvineapi";
+import { Link } from "react-router-dom";
 
 import {
   Grid,
@@ -57,90 +57,120 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Detail = props => {
-  // const classes = useStyles();
-  // const [modalStyle] = React.useState(getModalStyle);
+const DisplayallSeries = props => {
+  const classes = useStyles();
+  const [modalStyle] = React.useState(getModalStyle);
 
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  // const [{ data: series, loading }, randomtext] = useAxios({
-  //   url: "/api/series/" + props.match.params.name
-  // });
+  const [{ data: series, loading }, randomtext] = useAxios({
+    url: "/api/series/" +changeCaseFirstLetter(props.props.match.params.name)
+  });
+//   props.match.params.name
 
-  // console.log("this is a test");
-  // console.log(props);
-  // console.log(props.match.params.name);
-  // console.log(series);
-  // const [currentextras, setcurrentextras] = useState();
-  // const [currentname, setCurrentname] = useState();
-  // const [seriesid, setseriesid] = useState();
-  // const [currentId, setCurrentId] = useState();
-  // const [currentsearchresults, setcurrentsearchresults] = useState();
-  // const [currentSeries, setCurrentSeries] = useState();
-  // console.log(currentname);
-  // console.log("currentname");
+  console.log("this is a test");
+  console.log(props);
+//   console.log(props.match.params.name);
+  console.log(series);
+  const [currentextras, setcurrentextras] = useState();
+  const [currentname, setCurrentname] = useState();
+  const [seriesid, setseriesid] = useState();
+  const [currentId, setCurrentId] = useState();
+  const [currentsearchresults, setcurrentsearchresults] = useState();
+  const [currentSeries, setCurrentSeries] = useState();
+  console.log(currentname);
+  console.log("currentname");
 
-  // const showvolumes = (id, series) => {
-  //   console.log("this is whatever series is" + id);
-  //   console.log(series);
-  //   const theVolumes = series.filter(series => series._id === id);
-  //   console.log("this is theVolume:");
-  //   console.log(theVolumes[0].extras)
-  //   setcurrentextras(theVolumes[0].extras);
-  //   console.log(theVolumes[0].volumes);
-  //   setseriesid(theVolumes[0].volumes);
-  //   setCurrentname(theVolumes[0].name);
-  //   setCurrentSeries(theVolumes[0].series);
-  // };
+  const showvolumes = (id, series) => {
+    console.log("this is whatever series is" + id);
+    console.log(series);
+    const theVolumes = series.filter(series => series._id === id);
+    console.log("this is theVolume:");
+    console.log(theVolumes[0].extras)
+    setcurrentextras(theVolumes[0].extras);
+    console.log(theVolumes[0].volumes);
+    setseriesid(theVolumes[0].volumes);
+    setCurrentname(theVolumes[0].name);
+    setCurrentSeries(theVolumes[0].series);
+  };
 
-  // const showvolumeinformation = (vol, name, series) => {
+  //figure out what you need to pass as variable 'seriesid' from the button
+  const showvolumeinformation = (vol, name, series) => {
+    //this is where you do your google reader call or however you are going to display infromation.
+    //reference showvolumes method above
+    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
+    console.log(vol);
+    console.log("vol")
+    console.log(name);
+    console.log("name________________________");
+    console.log(series);
+    console.log("series")
+    // let searchvol = props.match.params.name +" "+ vol + " " + name
+    let searchvol = changeCaseFirstLetter( name) + " " + vol + " " + series;
+    // let searchvol = name + " " + vol;
 
-  //   console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
-  //   console.log(vol);
-  //   console.log("vol")
-  //   console.log(name);
-  //   console.log("name________________________");
-  //   console.log(series);
-  //   console.log("series")
-  //   let searchvol = name + " " + vol + " " + series;
-
-  //   console.log(searchvol);
-  //   Axios.get(
-  //     "https://www.googleapis.com/books/v1/volumes?q='" +
-  //       searchvol +
-  //       "&orderBy=relevance"
-  //   ).then(function(response) {
-  //     console.log(response);
-  //     console.log(response.data);
-  //     console.log("props.match.params.name");
-  //     console.log(props.match.params.name);
-  //     setcurrentsearchresults(response.data);
-  //     handleOpen();
-  //   });
-  // };
-  // const getgooglebook = vol => {
-  //   console.log(vol);
-  // };
-  // if (loading) {
-  //   return <></>;
-  // }
+    console.log(searchvol);
+    Axios.get(
+      "https://www.googleapis.com/books/v1/volumes?q='" +
+        searchvol +
+        "&orderBy=relevance"
+    ).then(function(response) {
+      console.log(response);
+      console.log(response.data);
+      console.log("props.match.params.name");
+      console.log(props.match.params.name);
+      setcurrentsearchresults(response.data);
+      handleOpen();
+    });
+  };
+  const getgooglebook = vol => {
+    console.log(vol);
+  };
+//   function changeCaseFirstLetter(params) {
+//     if(typeof params === 'string') {
+//             return params.charAt(0).toUpperCase() + params.slice(1);
+//     }
+//     return null;
+// }
+function camelCase (string) {
+    return string.replace( /-([a-z])/ig, function( all, letter ) {
+        return '-'+letter.toUpperCase();
+    });
+}
+function changeCaseFirstLetter(str) {
+    
+        var splitStr = str.trim().toLowerCase().split(' ');
+        for (var i = 0; i < splitStr.length; i++) {
+            // You do not need to check if i is larger than splitStr length, as your for does that for you
+            // Assign it back to the array
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+        }
+        // Directly return the joined string
+        // return splitStr.join(' '); 
+       const newstring= splitStr.join(' '); 
+      return camelCase(newstring)
+     }
+   
+//    titleCase("I'm a little tea pot");
+  if (loading) {
+    return <></>;
+  }
   return (
     <>
     {/* <Linkpage props={props}>{props}</Linkpage> */}
       {/* <Superheroapi props={props}>{props}</Superheroapi> */}
- <DisplayallSeries props={props}>{props}</DisplayallSeries>
-      <Comicbookvineapi props={props}>{props}</Comicbookvineapi>
- 
-      {/* <Grid container spacing={2}>
+      {/* <Comicbookvineapi props={props}>{props}</Comicbookvineapi> */}
+
+      <Grid container spacing={2}>
         <Grid item xs>
           <Typography variant="h3" className={classes.title}>
-            Character name: {props.match.params.name} 
+            Character name: {changeCaseFirstLetter(props.props.match.params.name)} 
           </Typography>
           <List dense className={classes.root}>
           {console.log(series)}
@@ -232,9 +262,9 @@ const Detail = props => {
             </List>
           </div>
         </Modal>
-      )} */}
+      )}
     </>
   );
 };
 
-export default Detail;
+export default DisplayallSeries;
