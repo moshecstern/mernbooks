@@ -17,6 +17,9 @@ const Home = () => {
 
 <div>
 <h2><Link to={"/gamepage/memorygame"}>Memory game</Link></h2>
+
+<h2><Link to={"/gamepage/triviagame"}>Trivia Game</Link></h2>
+
 {/* <CharactersBoard /> */}
       <br />
       {/* <Notes></Notes> */}

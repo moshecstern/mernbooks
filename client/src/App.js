@@ -12,6 +12,7 @@ import News from "./components/News";
 import ComicbookpagesModified from "./images/Comicbookpages.jpg";
 import gamespage from "./pages/Gamespage"
 import memorygame from "./components/Memorygame"
+import triviagame from "./components/Triviagame"
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
@@ -31,6 +32,8 @@ function App() {
             <Route exact path="/series/:name" component={Detail} />
             <Route exact path="/gamepage" component={gamespage} />
             <Route exact path="/gamepage/memorygame" component={memorygame} />
+            <Route exact path="/gamepage/triviagame" component={triviagame} />
+
             <Route exact path="/character/:id" component={Detail} />
             <Route
               exact
