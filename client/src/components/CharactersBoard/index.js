@@ -100,7 +100,9 @@ const CharactersBoard = () => {
         {/* {dccharactersArray.map(item => ( */}
             {/* {shuffleArray(characters).map(item => ( */}
                 {/* {dccharactersArray.map(item => ( */}
-              {shuffleArray(characters).slice(12).map(item => (
+              {/* {shuffleArray(characters).slice(12).map(item => ( */}
+                {characters.slice(12).map(item => (
+
 
           <GridListTile
             key={item.name}
@@ -118,7 +120,7 @@ const CharactersBoard = () => {
   {/* end of dccharacter div */}
 
   {/* marvel div */}
-  {/* <div className="marvelcharacters col-xl-6">
+  <div className="marvelcharacters col-xl-6">
 
 <GridList cols={4}>
     {characters.reverse().slice(12).map(item => (
@@ -135,7 +137,7 @@ const CharactersBoard = () => {
     </GridListTile>
   ))}
 </GridList>
-</div> */}
+</div>
 
 </div>
     </div>
