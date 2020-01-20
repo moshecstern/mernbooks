@@ -11,7 +11,7 @@ import "typeface-roboto";
 import News from "./components/News";
 import ComicbookpagesModified from "./images/Comicbookpages.jpg";
 import gamespage from "./pages/Gamespage"
-import memorygame from "./components/Memorygame"
+import memorygame from "./components/Memorygamemain/Memorygame"
 import triviagame from "./components/Triviagame"
 
 const useStyles = makeStyles(theme => ({
