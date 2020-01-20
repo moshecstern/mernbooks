@@ -124,7 +124,7 @@ const DisplayallSeries = props => {
       console.log(response);
       console.log(response.data);
       console.log("props.match.params.name");
-      console.log(props.match.params.name);
+      // console.log(props.match.params.name);
       setcurrentsearchresults(response.data);
       handleOpen();
     });

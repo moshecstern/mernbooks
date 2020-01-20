@@ -4,7 +4,8 @@ import './style.css';
 import Wrapper from "../MemorygameWrapper";
 import SuperheroCard from "../MemorygameCard";
 import Navbar from "../MemorygameNav";
-import Superheros from "../../utils/superheros.json";
+
+import Superheros from "../../../utils/superheros.json";
 // client\src\superheros.json
 // import Footer from "./components/Footer";
 

@@ -40,6 +40,8 @@ const CharactersBoard = () => {
   }
   const [dccharactersArray, setdccharactersArray] =useState();
   const [marvelcharactersArray, setmarvelcharactersArray] =useState();
+
+  // const filterdccharacters = setdccharactersArray(characters.filter(char => char.publisher === "DC"))
 // end shuffle
 
 // filter
@@ -71,7 +73,15 @@ const CharactersBoard = () => {
         // const newdcarraytry1 = characters.filter(item => item.publisher === "DC");
         // setdccharactersArray(newdcarraytry1)
         // setmarvelcharactersArray( characters.filter(item => item.publisher === "Marvel"));
+        // function getdccharacters() {
+// let dccharacters = characters.filter(dc => (
+            
+//             dc.publisher === "DC"
+//             ))
+          // } 
+
         
+
         if (loading) {
             return <></>;
         }
@@ -83,13 +93,16 @@ const CharactersBoard = () => {
       <br />
       <div className="row">
   <div className="dccharacters col-xl-6">
-  <div><h3 className="text-center">Marvel Comics</h3></div>
+  {/* <div><h3 className="text-center">Marvel Comics</h3></div> */}
 
       <GridList cols={4}>
       {/* {const dccharacters = characters.filter(item => item.publisher === "DC") */}
         {/* {dccharactersArray.map(item => ( */}
             {/* {shuffleArray(characters).map(item => ( */}
+                {/* {dccharactersArray.map(item => ( */}
+              {/* {shuffleArray(characters).slice(12).map(item => ( */}
                 {characters.slice(12).map(item => (
+
 
           <GridListTile
             key={item.name}
@@ -109,10 +122,7 @@ const CharactersBoard = () => {
   {/* marvel div */}
   <div className="marvelcharacters col-xl-6">
 
-<div><h3 className="text-center">DC Comics</h3></div>
 <GridList cols={4}>
-  {/* {shuffleArray(marvelcharactersArray).slice(4).map(item => ( */}
-{/* {shuffleArray(characters).slice(0).reverse().map(item => ( */}
     {characters.reverse().slice(12).map(item => (
 
     <GridListTile
@@ -128,11 +138,8 @@ const CharactersBoard = () => {
   ))}
 </GridList>
 </div>
-  {/* end marvel div */}
+
 </div>
-{/* end of row */}
-      <br />
-      {/* <Notes></Notes> */}
     </div>
   );
 };
