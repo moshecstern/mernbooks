@@ -58,78 +58,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Detail = props => {
-  // const classes = useStyles();
-  // const [modalStyle] = React.useState(getModalStyle);
-
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  // const [{ data: series, loading }, randomtext] = useAxios({
-  //   url: "/api/series/" + props.match.params.name
-  // });
-
-  // console.log("this is a test");
-  // console.log(props);
-  // console.log(props.match.params.name);
-  // console.log(series);
-  // const [currentextras, setcurrentextras] = useState();
-  // const [currentname, setCurrentname] = useState();
-  // const [seriesid, setseriesid] = useState();
-  // const [currentId, setCurrentId] = useState();
-  // const [currentsearchresults, setcurrentsearchresults] = useState();
-  // const [currentSeries, setCurrentSeries] = useState();
-  // console.log(currentname);
-  // console.log("currentname");
-
-  // const showvolumes = (id, series) => {
-  //   console.log("this is whatever series is" + id);
-  //   console.log(series);
-  //   const theVolumes = series.filter(series => series._id === id);
-  //   console.log("this is theVolume:");
-  //   console.log(theVolumes[0].extras)
-  //   setcurrentextras(theVolumes[0].extras);
-  //   console.log(theVolumes[0].volumes);
-  //   setseriesid(theVolumes[0].volumes);
-  //   setCurrentname(theVolumes[0].name);
-  //   setCurrentSeries(theVolumes[0].series);
-  // };
-
-  // const showvolumeinformation = (vol, name, series) => {
-
-  //   console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
-  //   console.log(vol);
-  //   console.log("vol")
-  //   console.log(name);
-  //   console.log("name________________________");
-  //   console.log(series);
-  //   console.log("series")
-  //   let searchvol = name + " " + vol + " " + series;
-
-  //   console.log(searchvol);
-  //   Axios.get(
-  //     "https://www.googleapis.com/books/v1/volumes?q='" +
-  //       searchvol +
-  //       "&orderBy=relevance"
-  //   ).then(function(response) {
-  //     console.log(response);
-  //     console.log(response.data);
-  //     console.log("props.match.params.name");
-  //     console.log(props.match.params.name);
-  //     setcurrentsearchresults(response.data);
-  //     handleOpen();
-  //   });
-  // };
-  // const getgooglebook = vol => {
-  //   console.log(vol);
-  // };
-  // if (loading) {
-  //   return <></>;
-  // }
+  
   return (
     <>
     {/* <Linkpage props={props}>{props}</Linkpage> */}

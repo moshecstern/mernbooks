@@ -74,8 +74,8 @@ const DisplayallSeries = props => {
   });
 //   props.match.params.name
 
-  console.log("this is a test");
-  console.log(props);
+  console.log("this is a test from displayallseries &&$&&#&*@&^#@@#S");
+  // console.log(changeCaseFirstLetter(props.props.match.params.name));
 //   console.log(props.match.params.name);
   console.log(series);
   const [currentextras, setcurrentextras] = useState();
@@ -157,7 +157,6 @@ function changeCaseFirstLetter(str) {
       return camelCase(newstring)
      }
    
-//    titleCase("I'm a little tea pot");
   if (loading) {
     return <></>;
   }
