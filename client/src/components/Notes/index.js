@@ -24,7 +24,9 @@ import {
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import useAxios from "axios-hooks";
 import axios from "axios";
-
+const jwtDecode = require('jwt-decode');
+// console.log(jwtDecode(accessString).id)
+// const User = require("../../../../models/user")
 
 const Notes = (props) => {
   let accessString = localStorage.getItem('JWT')
@@ -66,9 +68,26 @@ headers: { Authorization: `JWT ${accessString}` }
   //     .catch(err => console.log(err));
   //   }
   // };
+  // const getUserFromToken = accessStringa => {
+  //   if (accessStringa) {
+  //     try {
+  //       return JSON.parse(atob(accessStringa.split('.')[1]));
+  //     } catch (error) {
+  //       // ignore
+  //     }
+  //   }
+  
+  //   return null;
+  // };
+
+
   function handleFormSubmit(event) {
     event.preventDefault();
-    const accessString = localStorage.getItem('JWT');
+    // const accessString = localStorage.getItem('JWT');
+    console.log("notes 71 gettt id")
+    console.log(jwtDecode(accessString).id)
+    // console.log(props);
+    console.log("notes 71 gettt id")
     if (myname && mymessage) {
       axios.post("/api/notes", {
         name: myname,
