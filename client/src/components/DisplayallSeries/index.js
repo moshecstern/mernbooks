@@ -5,6 +5,7 @@ import { List, ListItem } from "../List";
 import Linkpage from "../Linkpage";
 import Comicbookvineapi from "../Comicvineapi";
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 import {
   Grid,
@@ -58,6 +59,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DisplayallSeries = props => {
+  let accessString = localStorage.getItem('JWT')
+  if(accessString == null){
+    accessString = Cookies.get("JWT");
+  }
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
 
@@ -70,7 +75,8 @@ const DisplayallSeries = props => {
   };
 
   const [{ data: series, loading }, randomtext] = useAxios({
-    url: "/api/series/" +changeCaseFirstLetter(props.props.match.params.name)
+    url: "/api/series/" +changeCaseFirstLetter(props.props.match.params.name),
+    headers: { Authorization: `JWT ${accessString}` }
   });
 //   props.match.params.name
 
@@ -104,7 +110,7 @@ const DisplayallSeries = props => {
   const showvolumeinformation = (vol, name, series) => {
     //this is where you do your google reader call or however you are going to display infromation.
     //reference showvolumes method above
-    console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
+    // console.log(process.env.REACT_APP_googlebooks_APP_API_KEY);
     console.log(vol);
     console.log("vol")
     console.log(name);

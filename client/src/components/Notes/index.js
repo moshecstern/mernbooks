@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
+import {Redirect} from "react-router-dom"
+import Cookies from 'js-cookie';
 // import { List, ListItem } from "../List";
 import { Input, FormBtn } from "../Form";
 import {
@@ -21,9 +23,19 @@ import {
 } from "@material-ui/core";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import useAxios from "axios-hooks";
+import axios from "axios";
 
-const Notes = () => {
-  const [{ data: allnotes, loading }, getallnotes] = useAxios("/api/notes");
+
+const Notes = (props) => {
+  let accessString = localStorage.getItem('JWT')
+if(accessString == null){
+  accessString = Cookies.get("JWT");
+}
+  const [{ data: allnotes, loading }, getallnotes] = useAxios({
+url:"/api/notes",
+headers: { Authorization: `JWT ${accessString}` }
+  });
+  // const accessString = localStorage.getItem('JWT');
   // const [
   //   { data: putData, loading: putLoading, error: putError },
   //   addmynote
@@ -38,17 +50,33 @@ const Notes = () => {
   const [mynote, setmynote] = useState();
   const [myname, setmyname] = useState();
   const [mymessage, setmymessage] = useState();
-  const handleFormSubmit = event => {
+  // const handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   const accessString = localStorage.getItem('JWT');
+  //   // addmynote()
+  //   if(myname && mymessage){
+
+  //     API.saveNote({
+  //       name: myname,
+  //       message: mymessage
+  //     })
+  //     .then(res => console.log(res))
+  //     .then(getallnotes())
+  //     // .then(setmymessage(""), setmyname(""))
+  //     .catch(err => console.log(err));
+  //   }
+  // };
+  function handleFormSubmit(event) {
     event.preventDefault();
-    // addmynote()
-    API.saveNote({
-      name: myname,
-      message: mymessage
-    })
-      .then(res => console.log(res))
-      .then(getallnotes())
-      // .then(setmymessage(""), setmyname(""))
-      .catch(err => console.log(err));
+    const accessString = localStorage.getItem('JWT');
+    if (myname && mymessage) {
+      axios.post("/api/notes", {
+        name: myname,
+        message: mymessage
+      },{headers: { Authorization: `JWT ${accessString}` }})
+        .then(res => getallnotes())
+        .catch(err => console.log(err));
+    }
   };
   const handleInputChangename = event => {
     event.preventDefault();

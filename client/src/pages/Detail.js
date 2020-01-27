@@ -5,7 +5,7 @@ import { List, ListItem } from "../components/List";
 import Linkpage from "../components/Linkpage";
 import Comicbookvineapi from "../components/Comicvineapi";
 import DisplayallSeries from "../components/DisplayallSeries"
-
+import Cookies from 'js-cookie';
 import {
   Grid,
   Typography,
@@ -58,7 +58,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Detail = props => {
-  
+  const [logIn, SetLogIn] = useState(logIn)
+  // useEffect(() => {
+  const checklogin = ()=>{
+    if(props.location.state && props.location.state.loggedIn){
+    SetLogIn(true);
+  }else if(Cookies.get("JWT")){
+    SetLogIn(true);
+  }
+}
   return (
     <>
     {/* <Linkpage props={props}>{props}</Linkpage> */}
