@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb://localhost/comicbookdb",
+  "jwtSecret": "secret"
+}

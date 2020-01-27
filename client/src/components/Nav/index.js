@@ -51,11 +51,11 @@ const Nav = () => {
           <li><Link to={"/"}>Home  </Link></li>
           <li><Link to={"/gamepage"}>Games  </Link></li>
         </ul> */}
-        <Grid item><Link to={"/"}>Home  </Link></Grid>
+        <Grid item><Link to={"/home"}>Home  </Link></Grid>
         <Grid item><Link to={"/gamepage"}>Games  </Link></Grid>
         </Grid>
         </Grid>
-        <Signinmodal />
+        {/* <Signinmodal /> */}
 
       </Grid>
     </Grid>

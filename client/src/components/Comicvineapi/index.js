@@ -13,7 +13,6 @@ import {
 import useAxios from "axios-hooks";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
-import FolderIcon from "@material-ui/icons/Folder";
 import InfoIcon from '@material-ui/icons/Info';
 import {
     Button,

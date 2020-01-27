@@ -7,24 +7,41 @@ import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
 import useAxios from "axios-hooks";
 import { makeStyles } from "@material-ui/styles";
 import "./styles.css";
+import {Redirect} from "react-router-dom"
+import Cookies from 'js-cookie';
 const useStyles = makeStyles(theme => ({
   container: { backgroundColor: "#F2F2F2" }
 }));
-const CharactersBoard = () => {
-  const [{ data: characters, loading }, getbyname] = useAxios(
-    "/api/characters"
+const CharactersBoard = (props) => {
+  let accessString = localStorage.getItem('JWT')
+  const [{ data: characters, loading }, getbyname] = useAxios({
+    // Authorization: "JWT"+ {accessString},
+    url: "/api/characters",
+    headers: { Authorization: `JWT ${accessString}` }
+  }
   );
-  const getseriesbyname = name => {
-    // console.log("Get series by name!");
-    // console.log(name);
-    API.getseriesbyname(name)
-      .then(res => {
-        this.setState({ series: res.data });
-        // console.log("This is the res: ");
-        // console.log(res);
-      })
-      .catch(err => console.log(err));
-  };
+
+  // axios.get("/api/characters",
+  // {headers: { Authorization: `JWT ${accessString}` }}).then(res => {
+  //     this.setState({ books: res.data })
+  // })
+  // const accessString = localStorage.getItem('JWT');
+  // const getaccessString = () => {
+    if(accessString == null){
+      accessString = Cookies.get("JWT");
+    }
+  // }
+  // const getseriesbyname = name => {
+  //   // console.log("Get series by name!");
+  //   // console.log(name);
+  //   API.getseriesbyname(name)
+  //     .then(res => {
+  //       this.setState({ series: res.data });
+  //       // console.log("This is the res: ");
+  //       // console.log(res);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
   const classes = useStyles;
 
   // shuffling 
@@ -82,7 +99,7 @@ const CharactersBoard = () => {
 
         
 
-        if (loading) {
+        if (loading && !characters) {
             return <></>;
         }
         // to shuffle all the tiles
@@ -106,7 +123,7 @@ const CharactersBoard = () => {
 
           <GridListTile
             key={item.name}
-            onClick={() => getseriesbyname(item.name)}
+            // onClick={() => getseriesbyname(item.name)}
           >
             <img src={item.img} alt={item.name} />
             {item.name}
@@ -127,7 +144,7 @@ const CharactersBoard = () => {
 
     <GridListTile
       key={item.name}
-      onClick={() => getseriesbyname(item.name)}
+      // onClick={() => getseriesbyname(item.name)}
     >
       <img src={item.img} alt={item.name} />
       {item.name}
