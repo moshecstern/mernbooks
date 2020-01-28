@@ -4,6 +4,7 @@ import Superheroapi from "../components/Superheroapi";
 import { List, ListItem } from "../components/List";
 import Linkpage from "../components/Linkpage";
 import Userprofileco from "../components/Userprofile";
+import SeriesAll from "../components/SeriesAll";
 import DisplayallSeries from "../components/DisplayallSeries"
 import Cookies from 'js-cookie';
 import {
@@ -91,6 +92,7 @@ const Userprofile = props => {
 ><Userprofileco /></Grid>
       
 
+    <SeriesAll />
     </>
   );
 };
