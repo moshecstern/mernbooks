@@ -225,7 +225,7 @@ function changeCaseFirstLetter(str) {
                 <ListItemText
                   primary={`Series Era: ${item.series}`}
                   secondary={`Series Line: ${item.name}`}
-                  secondary={`Character Name: ${item.character}`}
+                //   secondary={`Character Name: ${item.character}`}
                 />
               </ListItem>
             ))}
@@ -284,11 +284,11 @@ function changeCaseFirstLetter(str) {
                   <div>Title: {result.volumeInfo.title}: {result.volumeInfo.subtitle}</div>
                   {!result.volumeInfo.imageLinks ? null : (
                     <div>
-                      <img src={result.volumeInfo.imageLinks.thumbnail}></img>
+                      <img src={result.volumeInfo.imageLinks.thumbnail}/>
                     </div>
                   )}
                   <div>
-                    <a href={result.volumeInfo.previewLink} target="_blank">
+                    <a href={result.volumeInfo.previewLink}rel="noopener noreferrer" target="_blank">
                       Google Books Link
                     </a>
                   </div>

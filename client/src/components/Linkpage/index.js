@@ -26,10 +26,10 @@ const Linkpage = props => {
     <>
     <div className="linklist">
     <ul>
-        <li><a href={wikifandomdis} target="_blank">See All Versions of {props.props.match.params.name} </a></li>
-        <li><a href={wikifandommain} target="_blank">More Info!</a></li>
-        <li><a href={readingList} target="_blank">Comic Reading order</a></li>
-        <li><a href={wikiList} target="_blank">Wiki</a></li>
+        <li><a href={wikifandomdis} target="_blank" rel="noopener noreferrer">See All Versions of {props.props.match.params.name} </a></li>
+        <li><a href={wikifandommain} target="_blank" rel="noopener noreferrer">More Info!</a></li>
+        <li><a href={readingList} target="_blank" rel="noopener noreferrer">Comic Reading order</a></li>
+        <li><a href={wikiList} target="_blank" rel="noopener noreferrer">Wiki</a></li>
     </ul>
     </div>
 
