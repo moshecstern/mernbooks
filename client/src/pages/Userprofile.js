@@ -5,7 +5,9 @@ import { List, ListItem } from "../components/List";
 import Linkpage from "../components/Linkpage";
 import Userprofileco from "../components/Userprofile";
 import SeriesAll from "../components/SeriesAll";
+import YelpAPI from "../components/YelpAPI";
 import DisplayallSeries from "../components/DisplayallSeries"
+import Imageuploader from "../components/imageuploader";
 import Cookies from 'js-cookie';
 import {
   Grid,
@@ -90,8 +92,8 @@ const Userprofile = props => {
   justify="space-evenly"
   alignItems="center"
 ><Userprofileco /></Grid>
-      
-
+      {/* <YelpAPI /> */}
+{/* <Imageuploader /> */}
     <SeriesAll />
     </>
   );
