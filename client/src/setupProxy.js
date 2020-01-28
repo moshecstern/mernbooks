@@ -9,6 +9,6 @@ module.exports = function(app) {
   app.use(proxy("/api/notes", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/series", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/characters", { target: process.env.PORT||"http://localhost:3001/" }));
-  // app.use(proxy("/api/characters/:id", { target: "http://localhost:3001/" }));
+  app.use(proxy("/api/userbooks", { target: process.env.PORT||"http://localhost:3001/" }));
 
 };

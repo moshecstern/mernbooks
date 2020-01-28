@@ -20,6 +20,8 @@ import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 import Modal from "@material-ui/core/Modal";
+const jwtDecode = require('jwt-decode');
+// console.log(jwtDecode(accessString).id)
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -105,7 +107,37 @@ const DisplayallSeries = props => {
     setCurrentname(theVolumes[0].name);
     setCurrentSeries(theVolumes[0].series);
   };
-
+function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypublished) {
+  // console.log(jwtDecode(accessString).id)
+  // event.preventDefault();
+  // const accessString = localStorage.getItem('JWT');
+  console.log(myid)
+  console.log("MY ID")
+  Axios.post("/api/userbooks", {
+    userID: myid,
+    Title: mytitle,
+    img: myimg,
+    link: mylink,
+    author: myauthor,
+    description: mydesc,
+    published: mypublished
+  },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
+}
+// handleFormSubmit = event => {
+//   event.preventDefault();
+//   const accessString = localStorage.getItem('JWT');
+//   if (this.state.title && this.state.author) {
+//     axios.post("/api/books", {
+//       title: this.state.title,
+//       author: this.state.author,
+//       synopsis: this.state.synopsis
+//     },{headers: { Authorization: `JWT ${accessString}` }})
+//       .then(res => this.loadBooks())
+//       .catch(err => console.log(err));
+//   }
+// };
   //figure out what you need to pass as variable 'seriesid' from the button
   const showvolumeinformation = (vol, name, series) => {
     //this is where you do your google reader call or however you are going to display infromation.
@@ -262,6 +294,13 @@ function changeCaseFirstLetter(str) {
                   <div>Authors: {result.volumeInfo.authors}</div>
                   <div>Published Date: {result.volumeInfo.publishedDate}</div>
                   <div>Description: {result.volumeInfo.description}</div>
+                  <Button
+                        onClick={() =>
+                          savevoltoprofile(jwtDecode(accessString).id, result.volumeInfo.title, result.volumeInfo.imageLinks.thumbnail, result.volumeInfo.previewLink, result.volumeInfo.authors, result.volumeInfo.description, result.volumeInfo.publishedDate)
+                        }
+                      >
+                        Save Volume
+                      </Button>
                 </ListItem>
               ))}
             </List>
