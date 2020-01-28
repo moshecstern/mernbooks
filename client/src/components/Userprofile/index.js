@@ -35,6 +35,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Map from "../Map";
 const jwtDecode = require('jwt-decode');
 // console.log(jwtDecode(accessString).id)
 
@@ -168,6 +169,7 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
     <>
     {/* <Grid container spacing={2}>
     <Grid item> */}
+    {/* <Map /> */}
     {mybooks.map(vol => (
     <Card className={classes.card}>
       <CardHeader

@@ -44,6 +44,13 @@ import "./login.css"
     // render(){
         {if(!loggedIn){
             return <div className="container">
+        <div className="jumbotron">
+  <h1 className="display-4 text-center">Welcome to Graphic Know-vel</h1>
+  <p className="lead text-center">A website dedicated to comic books, graphic novels, and superheroes</p>
+  <hr className="my-4"/>
+  <p className="text-center">Sign in or sign up below to become apart of our community</p>
+  
+  {/* <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> */}
             <form>
             <div class="form-group">
             Username: <input type="text" class="form-control" name="username" value={username} onChange={handleChangeUsername} />
@@ -54,7 +61,8 @@ import "./login.css"
             <button type="submit" class="btn btn-success" onClick={loginUser}>Login</button>
             <NavLink to="/signup"> Signup </NavLink>
         </form>
-        <div className="google-btn-container">
+</div>
+        {/* <div className="google-btn-container">
           <a href="/auth/google">
             <div className="google-btn">
               <div className="google-icon-wrapper">
@@ -69,7 +77,7 @@ import "./login.css"
               </p>
             </div>
           </a>
-        </div>
+        </div> */}
         </div>
         }
         else {
