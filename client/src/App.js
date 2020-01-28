@@ -16,6 +16,7 @@ import memorygame from "./components/Memorygamemain/Memorygame"
 import triviagame from "./components/Triviagame"
 import Login from "./components/login/login"
 import Signup from "./components/signup/signup";
+import Userprofile from "./pages/Userprofile"
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/gamepage" component={gamespage} />
             <Route exact path="/gamepage/memorygame" component={memorygame} />
             <Route exact path="/gamepage/triviagame" component={triviagame} />
+            <Route exact path="/userprofile" component={Userprofile} />
 
             <Route exact path="/character/:id" component={Detail} />
             <Route

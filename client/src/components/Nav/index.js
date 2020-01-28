@@ -1,4 +1,6 @@
-import React from "react";
+// import React from "react";
+import React, { useState } from "react";
+
 import Searchbar from "../Searchbar";
 import Signinmodal from "../Signinmodal";
 import { Link } from "react-router-dom";
@@ -16,7 +18,8 @@ import Modal from "@material-ui/core/Modal";
 import Input from "@material-ui/core/Input";
 import useAxios from "axios-hooks";
 import Axios from "axios";
-
+import Cookies from 'js-cookie';
+const jwtDecode = require('jwt-decode');
 
 const useStyles = makeStyles(theme => {
   return {
@@ -38,9 +41,23 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const Nav = () => {
+const Nav = (props) => {
  const classes = useStyles();
-
+ const [logIn, SetLogIn] = useState(logIn)
+  // useEffect(() => {
+  const checklogin = ()=>{
+    if(props.location.state && props.location.state.loggedIn){
+    SetLogIn(true);
+  }else if(Cookies.get("JWT")){
+    SetLogIn(true);
+  }
+}
+function logout () {
+  // this.setState({loggedIn:false})
+  SetLogIn(false)
+  localStorage.clear('JWT');
+  Cookies.remove('JWT');
+}
   return (
     <Grid container direction="column">
         <Grid container direction="row">
@@ -51,8 +68,13 @@ const Nav = () => {
           <li><Link to={"/"}>Home  </Link></li>
           <li><Link to={"/gamepage"}>Games  </Link></li>
         </ul> */}
+{/* {!logIn ? true : ( */}
+  <Grid item><a href="/" onClick={logout}>logout</a></Grid>
+{/* )} */}
+
         <Grid item><Link to={"/home"}>Home  </Link></Grid>
         <Grid item><Link to={"/gamepage"}>Games  </Link></Grid>
+        <Grid item><Link to={"/userprofile"}>User Profile  </Link></Grid>
         </Grid>
         </Grid>
         {/* <Signinmodal /> */}

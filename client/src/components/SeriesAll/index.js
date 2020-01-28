@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DisplayallSeries = props => {
+const SeriesAll = props => {
   let accessString = localStorage.getItem('JWT')
   if(accessString == null){
     accessString = Cookies.get("JWT");
@@ -77,7 +77,7 @@ const DisplayallSeries = props => {
   };
 
   const [{ data: series, loading }, randomtext] = useAxios({
-    url: "/api/series/" +changeCaseFirstLetter(props.props.match.params.name),
+    url: "/api/series",
     headers: { Authorization: `JWT ${accessString}` }
   });
 //   props.match.params.name
@@ -207,7 +207,7 @@ function changeCaseFirstLetter(str) {
       <Grid container spacing={2}>
         <Grid item xs>
           <Typography variant="h3" className={classes.title}>
-            Character name: {changeCaseFirstLetter(props.props.match.params.name)} 
+           Press folder icon for all volumes 
           </Typography>
           <List dense className={classes.root}>
           {console.log(series)}
@@ -225,6 +225,7 @@ function changeCaseFirstLetter(str) {
                 <ListItemText
                   primary={`Series Era: ${item.series}`}
                   secondary={`Series Line: ${item.name}`}
+                  secondary={`Character Name: ${item.character}`}
                 />
               </ListItem>
             ))}
@@ -311,4 +312,4 @@ function changeCaseFirstLetter(str) {
   );
 };
 
-export default DisplayallSeries;
+export default SeriesAll;
