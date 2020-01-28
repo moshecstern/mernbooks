@@ -9,8 +9,8 @@ router.route("/")
 
 // Matches with "/api/userbooks/:id"
 router
-  .route("/:id")
-  .get(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.findById)
+  .route("/:userid")
+  .get(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.findbyuser)
   .put(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.update)
   .delete(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.remove);
 

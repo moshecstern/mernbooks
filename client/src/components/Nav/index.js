@@ -53,6 +53,7 @@ const Nav = () => {
         </ul> */}
         <Grid item><Link to={"/home"}>Home  </Link></Grid>
         <Grid item><Link to={"/gamepage"}>Games  </Link></Grid>
+        <Grid item><Link to={"/userprofile"}>User Profile  </Link></Grid>
         </Grid>
         </Grid>
         {/* <Signinmodal /> */}
