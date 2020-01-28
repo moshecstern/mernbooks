@@ -156,9 +156,9 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
       handleOpen();
     });
   };
-  const getgooglebook = vol => {
-    console.log(vol);
-  };
+  // const getgooglebook = vol => {
+  //   console.log(vol);
+  // };
 
    
   if (loading) {
@@ -196,7 +196,7 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
 </Typography>
  ))}
         <Typography variant="body2" color="textSecondary" component="p">
-          Click Below for Description
+         Click Below for Description || <a href={vol.link} target="_blank" rel="noopener noreferrer">Click me for google books</a>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -260,11 +260,11 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
                   
                 {!result.volumeInfo.imageLinks ? null : (
                     <div>
-                      <img src={result.volumeInfo.imageLinks.thumbnail}></img>
+                      <img src={result.volumeInfo.imageLinks.thumbnail}/>
                     </div>
                   )}
                   <div>
-                    <a href={result.volumeInfo.previewLink} target="_blank">
+                    <a href={result.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">
                       Google Books Link
                     </a>
                   </div>
