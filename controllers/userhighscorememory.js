@@ -3,17 +3,17 @@ const db = require("../models");
 // console.log(jwtDecode(accessString).id)
 module.exports = {
   findAll: function(req, res) {
-    db.Userbooks.find(req.query)
+    db.Userhighscorememory.find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.Userbooks.findById(req.params.id)
+    db.Userhighscorememory.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findbyuser: function(req, res) {
-db.Userbooks.find({
+db.Userhighscorememory.find({
   userID : req.params.userid
 })
 .then(dbResult => res.json(dbResult))
@@ -22,17 +22,17 @@ db.Userbooks.find({
   create: function(req, res) {
     console.log("req.body")
     console.log(req.body)
-    db.Userbooks.create(req.body)
+    db.Userhighscorememory.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Userbooks.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Userhighscorememory.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Userbooks.findById({ _id: req.params.userid })
+    db.Userhighscorememory.findById({ _id: req.params.userid })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

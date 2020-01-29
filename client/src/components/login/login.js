@@ -44,7 +44,7 @@ import "./login.css"
     // render(){
         {if(!loggedIn){
             return <div className="container">
-        <div className="jumbotron">
+        <div className="jumbotron jumbobackground">
   <h1 className="display-4 text-center">Welcome to Graphic Know-vel</h1>
   <p className="lead text-center">A website dedicated to comic books, graphic novels, and superheroes</p>
   <hr className="my-4"/>

@@ -17,10 +17,14 @@ import triviagame from "./components/Triviagame"
 import Login from "./components/login/login"
 import Signup from "./components/signup/signup";
 import Userprofile from "./pages/Userprofile"
+import GameTrivia from "./components/GameTrivia"
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
-  container: { backgroundColor: "#F2F2F2" }
+  container: { backgroundColor: "#f6ef98" }
+  // container: { backgroundColor: "#F2F2F2" }    floralwhite;
+  
+  
 }));
 
 function App() {
@@ -38,7 +42,7 @@ function App() {
             <Route exact path="/series/:name" component={Detail} />
             <Route exact path="/gamepage" component={gamespage} />
             <Route exact path="/gamepage/memorygame" component={memorygame} />
-            <Route exact path="/gamepage/triviagame" component={triviagame} />
+            <Route exact path="/gamepage/triviagame" component={GameTrivia} />
             <Route exact path="/userprofile" component={Userprofile} />
 
             <Route exact path="/character/:id" component={Detail} />

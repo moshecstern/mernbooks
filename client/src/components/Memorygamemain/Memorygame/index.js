@@ -6,6 +6,22 @@ import SuperheroCard from "../MemorygameCard";
 import Navbar from "../MemorygameNav";
 
 import Superheros from "../../../utils/superheros.json";
+import {
+  Grid,
+  Typography,
+  Button,
+  ListItemAvatar,
+  Avatar,
+  ListItemText
+} from "@material-ui/core";
+import Axios from "axios";
+import Cookies from 'js-cookie';
+
+const jwtDecode = require('jwt-decode');
+let accessString = localStorage.getItem('JWT')
+if(accessString == null){
+  accessString = Cookies.get("JWT");
+}
 // client\src\superheros.json
 // import Footer from "./components/Footer";
 
@@ -17,7 +33,18 @@ class Memorygame extends React.Component {
     NewSuperheros: [],
     Superheros: Superheros
   }
-
+  saveHighScore = () => {
+    let accessString = localStorage.getItem('JWT')
+    if(accessString == null){
+      accessString = Cookies.get("JWT");
+    }
+      Axios.post("/api/userhighscorememory", {
+          userID: jwtDecode(accessString).id,
+          score: this.state.HighScore
+      }, {headers: { Authorization: `JWT ${accessString}` }})
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
 
   ClickedImage = id => {
     const { NewSuperheros } = this.state;
@@ -70,9 +97,9 @@ class Memorygame extends React.Component {
 
     return (
       <div className="body">
-        <Navbar count={this.state.Score} highcount={this.state.HighScore} message={this.state.message}/>
         <br></br>
         <Wrapper>
+        <Navbar count={this.state.Score} highcount={this.state.HighScore} message={this.state.message}/>
 
 
           {this.state.Superheros.map((item) => (
@@ -86,6 +113,7 @@ class Memorygame extends React.Component {
               ClickedImage={() => this.ClickedImage(item.id)}
             />
           ))}
+          <Button onClick={this.saveHighScore}>Save Score</Button>
 
         </Wrapper>
         {/* <Footer/> */}

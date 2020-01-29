@@ -9,9 +9,15 @@ import {
   Button,
   form,
   Grid,
-  makeStyles,
   Typography
 } from "@material-ui/core";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import InputBase from '@material-ui/core/InputBase';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 import ComicbookpagesModified from "../../images/ComicbookpagesModified.jpg";
 import "typeface-roboto";
 import Modal from "@material-ui/core/Modal";
@@ -24,19 +30,27 @@ const jwtDecode = require('jwt-decode');
 const useStyles = makeStyles(theme => {
   return {
     root: {
-      backgroundColor: "#D92B6B"
+ backgroundImage: `url(${ComicbookpagesModified})`,
+      backgroundColor: "#D92B6B",
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
     },
     title: {
-      backgroundImage: `url(${ComicbookpagesModified})`,
-      padding: theme.spacing(15, 0, 15, 0)
+      // backgroundImage: `url(${ComicbookpagesModified})`,
+      padding: theme.spacing(2, 0, 2, 0),
+      flexGrow: 1,
     },
     paper: {
       position: "absolute",
       width: 400,
-      backgroundColor: theme.palette.background.paper,
+      backgroundImage: `url(${ComicbookpagesModified})`,
+      // backgroundColor: theme.palette.background.paper,
       border: "2px solid #000",
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3)
+      padding: theme.spacing(2),
+      // padding: theme.spacing(2, 4, 3)
     }
   };
 });
@@ -59,28 +73,52 @@ function logout () {
   Cookies.remove('JWT');
 }
   return (
-    <Grid container direction="column">
-        <Grid container direction="row">
-      <Grid container item justify="space-between" className={classes.root}>
+  //   <Grid container spacing={3}>
+  //   <br/>
+  //       <Grid container direction="row">
+  //     <Grid container justify="space-between" className={classes.root}>
+  //       <Searchbar />
+  //       <Grid direction="collumn" item justify="flex-end">
+  // <Grid item xs={3}><a href="/" onClick={logout}>logout</a></Grid>
+
+
+  //       <Grid item xs={3}><Link to={"/home"}>Home  </Link></Grid>
+  //       <Grid item xs={3}><Link to={"/gamepage"}>Games  </Link></Grid>
+  //       <Grid item xs={3}><Link to={"/userprofile"}>User Profile  </Link></Grid>
+  //       </Grid>
+  //       </Grid>
+  //     </Grid>
+  //   </Grid>
+    <div className={classes.root}>
+      {/* <AppBar position="static" className={classes.root}> */}
+      <AppBar position="static">
+        <Toolbar>
+        <Typography variant="h6" className={classes.title}>
         <Searchbar />
-        <Grid direction="row" item justify="flex-end">
-        {/* <ul>
-          <li><Link to={"/"}>Home  </Link></li>
-          <li><Link to={"/gamepage"}>Games  </Link></li>
-        </ul> */}
-{/* {!logIn ? true : ( */}
-  <Grid item><a href="/" onClick={logout}>logout</a></Grid>
-{/* )} */}
+        </Typography>
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton> */}
+          {/* <Typography variant="h6" className={classes.title}>
+            News
+          </Typography> */}
+          <Typography variant="h6" className={classes.title}>
 
-        <Grid item><Link to={"/home"}>Home  </Link></Grid>
-        <Grid item><Link to={"/gamepage"}>Games  </Link></Grid>
-        <Grid item><Link to={"/userprofile"}>User Profile  </Link></Grid>
-        </Grid>
-        </Grid>
-        {/* <Signinmodal /> */}
-
-      </Grid>
-    </Grid>
+          <Link to={"/home"}>Home</Link>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+          <Link to={"/userprofile"}>Profile  </Link>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+          <Link to={"/gamepage"}>Games  </Link>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+          <a href="/" onClick={logout}>Logout</a>
+          </Typography>
+          {/* <Button color="inherit">Login</Button> */}
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 
