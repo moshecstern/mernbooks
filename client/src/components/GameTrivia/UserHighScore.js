@@ -118,4 +118,4 @@ const UserHighScore = props => {
   );
 };
 
-export default UserHighScore;
+export default UserHighScore

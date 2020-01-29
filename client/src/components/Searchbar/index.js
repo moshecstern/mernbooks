@@ -112,7 +112,7 @@ function submitSearch(){
     </Grid>
   );
         }
-export default Searchbar;
+export default Searchbar
 
 // // import React from "react";
 // import React, { useState } from "react";
@@ -201,4 +201,4 @@ export default Searchbar;
 //   );
 // };
 
-// export default Nav;
+// export default Nav
