@@ -43,6 +43,7 @@ class Memorygame extends React.Component {
           score: this.state.HighScore
       }, {headers: { Authorization: `JWT ${accessString}` }})
       .then(res => console.log(res))
+      // location.reload? to update
       .catch(err => console.log(err));
   }
 
@@ -122,4 +123,4 @@ class Memorygame extends React.Component {
   }
 }
 
-export default Memorygame;
+export default Memorygame
