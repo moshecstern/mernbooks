@@ -22,6 +22,8 @@ import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 import Modal from "@material-ui/core/Modal";
+import MemHighScores from "../components/Memorygamemain/HighScore"
+import TriviaScores from "../components/GameTrivia/UserHighScore"
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -38,7 +40,8 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: "100%",
-    maxWidth: 360
+    maxWidth: 360,
+    backgroundColor: "#fffaf0"
   },
   demo: {
     backgroundColor: theme.palette.background.paper
@@ -86,14 +89,33 @@ const Userprofile = props => {
   <Userprofileco />
   </Grid>
 </Grid> */}
+<h2 className="text-center">Your Saved Books</h2>
 <Grid
   container
   direction="row"
   justify="space-evenly"
-  alignItems="center"
+  alignItems="baseline"
 ><Userprofileco /></Grid>
       {/* <YelpAPI /> */}
 {/* <Imageuploader /> */}
+<br />
+<h2 className="text-center">Trivia Scores</h2>
+<Grid
+  container
+  direction="row"
+  justify="space-evenly"
+  alignItems="baseline"
+><TriviaScores /></Grid>
+
+<br />
+<h2 className="text-center">Memory Game Scores</h2>
+<Grid
+  container
+  direction="row"
+  justify="space-evenly"
+  alignItems="baseline"
+><MemHighScores /></Grid>
+<br />
     <SeriesAll />
     </>
   );

@@ -54,6 +54,7 @@ function rand() {
 const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345,
+      backgroundColor: "floralWhite",
     },
     media: {
       height: 0,
@@ -124,6 +125,13 @@ const Userprofile = props => {
   const [currentSeries, setCurrentSeries] = useState();
 //   console.log(currentname);
 //   console.log("currentname");
+
+function deleteBook(id){
+  console.log(id)
+  Axios.delete("/api/userbooks/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
+  .then(res => randomtext())
+.catch(err => console.log(err))
+};
 
 function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypublished) {
     // console.log(jwtDecode(accessString).id)
@@ -218,13 +226,8 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
         >
           <ExpandMoreIcon />
         </IconButton>
-      <Button
-                        onClick={() =>
-                          showvolumeinformation(vol.Title)
-                        }
-                      >
-                        Get Volumes Information
-                      </Button>
+      <Button onClick={() =>showvolumeinformation(vol.Title)}> Get Volumes Information</Button>
+      <Button onClick={() => deleteBook(vol._id)}>Delete</Button>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
