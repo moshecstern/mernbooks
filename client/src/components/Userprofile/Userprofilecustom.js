@@ -431,4 +431,4 @@ function deleteprofile(id){
       </>
   );
 }
-export default Userprofilecustom
+export default Userprofilecustom;

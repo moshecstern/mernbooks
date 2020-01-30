@@ -71,7 +71,7 @@ app.post('/loginUser', (req, res, next) => {
             auth: true,
             token,
             message: 'user found & logged in',
-          })
+          });
         });
     }
   })(req, res, next);

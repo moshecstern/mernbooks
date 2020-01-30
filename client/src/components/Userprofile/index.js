@@ -305,5 +305,4 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
     </>
   );
 };
-
-export default Userprofile
+export default Userprofile;

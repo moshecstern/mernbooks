@@ -26,7 +26,7 @@ import Input from "@material-ui/core/Input";
 import useAxios from "axios-hooks";
 import Axios from "axios";
 import Cookies from 'js-cookie';
-import logo from "../../images/gndblogo5.PNG.png"
+import logo from "../../images/gndblogo5.png"
 const jwtDecode = require('jwt-decode');
 
 const useStyles = makeStyles(theme => {
