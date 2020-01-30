@@ -32,6 +32,7 @@ const Notes = (props) => {
   let accessString = localStorage.getItem('JWT')
 if(accessString == null){
   accessString = Cookies.get("JWT");
+
 }
   const [{ data: allnotes, loading }, getallnotes] = useAxios({
 url:"/api/notes",
@@ -50,7 +51,7 @@ headers: { Authorization: `JWT ${accessString}` }
   //   }
   // });
   const [mynote, setmynote] = useState();
-  const [myname, setmyname] = useState();
+  const [mytitle, setmytitle] = useState();
   const [mymessage, setmymessage] = useState();
   // const handleFormSubmit = event => {
   //   event.preventDefault();
@@ -88,9 +89,10 @@ headers: { Authorization: `JWT ${accessString}` }
     console.log(jwtDecode(accessString).id)
     // console.log(props);
     console.log("notes 71 gettt id")
-    if (myname && mymessage) {
+    if (mymessage) {
       axios.post("/api/notes", {
-        name: myname,
+        title: mytitle,
+        name: jwtDecode(accessString).username,
         message: mymessage
       },{headers: { Authorization: `JWT ${accessString}` }})
         .then(res => getallnotes())
@@ -99,8 +101,8 @@ headers: { Authorization: `JWT ${accessString}` }
   };
   const handleInputChangename = event => {
     event.preventDefault();
-    setmyname(myname);
-    console.log(myname)
+    setmytitle(mytitle);
+    // console.log(myname)
   };
   const handleInputChangemessage = event => {
     event.preventDefault();
@@ -117,15 +119,17 @@ headers: { Authorization: `JWT ${accessString}` }
     
     {/* <Grid container direction="column"> */}
     <div className="col">
+    <h2>Submit Comment or Review</h2>
+    <br />
       <Grid item>
         <form>
           <Input
-            value={myname}
-            onChange={(e)=> setmyname(e.target.value)}
+            value={mytitle}
+            onChange={(e)=> setmytitle(e.target.value)}
             // onChange={handleInputChangename}
 
-            name="name"
-            placeholder="name (required)"
+            name="Title"
+            placeholder="Title (required)"
           />
           <Input
             value={mymessage}
@@ -149,7 +153,8 @@ headers: { Authorization: `JWT ${accessString}` }
                 <NoteAddIcon />
               </ListItemIcon>
               <Grid direction="column">
-                <ListItemText primary={item.name} secondary={item.message} />
+                <ListItemText primary={item.title} secondary={item.name} />
+                <ListItemText primary={item.message} />
                 <ListItemText secondary={item.date} />
                 {/* <Grid>Message: {item.message}</Grid> */}
                 {/* <Grid>Date: {item.date}</Grid> */}

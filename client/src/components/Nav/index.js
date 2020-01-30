@@ -26,7 +26,7 @@ import Input from "@material-ui/core/Input";
 import useAxios from "axios-hooks";
 import Axios from "axios";
 import Cookies from 'js-cookie';
-import logo from "../../images/graphicnovellogo2.PNG"
+import logo from "../../images/gndblogo5.PNG.png"
 const jwtDecode = require('jwt-decode');
 
 const useStyles = makeStyles(theme => {
@@ -55,13 +55,17 @@ const useStyles = makeStyles(theme => {
       // padding: theme.spacing(2, 4, 3)
     },
     large: {
-      width: theme.spacing(7),
-      height: theme.spacing(7),
+      width: theme.spacing(15),
+      height: theme.spacing(15),
     },
   };
 });
 
 const Nav = (props) => {
+  let accessString = localStorage.getItem('JWT')
+  if(accessString == null){
+    accessString = Cookies.get("JWT");
+  }
  const classes = useStyles();
  const [logIn, SetLogIn] = useState(logIn)
   // useEffect(() => {
@@ -124,6 +128,9 @@ function logout () {
           </Typography>
           <Typography variant="h6" className={classes.title}>
           <a href="/" onClick={logout}>Logout</a>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+          Welcome {jwtDecode(accessString).username}
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>

@@ -22,7 +22,7 @@ const Footer = () => {
       </Grid>
       <Grid item>
         <Typography variant="subtitle2">
-          Copyright 2020 Zachary Powers, Moshe Stern, Liam Wynne
+          Copyright 2020 Moshe Stern <a href="https://moshecstern.github.io/portfolio/" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
         </Typography>
       </Grid>
     </Grid>

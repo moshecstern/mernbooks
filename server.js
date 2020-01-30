@@ -47,6 +47,8 @@ app.post('/registerUser', (req, res, next) => {
   })(req, res, next);
 });
 
+
+
 app.post('/loginUser', (req, res, next) => {
   passport.authenticate('login', (err, users, info) => {
     if (err) {
@@ -62,14 +64,14 @@ app.post('/loginUser', (req, res, next) => {
     } else {
         User.findOne({ username: req.body.username
         }).then(user => {
-          const token = jwt.sign({ id: user.id }, jwtSecret.secret, {
+          const token = jwt.sign({ id: user.id, username: user.username }, jwtSecret.secret, {
             expiresIn: 60 * 60,
           });
           res.status(200).send({
             auth: true,
             token,
             message: 'user found & logged in',
-          });
+          })
         });
     }
   })(req, res, next);

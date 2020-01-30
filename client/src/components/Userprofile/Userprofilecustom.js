@@ -141,7 +141,7 @@ function savecustomprofile(){
     ocupation: myocupation,
     img: myimg,
     info: myinfo,
-    fullname: myfullname,
+    fullname: jwtDecode(accessString).username,
     nickname: mynickname
   },{headers: { Authorization: `JWT ${accessString}` }} )
   .then(res => randomtext())
@@ -279,7 +279,7 @@ function deleteprofile(id){
             shrink: true,
           }}
         /> */}
-        <TextField
+        {/* <TextField
           label="Full Name"
           id="margin-none"
           // defaultValue="John Smith"
@@ -287,7 +287,7 @@ function deleteprofile(id){
           value={myfullname}
           onChange={(e)=> setmyfullname(e.target.value)}
           helperText="John Smith"
-        />
+        /> */}
           <TextField
           label="Nickname"
           id="margin-none"
@@ -377,7 +377,7 @@ function deleteprofile(id){
 </Typography>
  ))} */}
         <Typography variant="body2" color="textSecondary" component="p">
-       Name: {myfullname}  Local: {mylocation}
+       Name: {jwtDecode(accessString).username}  Local: {mylocation}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           Since {Date.now}
@@ -431,4 +431,4 @@ function deleteprofile(id){
       </>
   );
 }
-export default Userprofilecustom;
+export default Userprofilecustom

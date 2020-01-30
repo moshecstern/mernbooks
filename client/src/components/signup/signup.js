@@ -77,7 +77,7 @@ import {Redirect} from "react-router-dom"
     </div>
         }
     else{
-        return <Redirect to="/home" />
+        return <Redirect to="/" />
     }
     }
 // }
