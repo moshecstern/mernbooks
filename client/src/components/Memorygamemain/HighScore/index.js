@@ -36,14 +36,13 @@ import CardContent from '@material-ui/core/CardContent';
 // import Backdrop from '@material-ui/core/Backdrop';
 // import Fade from '@material-ui/core/Fade';
 // import Map from "../Map";
-const jwtDecode = require('jwt-decode');
 const useStyles = makeStyles({
-    card: {
-      minWidth: 275,
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
       transform: 'scale(0.8)',
     },
     title: {
@@ -53,8 +52,9 @@ const useStyles = makeStyles({
       marginBottom: 12,
     },
   });
-
-const Userhighscorememory = props => {
+  
+  const Userhighscorememory = props => {
+    const jwtDecode = require('jwt-decode');
     let accessString = localStorage.getItem('JWT')
     if(accessString == null){
       accessString = Cookies.get("JWT");

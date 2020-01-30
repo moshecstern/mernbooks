@@ -46,7 +46,6 @@ function App() {
             <Route exact path="/gamepage/triviagame" component={GameTrivia} />
             <Route exact path="/userprofile" component={Userprofile} />
             <Route exact path="/blog" component={Blog} />
-
             <Route exact path="/character/:id" component={Detail} />
             <Route
               exact

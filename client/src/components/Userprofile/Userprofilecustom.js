@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Modal from "@material-ui/core/Modal";
-import { List, ListItem } from "../List";
+// import { List, ListItem } from "../List";
 import Axios from "axios";
 import useAxios from "axios-hooks";
 import Fade from '@material-ui/core/Fade';
@@ -421,13 +421,9 @@ function deleteprofile(id){
 
 
     </div>
-
-
     </Fade>
         </Modal>
-      {/* )} */}
     </div>
-      {/* </div> */}
       </>
   );
 }

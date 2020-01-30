@@ -57,6 +57,8 @@
     "react-select": "^3.0.8",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
+    "http-proxy-middleware": "^0.20.0",
+    "jwt-decode": "^2.2.0",
     "typeface-roboto": "0.0.75"
   }
 }
