@@ -4,5 +4,14 @@ module.exports = {
   Notes: require("./notes"),
   Userbooks: require("./userbooks"),
   Userhighscoretrivia: require("./userhighscoretrivia"),
-  Userhighscorememory: require("./userhighscorememory")
+  Userhighscorememory: require("./userhighscorememory"),
+  userprofilecustom: require("./userprofilecustom"),
+ userbookstoloan: require("./userbookstolend"),
+ userbooksloaned: require("./userbooksloaned"),
+  userblog: require("./userblog"),
+  userfavblogs: require("./userfavblogs"),
+
+  // userfavtv: require("./"),
+  // userfavmovies: require("./"),
+  // userfavnews: require("./"),
 };

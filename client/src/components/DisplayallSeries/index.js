@@ -6,7 +6,7 @@ import Linkpage from "../Linkpage";
 import Comicbookvineapi from "../Comicvineapi";
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
-
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import {
   Grid,
   Typography,
@@ -217,7 +217,7 @@ function changeCaseFirstLetter(str) {
               <ListItem key={item._id}>
                 <ListItemAvatar>
                   <Avatar>
-                    <FolderIcon
+                    <OpenInNewIcon
                       onClick={() => showvolumes(item._id, series, item.name)}
                     />
                   </Avatar>

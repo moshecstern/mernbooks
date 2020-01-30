@@ -9,6 +9,7 @@ import {
   Button,
   form,
   Grid,
+  Avatar,
   Typography
 } from "@material-ui/core";
 import AppBar from '@material-ui/core/AppBar';
@@ -25,6 +26,7 @@ import Input from "@material-ui/core/Input";
 import useAxios from "axios-hooks";
 import Axios from "axios";
 import Cookies from 'js-cookie';
+import logo from "../../images/graphicnovellogo2.PNG"
 const jwtDecode = require('jwt-decode');
 
 const useStyles = makeStyles(theme => {
@@ -51,7 +53,11 @@ const useStyles = makeStyles(theme => {
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2),
       // padding: theme.spacing(2, 4, 3)
-    }
+    },
+    large: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
   };
 });
 
@@ -93,6 +99,7 @@ function logout () {
       {/* <AppBar position="static" className={classes.root}> */}
       <AppBar position="static">
         <Toolbar>
+        <Avatar alt="Remy Sharp" src={logo} className={classes.large} />
         <Typography variant="h6" className={classes.title}>
         <Searchbar />
         </Typography>
@@ -108,6 +115,9 @@ function logout () {
           </Typography>
           <Typography variant="h6" className={classes.title}>
           <Link to={"/userprofile"}>Profile  </Link>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+          <Link to={"/blog"}>Blog  </Link>
           </Typography>
           <Typography variant="h6" className={classes.title}>
           <Link to={"/gamepage"}>Games  </Link>

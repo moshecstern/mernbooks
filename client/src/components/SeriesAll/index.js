@@ -20,7 +20,9 @@ import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 import Modal from "@material-ui/core/Modal";
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 const jwtDecode = require('jwt-decode');
+
 // console.log(jwtDecode(accessString).id)
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -207,7 +209,7 @@ function changeCaseFirstLetter(str) {
       <Grid container spacing={2}>
         <Grid item xs>
           <Typography variant="h3" className={classes.title}>
-           Press folder icon for all volumes 
+           Find more volumes here 
           </Typography>
           <List dense className={classes.root}>
           {console.log(series)}
@@ -217,7 +219,7 @@ function changeCaseFirstLetter(str) {
               <ListItem key={item._id}>
                 <ListItemAvatar>
                   <Avatar>
-                    <FolderIcon
+                    <OpenInNewIcon
                       onClick={() => showvolumes(item._id, series, item.name)}
                     />
                   </Avatar>

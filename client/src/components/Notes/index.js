@@ -121,8 +121,8 @@ headers: { Authorization: `JWT ${accessString}` }
         <form>
           <Input
             value={myname}
-            // onChange={handleInputChangename}
             onChange={(e)=> setmyname(e.target.value)}
+            // onChange={handleInputChangename}
 
             name="name"
             placeholder="name (required)"
@@ -141,7 +141,7 @@ headers: { Authorization: `JWT ${accessString}` }
       </div>
       <div className="col">
       <Grid item container>
-        <Typography variant="h5">Recent Notes</Typography>
+        <Typography variant="h5">Comments & Reviews</Typography>
         <List dense item container component="nav" aria-label="notesDisplay">
           {allnotes.map(item => (
             <ListItem key={item._id}>

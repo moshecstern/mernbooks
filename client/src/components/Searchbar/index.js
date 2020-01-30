@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import API from "../../utils/API";
 // import { List, ListItem } from "../List";
 import { Input, FormBtn } from "../Form";
+import SearchIcon from '@material-ui/icons/Search';
 import {
   Container,
   Grid,
@@ -88,9 +89,10 @@ function submitSearch(){
     <Grid item>
       <form onSubmit={handleformsubmit}>
         <TextField
-          id="outlined-search"
+          // id="outlined-search"
           label="Search any character"
           type="search"
+          color="red"
           variant="outlined"
           onChange={handleInputChange}
         //   onSubmit={() => history.push('/series/'+searchTerm)}
@@ -98,14 +100,14 @@ function submitSearch(){
         //   onSubmit={<Link to={location => ({ ...location, pathname: "/series/"+ searchTerm })} />}
         />
         <Button>
-          <h4>
+          <p>
             {
               <Link to={"/series/" + searchTerm}>
                 Search 
                 {/* ({searchTerm}) */}
               </Link>
             }
-          </h4>
+          </p>
         </Button>
         
       </form>

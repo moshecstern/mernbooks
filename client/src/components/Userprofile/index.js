@@ -55,6 +55,7 @@ const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345,
       backgroundColor: "floralWhite",
+      margin: theme.spacing(2)
     },
     media: {
       height: 0,
@@ -178,6 +179,14 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
     {/* <Grid container spacing={2}>
     <Grid item> */}
     {/* <Map /> */}
+    <div>
+    <h2>My Saved Books</h2>
+    <Grid
+  container
+  direction="row"
+  justify="center"
+  alignItems="center"
+>
     {mybooks.map(vol => (
     <Card className={classes.card}>
       <CardHeader
@@ -197,7 +206,7 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
       <CardMedia
         className={classes.media}
         image={vol.img}
-        title="Paella dish"
+        title={vol.Title}
       />
       <CardContent>
       {vol.author.map(auth1 =>(
@@ -240,7 +249,8 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
       </Collapse>
     </Card>
     ))}
-
+</Grid>
+</div>
       {!currentsearchresults ? null : (
         <Modal
                 aria-labelledby="transition-modal-title"
