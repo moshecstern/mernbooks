@@ -85,6 +85,9 @@ const UserHighScore = props => {
       }
       return (
         <>
+        <div>
+        <h2>Trivia Game Scores</h2>
+        <Link to={"/gamepage"}> All Games  </Link>
 {triviascore.map(score => (
     <Card className={classes.card}>
       <CardContent>
@@ -110,6 +113,7 @@ const UserHighScore = props => {
       </CardActions> */}
     </Card>
     ))}
+    </div>
 
 
 

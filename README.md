@@ -34,4 +34,5 @@ This node.js app uses React for all rendering using Material-ui for our UI/UX, M
 
 ### Our Roles
 
- Moshe Stern focused on back-end, data creation, API calls, user authentication, and Mongo interaction, Zachary Powers focused on project management and front-end, especially implementation of React/Material-ui, web scraping, API calls, and design.
+ Moshe Stern originally focused on back-end, but switched to finishing this application solo after our course was over. Data creation, API calls, user authentication, Mongo interactions, games, styles, and more are some of the things Moshe has done for this project. 
+ Zachary Powers helped with starter disign, using material-ui, and built the web scraper for news on the bottom of each page.

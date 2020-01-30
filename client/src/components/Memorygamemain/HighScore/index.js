@@ -85,11 +85,13 @@ const Userhighscorememory = props => {
       }
       return (
         <>
+        <div>
+        <h2>Memory Game Scores</h2>
 {memScore.map(score => (
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Trivia Game
+          Memory Game
         </Typography>
         <Typography variant="h5" component="h2">
           Score: {score.score}
@@ -109,7 +111,7 @@ const Userhighscorememory = props => {
       </CardActions> */}
     </Card>
     ))}
-
+</div>
 
 
 

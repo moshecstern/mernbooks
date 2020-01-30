@@ -5,7 +5,8 @@ import { List, ListItem } from "../components/List";
 import Linkpage from "../components/Linkpage";
 import Userprofileco from "../components/Userprofile";
 import SeriesAll from "../components/SeriesAll";
-import Userblog from "../components/blog/Userblog"
+import Allblogs from "../components/blog/Allblogs"
+import Notes from "../components/Notes"
 import YelpAPI from "../components/YelpAPI";
 import DisplayallSeries from "../components/DisplayallSeries"
 import Imageuploader from "../components/imageuploader";
@@ -69,8 +70,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Userprofile = props => {
+const Blog = props => {
   const [logIn, SetLogIn] = useState(logIn)
+  const classes = useStyles();
   // useEffect(() => {
   const checklogin = ()=>{
     if(props.location.state && props.location.state.loggedIn){
@@ -84,28 +86,43 @@ const Userprofile = props => {
 {/* <Imageuploader /> */}
       {/* <YelpAPI /> */}
 
-<Grid
+      {/* <Grid
   container
-  direction="row"
-  justify="space-between"
-  alignItems="flex-start"
->
+  direction="column"
+  justify="center"
+  alignItems="center"
+> */}
 {/* <Grid
   // container
   direction="column"
   justify="center"
   alignItems="flex-start"
-><ProfileCustom /></Grid> */}
+> */}
+
+      {/* <Grid container 
+      spacing={1}
+      direction="row"
+      justify="center"
+  alignItems="center"
+      >
+        <Grid item xs> */}
+        <Allblogs />
+        <br />
+        <br />
+        <Notes />
+        {/* </Grid>
+      </Grid> */}
+
+
+
+ {/* </Grid> */}
 {/* <Grid
   // container
   direction="column"
   justify="center"
-  alignItems="center" */}
-{/* > */}
-<ProfileCustom />
-<TriviaScores /> 
-<MemHighScores />  
-</Grid>
+  alignItems="center"
+> */}
+{/* <TriviaScores /> <MemHighScores /> <Userblog /> */}
 {/* add blog here */}
 {/* // </Grid> */}
 {/* <Grid
@@ -114,8 +131,7 @@ const Userprofile = props => {
   justify="center"
   alignItems="flex-end"
 > */}
-<Userblog />
-<Userprofileco />
+{/* <Userprofileco /> */}
 {/* // </Grid> */}
 {/* // </Grid> */}
 <br />
@@ -124,4 +140,4 @@ const Userprofile = props => {
   );
 };
 
-export default Userprofile;
+export default Blog;
