@@ -123,5 +123,4 @@ const Userprofile = props => {
     </>
   );
 };
-
 export default Userprofile;

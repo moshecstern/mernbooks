@@ -118,5 +118,4 @@ const Userhighscorememory = props => {
          </>
   );
 };
-
-export default Userhighscorememory
+export default Userhighscorememory;
