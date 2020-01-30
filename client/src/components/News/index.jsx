@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/styles";
 // import { makeStyles } from "@material-ui/core/styles";
 
 const cheerio = require("cheerio");
-const proxyURL = "https://radiant-meadow-37937.herokuapp.com/";
+const proxyURL = "https://cors-anywhere.herokuapp.com/";
 const url = "https://www.cbr.com/category/comics/news/";
 const useStyles = makeStyles({
   root: {
@@ -84,4 +84,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default News

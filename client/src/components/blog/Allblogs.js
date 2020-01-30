@@ -125,13 +125,24 @@ const [mymessagetwo, setmymessagetwo] = useState("");
 const [mylinkdescription, setmylinkdescription] = useState("blog link");
 const [myauthor, setmyauthor] = useState("");
 
+function savelike(id, liked, userid){
+  console.log(jwtDecode(accessString).username)
+  if(userid !== jwtDecode(accessString).id){
+   
+    Axios.put("/api/userblog/"+id, {
+    liked: liked + 1  
+    },{headers: { Authorization: `JWT ${accessString}` }} )
+    .then(res => randomtext())
+    .catch(err => console.log(err));
+  }
+}
 function savemyblog(){
     // console.log(jwtDecode(accessString))
 //    getuser()
     // run function to retrieve user name
   Axios.post("/api/userblog", {
     userID: jwtDecode(accessString).id,
-    // author: myuser.nickname,
+    author: jwtDecode(accessString).username,
     title: mytitle,
     img: myimg,
     message: mymessage,
@@ -182,7 +193,7 @@ function deleteblog(id){
         // }
         
         title={user.author}
-        subheader={user.userID}
+        subheader={user.title}
       />
       <CardMedia
         className={classes.media}
@@ -227,6 +238,7 @@ function deleteblog(id){
         >
           <ExpandMoreIcon />
         </IconButton>
+        <Button onClick={() =>savelike(user._id, user.liked, user.userID)}> Like {user.liked}</Button>
       {/* <Button onClick={() =>showuserumeinformation(user.Title)}> Get userumes Information</Button> */}
       {/* <Button onClick={() => deleteBook(user._id)}>Delete</Button> */}
       </CardActions>

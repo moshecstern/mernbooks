@@ -50,4 +50,4 @@ const Gamepage = () => {
   );
 };
 
-export default Gamepage;
+export default Gamepage

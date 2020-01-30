@@ -127,7 +127,7 @@ function savemyblog(){
     // run function to retrieve user name
   Axios.post("/api/userblog", {
     userID: jwtDecode(accessString).id,
-    // author: myuser.nickname,
+    author: jwtDecode(accessString).username,
     title: mytitle,
     img: myimg,
     message: mymessage,
@@ -177,7 +177,7 @@ function deleteblog(id){
         // }
         
         title={user.author}
-        subheader={user.userID}
+        subheader={user.title}
       />
       <CardMedia
         className={classes.media}
@@ -277,7 +277,7 @@ function deleteblog(id){
       <div>
       <div><h2>What's on your mind?</h2></div>
       <br />
-      <TextField
+      {/* <TextField
           label="Name"
           id="margin-none"
           // defaultValue="Comicnerd1994"
@@ -285,7 +285,7 @@ function deleteblog(id){
           value={myauthor}
           onChange={(e)=> setmyauthor(e.target.value)}
           helperText="Your Name"
-        />
+        /> */}
         <TextField
           label="Title"
           id="margin-none"
@@ -373,12 +373,12 @@ function deleteblog(id){
         }
         title={mytitle}
         // subheader={jwtDecode(accessString).id}
-        subheader={myauthor}
+        subheader={jwtDecode(accessString).username}
       />
       <CardMedia
         className={classes.media}
         image={myimg}
-        title={myauthor}
+        title={jwtDecode(accessString).username}
       />
       <CardContent>
       {/* {user.author.map(auth1 =>(
@@ -387,7 +387,7 @@ function deleteblog(id){
 </Typography>
  ))} */}
         <Typography variant="body2" color="textSecondary" component="p">
-       Name: {myauthor} 
+       Name: {jwtDecode(accessString).username} 
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
         {mymessage} 
@@ -444,4 +444,4 @@ function deleteblog(id){
       </>
   );
 }
-export default Userblog;
+export default Userblog

@@ -27,7 +27,8 @@ db.userprofilecustom.find({
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.userprofilecustom.findOneAndUpdate({ userID: req.params.id }, req.body)
+    console.log(req.body)
+    db.userprofilecustom.findOneAndUpdate({ userID: req.params.userid }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
