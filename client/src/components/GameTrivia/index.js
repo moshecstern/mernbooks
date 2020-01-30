@@ -19,7 +19,7 @@ import {
   if(accessString == null){
     accessString = Cookies.get("JWT");
   }
-export default class GameTrivia extends Component {
+  export default class GameTrivia extends Component {
   constructor(props) {
     super(props)
     this.state = {

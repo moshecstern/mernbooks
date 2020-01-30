@@ -27,12 +27,18 @@ import useAxios from "axios-hooks";
 import Axios from "axios";
 import Cookies from 'js-cookie';
 import logo from "../../images/gndblogo5.png"
-const jwtDecode = require('jwt-decode');
+
+// if()
+// const jwtDecode = require('jwt-decode');
+// let accessString = localStorage.getItem('JWT')
+// if(accessString == null){
+//   accessString = Cookies.get("JWT");
+// }
 
 const useStyles = makeStyles(theme => {
   return {
     root: {
- backgroundImage: `url(${ComicbookpagesModified})`,
+      backgroundImage: `url(${ComicbookpagesModified})`,
       backgroundColor: "#D92B6B",
       flexGrow: 1,
     },
@@ -62,10 +68,6 @@ const useStyles = makeStyles(theme => {
 });
 
 const Nav = (props) => {
-  let accessString = localStorage.getItem('JWT')
-  if(accessString == null){
-    accessString = Cookies.get("JWT");
-  }
  const classes = useStyles();
  const [logIn, SetLogIn] = useState(logIn)
   // useEffect(() => {
@@ -129,10 +131,13 @@ function logout () {
           <Typography variant="h6" className={classes.title}>
           <a href="/" onClick={logout}>Logout</a>
           </Typography>
+          {/* {!jwtDecode(accessString) ? null : (
+
           <Typography variant="h6" className={classes.title}>
           Welcome {jwtDecode(accessString).username}
           </Typography>
-          {/* <Button color="inherit">Login</Button> */}
+          )}
+          <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>

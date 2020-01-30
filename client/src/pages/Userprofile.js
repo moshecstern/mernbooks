@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
-import Superheroapi from "../components/Superheroapi";
-import { List, ListItem } from "../components/List";
-import Linkpage from "../components/Linkpage";
+// import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
+// import Superheroapi from "../components/Superheroapi";
+// import { List, ListItem } from "../components/List";
+// import Linkpage from "../components/Linkpage";
 import Userprofileco from "../components/Userprofile";
 import SeriesAll from "../components/SeriesAll";
 import Userblog from "../components/blog/Userblog"
-import YelpAPI from "../components/YelpAPI";
-import DisplayallSeries from "../components/DisplayallSeries"
-import Imageuploader from "../components/imageuploader";
+// import YelpAPI from "../components/YelpAPI";
+// import DisplayallSeries from "../components/DisplayallSeries"
+// import Imageuploader from "../components/imageuploader";
 import Cookies from 'js-cookie';
 import {
   Grid,
@@ -18,8 +18,8 @@ import {
   Avatar,
   ListItemText,
 } from "@material-ui/core";
-import useAxios from "axios-hooks";
-import Axios from "axios";
+// import useAxios from "axios-hooks";
+// import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 import Modal from "@material-ui/core/Modal";
