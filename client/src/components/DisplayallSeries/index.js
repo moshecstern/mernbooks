@@ -20,6 +20,7 @@ import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 import Modal from "@material-ui/core/Modal";
+const jwtDecode = require('jwt-decode');
 // console.log(jwtDecode(accessString).id)
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -60,7 +61,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DisplayallSeries = props => {
-  const jwtDecode = require('jwt-decode');
   let accessString = localStorage.getItem('JWT')
   if(accessString == null){
     accessString = Cookies.get("JWT");
