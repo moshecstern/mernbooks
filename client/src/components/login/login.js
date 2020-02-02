@@ -61,6 +61,9 @@ import "./login.css"
             <button type="submit" class="btn btn-success" onClick={loginUser}>Login</button>
             <NavLink to="/signup"> Signup </NavLink>
         </form>
+        <hr className="my-4"/>
+  <p className="text-center">If you would like to sign in as a guest please use username: guest, password: password</p>
+  
 </div>
         {/* <div className="google-btn-container">
           <a href="/auth/google">

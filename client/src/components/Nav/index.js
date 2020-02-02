@@ -27,7 +27,12 @@ import useAxios from "axios-hooks";
 import Axios from "axios";
 import Cookies from 'js-cookie';
 import logo from "../../images/gndblogo5.png"
-
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
 // if()
 // const jwtDecode = require('jwt-decode');
 // let accessString = localStorage.getItem('JWT')
@@ -70,6 +75,15 @@ const useStyles = makeStyles(theme => {
 const Nav = (props) => {
  const classes = useStyles();
  const [logIn, SetLogIn] = useState(logIn)
+
+ const [anchorEl, setAnchorEl] = React.useState(null);
+ const open = Boolean(anchorEl);
+ const handleMenu = event => {
+  setAnchorEl(event.currentTarget);
+};
+const handleClose = () => {
+  setAnchorEl(null);
+};
   // useEffect(() => {
   const checklogin = ()=>{
     if(props.location.state && props.location.state.loggedIn){
@@ -109,14 +123,45 @@ function logout () {
         <Typography variant="h6" className={classes.title}>
         <Searchbar />
         </Typography>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <div>
+          <IconButton edge="start" className={classes.menuButton}
+              aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+           color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
           {/* <Typography variant="h6" className={classes.title}>
             News
           </Typography> */}
-          <Typography variant="h6" className={classes.title}>
 
+          <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}><Link to={"/home"}>Home</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to={"/userprofile"}>Profile  </Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to={"/blog"}>Blog</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to={"/gamepage"}>Games</Link></MenuItem>
+                <MenuItem onClick={handleClose}><a href="/" onClick={logout}>Logout</a></MenuItem>
+
+             
+             
+              </Menu>
+          </div>
+
+          {/* <Typography variant="h6" className={classes.title}>
           <Link to={"/home"}>Home</Link>
           </Typography>
           <Typography variant="h6" className={classes.title}>
@@ -130,7 +175,7 @@ function logout () {
           </Typography>
           <Typography variant="h6" className={classes.title}>
           <a href="/" onClick={logout}>Logout</a>
-          </Typography>
+          </Typography> */}
           {/* {!jwtDecode(accessString) ? null : (
 
           <Typography variant="h6" className={classes.title}>

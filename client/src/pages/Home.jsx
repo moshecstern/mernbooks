@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react';
 import {Redirect} from "react-router-dom"
 import Cookies from 'js-cookie';
 import axios from "axios";
+import HomeNavLayout from "../components/HomeNavLayout"
 
 // function FriendStatus(props) {
 //   const [isOnline, setIsOnline] = useState(null);
@@ -53,6 +54,8 @@ function Home (props) {
 
 
 <div>
+<HomeNavLayout />
+<br />
 <CharactersBoard props={props}/>
       <br />
       <Notes props={props}/>
