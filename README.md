@@ -38,3 +38,4 @@ This node.js app uses React for all rendering using Material-ui for our UI/UX, M
  Zachary Powers helped start this project with starter design, using material-ui, implementing react-hooks, and designing the news scraper.
 
  All the rest and future designs by Moshe Stern
+
