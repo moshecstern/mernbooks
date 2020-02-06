@@ -80,7 +80,7 @@ const Superheroapi = props => {
     const [characterinfo, setcharacterinfo] = useState();
 
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
-    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/characters/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
+    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/concepts/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
   });
   
   console.log("this is a test");
@@ -139,7 +139,6 @@ const options = () => {
 console.log("HI")
 }
 
-
   if (loading) {
     return <></>;
   }
@@ -152,7 +151,7 @@ console.log("HI")
           container
           justify="center"
         >
-          <Typography variant="h3">Characters</Typography>
+          <Typography variant="h3">Concepts</Typography>
           <GridList cellHeight={600} cols={3} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
@@ -173,16 +172,16 @@ console.log("HI")
                   </>}
                   subtitle={
                     <>
-                      <span>Aliases: </span>
-                      <br />
-                      <span>{item.real_name}</span>
-                      <span> {item.aliases} </span> 
-                      <br />
+                      {/* <span>Episodes: </span>
+                      <br /> */}
+                      {/* <span>Num of team members: {item.count_of_team_members}</span> */}
+                      {/* <span> First appeared: {item.first_appeared_in_issue.name} </span>  */}
+                      {/* <br /> */}
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
-                      <br />
+                      {/* <br /> */}
 
-                      <span>Bio: </span>
+                      <span>Info </span>
                       <br />
                       <span>{item.deck} </span>
 

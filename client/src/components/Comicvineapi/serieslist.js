@@ -80,7 +80,7 @@ const Superheroapi = props => {
     const [characterinfo, setcharacterinfo] = useState();
 
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
-    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/characters/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
+    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/series_list/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
   });
   
   console.log("this is a test");
@@ -139,7 +139,6 @@ const options = () => {
 console.log("HI")
 }
 
-
   if (loading) {
     return <></>;
   }
@@ -152,7 +151,7 @@ console.log("HI")
           container
           justify="center"
         >
-          <Typography variant="h3">Characters</Typography>
+          <Typography variant="h3">Tv Series</Typography>
           <GridList cellHeight={600} cols={3} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
@@ -173,16 +172,16 @@ console.log("HI")
                   </>}
                   subtitle={
                     <>
-                      <span>Aliases: </span>
+                      <span>Episodes: </span>
                       <br />
-                      <span>{item.real_name}</span>
-                      <span> {item.aliases} </span> 
+                      <span>Episodes: {item.count_of_episodes}</span>
+                      <span> Start Year: {item.start_year} </span> 
                       <br />
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
                       <br />
 
-                      <span>Bio: </span>
+                      <span>Info </span>
                       <br />
                       <span>{item.deck} </span>
 
