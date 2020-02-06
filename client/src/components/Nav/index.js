@@ -119,7 +119,10 @@ function logout () {
       {/* <AppBar position="static" className={classes.root}> */}
       <AppBar position="static">
         <Toolbar>
-        <Avatar alt="Remy Sharp" src={logo} className={classes.large} />
+        <Link to={"/home"}>
+
+        <Avatar alt="Remy Sharp" src={logo} className={classes.large}/>
+        </Link>
         <Typography variant="h6" className={classes.title}>
         <Searchbar />
         </Typography>
