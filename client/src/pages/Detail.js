@@ -9,6 +9,8 @@ import ComicbookvineapiSeries from "../components/Comicvineapi/serieslist";
 import ComicbookvineapiStoryArcs from "../components/Comicvineapi/storyarcs";
 import Comicbookvineapiteams from "../components/Comicvineapi/teams";
 import Comicbookvineapivolumes from "../components/Comicvineapi/volumes";
+import Comicbookvineapiconcepts from "../components/Comicvineapi/concepts";
+
 import Cookies from 'js-cookie';
 import {
   Grid,
@@ -71,7 +73,7 @@ const Detail = props => {
     SetLogIn(true);
   }
 }
-const [selectedDashboard, setSelectedDashboard] = useState('character')
+const [selectedDashboard, setSelectedDashboard] = useState('volumes')
   return (
     <>
    {/* <Linkpage props={props}>{props}</Linkpage> */}
@@ -86,20 +88,20 @@ const [selectedDashboard, setSelectedDashboard] = useState('character')
 <Button onClick={(e)=> setSelectedDashboard("tvseries")}>TV Series</Button>
 <Button onClick={(e)=> setSelectedDashboard("storyarcs")}>Story Arcs</Button>
 
-{/* <Button onClick={(e)=> setSelectedDashboard("concepts")}>Concepts</Button>
-<Button onClick={(e)=> setSelectedDashboard("locations")}>Locations</Button>
-<Button onClick={(e)=> setSelectedDashboard("issues")}>Issues</Button>
-<Button onClick={(e)=> setSelectedDashboard("videos")}>Videos</Button> */}
+<Button onClick={(e)=> setSelectedDashboard("concepts")}>Concepts</Button>
+{/* <Button onClick={(e)=> setSelectedDashboard("locations")}>Locations</Button> */}
+{/* <Button onClick={(e)=> setSelectedDashboard("issues")}>Issues</Button> */}
+{/* <Button onClick={(e)=> setSelectedDashboard("videos")}>Videos</Button> */}
 
 {/* <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button> */}
 
-{selectedDashboard === 'character' && <Comicbookvineapi props={props}>{props}</Comicbookvineapi>}
+{selectedDashboard === 'character' && <Comicbookvineapi props={props} myurl={"characters"}>{props}</Comicbookvineapi>}
 {selectedDashboard === 'volumes' && <Comicbookvineapivolumes props={props}>{props}</Comicbookvineapivolumes>}
 {selectedDashboard === 'teams' &&   <Comicbookvineapiteams props={props}>{props}</Comicbookvineapiteams> }
 {selectedDashboard === 'tvseries' &&  <ComicbookvineapiSeries props={props}>{props}</ComicbookvineapiSeries>  }
 {selectedDashboard === 'storyarcs' &&   <ComicbookvineapiStoryArcs props={props}>{props}</ComicbookvineapiStoryArcs> }
 
-{/* {selectedDashboard === 'concepts' &&   } */}
+{selectedDashboard === 'concepts' &&  <Comicbookvineapiconcepts props={props}>{props}</Comicbookvineapiconcepts>  }
 {/* {selectedDashboard === 'locations' &&   } */}
 {/* {selectedDashboard === 'issues' &&   } */}
 {/* {selectedDashboard === 'videos' &&   } */}
