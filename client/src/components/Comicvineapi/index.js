@@ -40,7 +40,7 @@ function rand() {
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: "100%",
-      maxWidth: 360
+      maxWidth: 300
     },
     demo: {
       backgroundColor: theme.palette.background.paper
@@ -153,7 +153,7 @@ console.log("HI")
           justify="center"
         >
           <Typography variant="h3">Characters</Typography>
-          <GridList cellHeight={600} cols={3} className={classes.gridList}>
+          <GridList cellHeight={400} cols={3} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
                 <img src={item.image.medium_url} alt={item.name} />

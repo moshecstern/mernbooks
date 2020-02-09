@@ -39,7 +39,7 @@ function rand() {
   
   const useStyles = makeStyles(theme => ({
     root: {
-      flexGrow: "100%",
+      flexGrow: "80%",
       maxWidth: 360
     },
     demo: {
@@ -51,9 +51,9 @@ function rand() {
       backgroundColor: "#F2F2F2",
       textAlign: "center"
     },
-    volumes: { minWidth: "400px" },
+    volumes: { minWidth: "200px" },
     paper: {
-      position: "absolute",
+      position: "relative",
       width: "auto",
       backgroundColor: "#D9D9D9",
       border: "2px solid #000",
@@ -112,7 +112,7 @@ const showMyModal = myinfo => {
     root: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-evenly",
+      justifyContent: "center",
       overflow: "hidden",
       backgroundColor: "#F2F2F2",
       textAlign: "center"
@@ -152,10 +152,10 @@ console.log("HI")
           justify="center"
         >
           <Typography variant="h3">Story Arcs</Typography>
-          <GridList cellHeight={600} cols={3} className={classes.gridList}>
+          <GridList cellHeight={400} cols={2} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
-                <img src={item.image.medium_url} alt={item.name} />
+                <img src={item.image.small_url} alt={item.name} />
                 <GridListTileBar
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
@@ -182,10 +182,10 @@ console.log("HI")
                       <br /> */}
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
-                      <br />
+                      {/* <br />
 
                       <span>Info </span>
-                      <br />
+                      <br /> */}
                       <span>{item.deck} </span>
 
                     </>

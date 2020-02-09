@@ -81,7 +81,7 @@ const Superheroapi = props => {
     const [characterinfo, setcharacterinfo] = useState();
 
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
-    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/volumes/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
+    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/volumes/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&offset="+offset+"&format=json"
   });
   
   console.log("this is a test");
@@ -139,7 +139,7 @@ const showMyModal = myinfo => {
 const options = () => {
 console.log("HI")
 }
-
+const [offset, setoffset] =useState(0);
   if (loading) {
     return <></>;
   }
@@ -176,13 +176,15 @@ console.log("HI")
                       {/* <span>Episodes: </span> */}
                       {/* <br /> */}
                       <span>Issues Count: {item.count_of_issues}</span>
+                     <br />
                       <span> First Issue: {item.first_issue.name}, {item.first_issue.issue_number} </span> 
                       <br />
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
+                    <span>Year: {item.start_year}</span>
                       <br />
 
-                      <span>Info </span>
+                      {/* <span>Info </span> */}
                       <br />
                       <span>{item.deck} </span>
 
@@ -198,7 +200,7 @@ console.log("HI")
           </GridList>
         </Grid>
       )}
-
+<Button onClick={(e)=> setoffset(offset+100),()=> randomtext()}>Find More</Button>
       {!characterinfo ? null : (
         <Modal
           aria-labelledby="volumes-modal-title"
