@@ -11,7 +11,7 @@ import {Redirect} from "react-router-dom"
 import Cookies from 'js-cookie';
 import axios from "axios";
 import HomeNavLayout from "../components/HomeNavLayout"
-
+import Allblogs from "../components/blog/Allblogs"
 // function FriendStatus(props) {
 //   const [isOnline, setIsOnline] = useState(null);
 
@@ -54,10 +54,13 @@ function Home (props) {
 
 
 <div>
-<HomeNavLayout />
-<br />
+{/* <HomeNavLayout />
+<br /> */}
 <CharactersBoard props={props}/>
       <br />
+      <Allblogs />
+        <br />
+
       <Notes props={props}/>
     </div>
   );

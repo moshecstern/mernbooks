@@ -87,7 +87,7 @@ const Userprofile = props => {
 <Grid
   container
   direction="row"
-  justify="space-between"
+  justify="space-evenly"
   alignItems="flex-start"
 >
 {/* <Grid

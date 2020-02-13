@@ -10,7 +10,7 @@ import ComicbookvineapiStoryArcs from "../components/Comicvineapi/storyarcs";
 import Comicbookvineapiteams from "../components/Comicvineapi/teams";
 import Comicbookvineapivolumes from "../components/Comicvineapi/volumes";
 import Comicbookvineapiconcepts from "../components/Comicvineapi/concepts";
-
+import Omdbmovies from "../components/Omdbapi/MoviebyName"
 import Cookies from 'js-cookie';
 import {
   Grid,
@@ -94,7 +94,7 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 {/* <Button onClick={(e)=> setSelectedDashboard("videos")}>Videos</Button> */}
 
 {/* <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button> */}
-
+<Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button>
 {selectedDashboard === 'character' && <Comicbookvineapi props={props} myurl={"characters"}>{props}</Comicbookvineapi>}
 {selectedDashboard === 'volumes' && <Comicbookvineapivolumes props={props}>{props}</Comicbookvineapivolumes>}
 {selectedDashboard === 'teams' &&   <Comicbookvineapiteams props={props}>{props}</Comicbookvineapiteams> }
@@ -106,7 +106,7 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 {/* {selectedDashboard === 'issues' &&   } */}
 {/* {selectedDashboard === 'videos' &&   } */}
 
-{/* {selectedDashboard === 'movies' &&   } */}
+{selectedDashboard === 'movies' && <Omdbmovies props={props}>{props}</Omdbmovies>  }
 
     </>
   );

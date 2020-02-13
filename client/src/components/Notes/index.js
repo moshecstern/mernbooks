@@ -5,15 +5,7 @@ import Cookies from 'js-cookie';
 // import { List, ListItem } from "../List";
 import { Input, FormBtn } from "../Form";
 import {
-  Container,
   Grid,
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  IconButton,
-  Loading,
-  Collapse,
-  Paper,
   Typography,
   Button,
   List,
@@ -145,6 +137,8 @@ const Notes = (props) => {
       <div className="col">
       <Grid item container>
         <Typography variant="h5">Comments & Reviews</Typography>
+        {!allnotes ? null : (
+
         <List dense item container component="nav" aria-label="notesDisplay">
           {allnotes.map(item => (
             <ListItem key={item._id}>
@@ -162,6 +156,7 @@ const Notes = (props) => {
             </ListItem>
           ))}
         </List>
+        )}
       </Grid>
       </div>
     {/* </Grid> */}

@@ -13,6 +13,7 @@ import {
     Button,
     ListItemAvatar,
     Avatar,
+    Alert,
     ListItemText
   } from "@material-ui/core";
   import Backdrop from '@material-ui/core/Backdrop';
@@ -147,6 +148,7 @@ function savecustomprofile(){
   .then(res => randomtext())
   .catch(err => console.log(err));
 }
+handleClose()
 }
 function deleteprofile(id){
   console.log(id)
