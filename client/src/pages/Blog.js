@@ -121,34 +121,7 @@ const Blog = props => {
         <Allblogs />
         <br />
         <br />
-    {/* <SeriesAll /> */}
 
-
-
-        {/* </Grid>
-      </Grid> */}
-
-
-
- {/* </Grid> */}
-{/* <Grid
-  // container
-  direction="column"
-  justify="center"
-  alignItems="center"
-> */}
-{/* <TriviaScores /> <MemHighScores /> <Userblog /> */}
-{/* add blog here */}
-{/* // </Grid> */}
-{/* <Grid
-  // container
-  direction="column"
-  justify="center"
-  alignItems="flex-end"
-> */}
-{/* <Userprofileco /> */}
-{/* // </Grid> */}
-{/* // </Grid> */}
 <br />
         <Notes />
         </div>

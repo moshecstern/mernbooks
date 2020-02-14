@@ -1,32 +1,25 @@
 import React from "react";
-
-import { Paper, Typography } from "@material-ui/core";
-
-export default ({ video }) => {
-  if (!video) return <div>Loading...</div>;
-
-  const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
+const VideoDetail = (props) => {
+  const video = props.video;
+  
+  if(!video){
+      return <div>Loading...</div>;
+  }
+  
+  const videoId = video.id.videoId;
+  const url = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <React.Fragment>
-      <Paper elevation={6} style={{ height: "70%" }}>
-        <iframe
-          frameBorder="0"
-          height="100%"
-          width="100%"
-          title="Video Player"
-          src={videoSrc}
-        />
-      </Paper>
-      <Paper elevation={6} style={{ padding: "15px" }}>
-        <Typography variant="h4">
-          {video.snippet.title} - {video.snippet.channelTitle}
-        </Typography>
-        <Typography variant="subtitle1">
-          {video.snippet.channelTitle}
-        </Typography>
-        <Typography variant="subtitle2">{video.snippet.description}</Typography>
-      </Paper>
-    </React.Fragment>
+      <div className="video-detail col-md-8">
+          <div className="embed-responsive embed-responsive-16by9">
+              <iframe className="embed-responsive-item" src={url}></iframe>
+          </div>
+          <div className="details">
+              <div>{video.snippet.title}</div>
+              <div>{video.snippet.description}</div>
+          </div>
+      </div>
   );
-}
+};
+
+export default VideoDetail;

@@ -1,20 +1,21 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import VideoListItem from './Videoitem';
 
-import VideoItem from "./Videoitem";
+const VideoList = (props) => {
+    const videoItems = props.videos.map((video) => {
+        return (
+            <VideoListItem 
+                onUserSelected={props.onVideoSelect}           
+                key={video.etag} 
+                video={video} />
+        );
+    });
 
-export default ({ videos, onVideoSelect }) => {
-  const listOfVideos = videos.map(video => (
-    <VideoItem
-      onVideoSelect={onVideoSelect}
-      key={video.id.videoId}
-      video={video}
-    />
-  ));
+    return (
+        <ul className="col-md-4 list-group">
+            {videoItems}
+        </ul>
+    );
+};
 
-  return (
-    <Grid container spacing={10}>
-      {listOfVideos}
-    </Grid>
-  );
-}
+export default VideoList;

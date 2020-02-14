@@ -110,6 +110,7 @@ function logout () {
         <Typography variant="h6" className={classes.title}>
         <Searchbar />
         </Typography>
+         <Button> <Link to={"/more"}>Features</Link></Button>
           <div>
           <IconButton edge="start" className={classes.menuButton}
               aria-controls="menu-appbar"
@@ -121,7 +122,6 @@ function logout () {
           {/* <Typography variant="h6" className={classes.title}>
             News
           </Typography> */}
-
           <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -141,7 +141,7 @@ function logout () {
                 <MenuItem onClick={handleClose}><Link to={"/userprofile"}>Profile  </Link></MenuItem>
                 {/* <MenuItem onClick={handleClose}><Link to={"/blog"}>Blog</Link></MenuItem> */}
                 <MenuItem onClick={handleClose}><Link to={"/gamepage"}>Games</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to={"/more"}>Find More</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to={"/more"}>Features</Link></MenuItem>
                 <MenuItem onClick={handleClose}><a href="/" onClick={logout}>Logout</a></MenuItem>
 
              

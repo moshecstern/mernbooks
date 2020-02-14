@@ -43,9 +43,9 @@ const Gamepage = () => {
 {/* <CharactersBoard /> */}
       {/* <br /> */}
  </div>
- <br />
- <br />
-      <Notes />
+ {/* <br />
+ <br /> */}
+      {/* <Notes /> */}
      </div>
   );
 };

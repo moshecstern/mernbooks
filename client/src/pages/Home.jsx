@@ -12,6 +12,7 @@ import Cookies from 'js-cookie';
 import axios from "axios";
 import HomeNavLayout from "../components/HomeNavLayout"
 import Allblogs from "../components/blog/Allblogs"
+import YoutubeAPI from "../components/Youtubeapi"
 // function FriendStatus(props) {
 //   const [isOnline, setIsOnline] = useState(null);
 
@@ -44,12 +45,6 @@ function Home (props) {
   }
 }
 
-  // })
-//   useEffect(() => {
-//     function handleStatusChange(status) {
-//       setIsOnline(status.isOnline);
-//     }
-  
   return (
 
 
@@ -57,8 +52,9 @@ function Home (props) {
 {/* <HomeNavLayout />
 <br /> */}
 <CharactersBoard props={props}/>
-<div className="text-center"><h2><Link to={"/more"}>Search Series through our extensive database & so much more here </Link> </h2></div>
+<div className="text-center"><h2><Link to={"/more"}>Search Series through our extensive database & so much more click here </Link> </h2></div>
       <br />
+      <YoutubeAPI />
       <Allblogs />
         <br />
 

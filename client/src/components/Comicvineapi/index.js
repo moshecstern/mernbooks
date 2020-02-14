@@ -193,6 +193,7 @@ console.log("HI")
                     title: classes2.title
                   }}
                 />
+              
               </GridListTile>
             ))}
           </GridList>
