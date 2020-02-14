@@ -135,6 +135,7 @@ function savemyblog(){
     link: mylink,
     linkdescription: mylinkdescription
   },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(alert("Saved to your profile!"))
   .then(res => randomtext())
   .catch(err => console.log(err));
 

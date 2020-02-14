@@ -133,6 +133,7 @@ function savecustomprofile(){
     fullname: myfullname,
     nickname: mynickname
     },{headers: { Authorization: `JWT ${accessString}` }} )
+    .then(alert("Saved to your profile!"))
     .then(res => randomtext())
     .catch(err => console.log(err));
   }else {
@@ -145,6 +146,7 @@ function savecustomprofile(){
     fullname: jwtDecode(accessString).username,
     nickname: mynickname
   },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(alert("Saved to your profile!"))
   .then(res => randomtext())
   .catch(err => console.log(err));
 }

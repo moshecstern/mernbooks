@@ -157,8 +157,8 @@ const showMyModal = myinfo => {
       // description: mydesc
     },{headers: { Authorization: `JWT ${accessString}` }} )
     .then(res => console.log(res))
-    // .then(setMyAlert("success"))
-    .catch(err => console.log(err));
+    .then(alert("Added to your profile!"))
+    .catch(err => alert(err));
   }
   const [myAlert, setMyAlert] = useState("false")
 

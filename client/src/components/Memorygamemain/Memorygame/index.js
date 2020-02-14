@@ -43,8 +43,9 @@ class Memorygame extends React.Component {
           score: this.state.HighScore
       }, {headers: { Authorization: `JWT ${accessString}` }})
       .then(res => console.log(res))
+      .then(alert("Saved Score"))
       // location.reload? to update
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 
   ClickedImage = id => {

@@ -161,6 +161,7 @@ function editvoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
       img2: myimg2
     },{headers: { Authorization: `JWT ${accessString}` }} )
     .then(res => console.log(res))
+    .then(alert("Saved to your profile!"))
     .then(handleClose())
     .catch(err => console.log(err));
   }
@@ -192,6 +193,7 @@ function savevoltoprofile (mytitle5, myimg25, myYear5, numissues5, mypublisher5)
       publisher: mypublisher5,
     },{headers: { Authorization: `JWT ${accessString}` }} )
     .then(res => console.log(res))
+    .then(alert("Saved to your profile!"))
     .catch(err => console.log(err));
   }
     //figure out what you need to pass as variable 'seriesid' from the button

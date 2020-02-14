@@ -46,7 +46,9 @@ import {
           wrong: this.state.wrongTally
       }, {headers: { Authorization: `JWT ${accessString}` }})
       .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(alert("Saved Score!"))
+      // .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 
   newQuestion = () => {
