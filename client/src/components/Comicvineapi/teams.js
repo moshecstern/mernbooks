@@ -144,7 +144,7 @@ console.log("HI")
   }
   return (
     <>
-      {!heroinfo ? null : (
+      {!heroinfo.results.name ? null : (
         <Grid
           direction="column"
           className={classes2.root}
@@ -174,8 +174,12 @@ console.log("HI")
                     <>
                       {/* <span>Episodes: </span>
                       <br /> */}
+                      {!item.count_of_team_members ? null : (
                       <span>Num of team members: {item.count_of_team_members}</span>
+                      )}
+                      {!item.first_appeared_in_issue.name ? null : (
                       <span> First appeared: {item.first_appeared_in_issue.name} </span> 
+                      )}
                       <br />
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
@@ -196,6 +200,9 @@ console.log("HI")
             ))}
           </GridList>
         </Grid>
+      )}
+      {heroinfo.results.name ? null : (
+        <h2>No Results Found</h2>
       )}
 
       {!characterinfo ? null : (

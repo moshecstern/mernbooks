@@ -11,6 +11,8 @@ const userbookstolend = require("./userbookstolend")
 const userbooksloaned = require("./userbooksloaned")
 const userblog = require("./userblog")
 const userfavblogs = require("./userfavblogs")
+
+const comicvingvolumes = require("./comicvinevolumes")
 // api routes
 router.use("/characters", characterRoutes);
 router.use("/series", seriesRoutes);
@@ -24,6 +26,6 @@ router.use("/userbookstoloan",userbookstolend);
 router.use("/userbooksloaned",userbooksloaned);
 router.use("/userblog",userblog);
 router.use("/userfavblogs",userfavblogs);
-
+router.use("/comicvinevolumes",comicvingvolumes);
 
 module.exports = router;

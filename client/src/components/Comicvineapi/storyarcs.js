@@ -200,7 +200,9 @@ console.log("HI")
           </GridList>
         </Grid>
       )}
-
+      {heroinfo ? null : (
+        <h2>No Results Found</h2>
+      )}
       {!characterinfo ? null : (
         <Modal
           aria-labelledby="volumes-modal-title"

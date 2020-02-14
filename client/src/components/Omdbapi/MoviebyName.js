@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./style.css"
-import { List, ListItem } from "../List";
-import ReactHtmlParser from 'react-html-parser'; 
+// import "./style.css"
+// import { List, ListItem } from "../List";
+// import ReactHtmlParser from 'react-html-parser'; 
 import {
   Grid,
   GridList,
@@ -40,7 +40,7 @@ function rand() {
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: "100%",
-      maxWidth: 300
+      maxWidth: 360
     },
     demo: {
       backgroundColor: theme.palette.background.paper
@@ -51,9 +51,9 @@ function rand() {
       backgroundColor: "#F2F2F2",
       textAlign: "center"
     },
-    volumes: { minWidth: "400px" },
+    volumes: { minWidth: "200px" },
     paper: {
-      position: "absolute",
+      position: "relative",
       width: "auto",
       backgroundColor: "#D9D9D9",
       border: "2px solid #000",
@@ -64,7 +64,7 @@ function rand() {
 
 
 // https://cors-anywhere.herokuapp.com/
-const Superheroapi = props => {
+const MoviebyName = props => {
 
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
@@ -78,9 +78,11 @@ const Superheroapi = props => {
     };
 
     const [characterinfo, setcharacterinfo] = useState();
+    const [pagenum, setpagenum] = useState(1);
 
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
-    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/characters/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
+    url: "https://cors-anywhere.herokuapp.com/https://www.omdbapi.com/?apikey=trilogy&type=movie&page="+pagenum+"&s="+props.props.match.params.name
+    
   });
   
   console.log("this is a test");
@@ -112,7 +114,7 @@ const showMyModal = myinfo => {
     root: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-evenly",
+      justifyContent: "center",
       overflow: "hidden",
       backgroundColor: "#F2F2F2",
       textAlign: "center"
@@ -128,17 +130,12 @@ const showMyModal = myinfo => {
   console.log(currentname);
   console.log("currentname");
   const classes2 = useStyles2();
-
-//   const htmlDecode = (input)=>{
-//     var e = document.createElement('div');
-//     e.
-//     innerHTML = input;
-//     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-//   }
-const options = () => {
-console.log("HI")
+function findmoremovies() {
+    setpagenum(pagenum +1)
+    console.log(pagenum)
+    randomtext()
+    
 }
-
 
   if (loading) {
     return <></>;
@@ -152,39 +149,19 @@ console.log("HI")
           container
           justify="center"
         >
-          <Typography variant="h3">Characters</Typography>
-          <GridList cellHeight={400} cols={3} className={classes.gridList}>
-            {heroinfo.results.map(item => (
+          <Typography variant="h3">Movies</Typography>
+          <Button onClick={findmoremovies}>Find More</Button>
+          <GridList cellHeight={400} cols={2} className={classes.gridList}>
+            {heroinfo.Search.map(item => (
               <GridListTile key={item}>
-                <img src={item.image.medium_url} alt={item.name} />
+                <img src={item.Poster} alt={item.Title} />
                 <GridListTileBar
-                //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
-                  {/* <br /> */}
-                  {!item.description ? null : (
-                  <span>
-                  <InfoIcon
-                      onClick={() => showMyModal(item.description)}
-                    />
-                  </span>
-                  )}
-                  <span>{item.name}</span>
-
+                  <span>{item.Title}</span>
                   </>}
                   subtitle={
                     <>
-                      <span>Aliases: </span>
-                      <br />
-                      <span>{item.real_name}</span>
-                      <span> {item.aliases} </span> 
-                      <br />
-                      {/* <span>Link: {item.api_detail_url}</span> */}
-                      {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
-                      <br />
-
-                      <span>Bio: </span>
-                      <br />
-                      <span>{item.deck} </span>
+                      <span>{item.Year} </span>
 
                     </>
                   }
@@ -198,28 +175,10 @@ console.log("HI")
           </GridList>
         </Grid>
       )}
-      {heroinfo ? null : (
-        <h2>No Results Found</h2>
-      )}
-      {!characterinfo ? null : (
-        <Modal
-          aria-labelledby="volumes-modal-title"
-          aria-describedby="volumes-modal-description"
-          open={open}
-          onClose={handleClose}
-        >
-          <div style={modalStyle} className={classes.paper}>
-          <List>
-<div> { ReactHtmlParser (characterinfo)}</div>
-          </List>
-          {console.log(characterinfo)}
-         
-          </div>
-        </Modal>
-      )}
+
 
     </>
   );
 };
 
-export default Superheroapi;
+export default MoviebyName;

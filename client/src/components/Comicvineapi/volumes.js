@@ -1,7 +1,8 @@
-// need to be able to search through volumes, fix limit of only a hundred
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css"
+import Axios from "axios";
+import Cookies from 'js-cookie';
 import { List, ListItem } from "../List";
 import ReactHtmlParser from 'react-html-parser'; 
 import {
@@ -16,13 +17,16 @@ import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import InfoIcon from '@material-ui/icons/Info';
 import {
-    Button,
-    ListItemAvatar,
-    Avatar,
+  Button,
+  ListItemAvatar,
+  Avatar,
     ListItemText
   } from "@material-ui/core";
-
-// import { parse } from "dotenv/types";
+  import Alert from '@material-ui/lab/Alert';
+  import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+  // need to be able to search through volumes, fix limit of only a hundred
+  // import { parse } from "dotenv/types";
+  const jwtDecode = require('jwt-decode');
 function rand() {
     return Math.round(Math.random() * 20) - 10;
   }
@@ -41,7 +45,11 @@ function rand() {
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: "100%",
-      maxWidth: 360
+      maxWidth: 360,
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
     },
     demo: {
       backgroundColor: theme.palette.background.paper
@@ -65,7 +73,7 @@ function rand() {
 
 
 // https://cors-anywhere.herokuapp.com/
-const Superheroapi = props => {
+const VolumeDB = props => {
 
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
@@ -79,7 +87,7 @@ const Superheroapi = props => {
     };
 
     const [characterinfo, setcharacterinfo] = useState();
-
+    const [offset, setoffset] =useState(0);
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
     url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/volumes/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&offset="+offset+"&format=json"
   });
@@ -129,6 +137,30 @@ const showMyModal = myinfo => {
   console.log(currentname);
   console.log("currentname");
   const classes2 = useStyles2();
+  // const VolumeDB = props => {
+    let accessString = localStorage.getItem('JWT')
+    if(accessString == null){
+      accessString = Cookies.get("JWT");
+    }
+  function savevoltoprofile (mytitle5, myimg25, myYear5, numissues5, mydesc) {
+    // console.log(jwtDecode(accessString).id)
+    // event.preventDefault();
+    // const accessString = localStorage.getItem('JWT');
+    // console.log(myid)
+    // console.log("MY ID")
+    Axios.post("/api/userbooks", {
+      userID: jwtDecode(accessString).id,
+      Title: mytitle5,
+      img: myimg25,
+      published: myYear5,
+      numIssues: numissues5,
+      // description: mydesc
+    },{headers: { Authorization: `JWT ${accessString}` }} )
+    .then(res => console.log(res))
+    // .then(setMyAlert("success"))
+    .catch(err => console.log(err));
+  }
+  const [myAlert, setMyAlert] = useState("false")
 
 //   const htmlDecode = (input)=>{
 //     var e = document.createElement('div');
@@ -139,12 +171,23 @@ const showMyModal = myinfo => {
 const options = () => {
 console.log("HI")
 }
-const [offset, setoffset] =useState(0);
+
+function findmorevolumes(e) {
+  e.preventDefault()
+  setoffset(offset +100)
+  console.log(offset)
+  randomtext()
+}
   if (loading) {
     return <></>;
   }
   return (
     <>
+    {/* {myAlert ? "success" : (
+      <div className={classes.root}>
+      <Alert severity="success">This is a success alert — check it out!</Alert>
+      </div>
+    )} */}
       {!heroinfo ? null : (
         <Grid
           direction="column"
@@ -153,6 +196,7 @@ const [offset, setoffset] =useState(0);
           justify="center"
         >
           <Typography variant="h3">Volumes</Typography>
+          <Button onClick={findmorevolumes}>Find More</Button>
           <GridList cellHeight={600} cols={3} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
@@ -183,7 +227,15 @@ const [offset, setoffset] =useState(0);
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
                     <span>Year: {item.start_year}</span>
                       <br />
-
+                      {/* <Button */}
+                      <FavoriteBorderOutlinedIcon 
+                        onClick={() =>
+                                                    // (mytitle5, myimg25, myYear5, numissues5, publisher5)
+                            savevoltoprofile(item.name, item.image.medium_url, item.start_year, item.count_of_issues, item.description)
+                        }
+                      />
+                        {/* Save to collection */}
+                      {/* </Button> */}
                       {/* <span>Info </span> */}
                       <br />
                       <span>{item.deck} </span>
@@ -200,7 +252,10 @@ const [offset, setoffset] =useState(0);
           </GridList>
         </Grid>
       )}
-<Button onClick={(e)=> setoffset(offset+100),()=> randomtext()}>Find More</Button>
+      {heroinfo ? null : (
+        <h2>No Results Found</h2>
+      )}
+<Button onClick={findmorevolumes}>Find More</Button>
       {!characterinfo ? null : (
         <Modal
           aria-labelledby="volumes-modal-title"
@@ -221,5 +276,5 @@ const [offset, setoffset] =useState(0);
     </>
   );
 };
-
-export default Superheroapi;
+// }
+export default VolumeDB;

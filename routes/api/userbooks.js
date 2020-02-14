@@ -11,7 +11,7 @@ router.route("/")
 router
   .route("/:userid")
   .get(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.findbyuser)
-  .put(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.update)
+  .put(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.findById)
   .delete(jwtVerify.confirmToken, jwtVerify.verifyToken, userbookController.remove);
 
 module.exports = router;

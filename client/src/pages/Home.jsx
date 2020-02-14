@@ -2,7 +2,7 @@
 import Notes from "../components/Notes";
 import CharactersBoard from "../components/CharactersBoard";
 // import API from "../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
 // import useAxios from "axios-hooks";
 // import { makeStyles } from "@material-ui/styles";
@@ -11,7 +11,7 @@ import {Redirect} from "react-router-dom"
 import Cookies from 'js-cookie';
 import axios from "axios";
 import HomeNavLayout from "../components/HomeNavLayout"
-
+import Allblogs from "../components/blog/Allblogs"
 // function FriendStatus(props) {
 //   const [isOnline, setIsOnline] = useState(null);
 
@@ -54,10 +54,14 @@ function Home (props) {
 
 
 <div>
-<HomeNavLayout />
-<br />
+{/* <HomeNavLayout />
+<br /> */}
 <CharactersBoard props={props}/>
+<div className="text-center"><h2><Link to={"/more"}>Search Series through our extensive database & so much more here </Link> </h2></div>
       <br />
+      <Allblogs />
+        <br />
+
       <Notes props={props}/>
     </div>
   );
