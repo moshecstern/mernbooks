@@ -125,6 +125,7 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
     published: mypublished
   },{headers: { Authorization: `JWT ${accessString}` }} )
   .then(res => console.log(res))
+  .then(alert("Saved to your profile!"))
   .catch(err => console.log(err));
 }
 // handleFormSubmit = event => {

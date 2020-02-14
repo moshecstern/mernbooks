@@ -150,8 +150,10 @@ function savemyblog(){
     link: mylink,
     linkdescription: mylinkdescription
   },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(alert("Saved Blog!"))
   .then(res => randomtext())
-  .catch(err => console.log(err));
+  // .catch(err => console.log(err));
+  .catch(err => alert(err));
 
 }
 function deleteblog(id){
