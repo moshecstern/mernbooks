@@ -67,7 +67,7 @@ function rand() {
 
 
 // https://cors-anywhere.herokuapp.com/
-const YelpAPI = props => {
+const Yelpevents = props => {
     const [businessInfo, setBusinessInfo] =useState(false)
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
@@ -142,7 +142,7 @@ const showMyModal = (lat, lang) => {
 // fffff
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
     // url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/concepts/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
-    url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+searchTerm+"&location="+searchCity+"&radius=4000&limit=10&offset="+offset,
+    url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events/search?term="+searchTerm+"&location="+searchCity+"&radius=4000&limit=10&offset="+offset,
  headers: {
       Authorization: "Bearer CRh4dVy8vCYb_8OeBP5ACVQmlTbrk6mZXHwi8VSv9jcOtYRHNHktPbFWZD6dqfqmv9zICcen2OEQx5aEI--lPD5BhlLYpblNxIBlGyJT2aNN1ZpmzytcLGCHOfW5XXYx",
       redirect: "follow"
@@ -167,7 +167,7 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+searchTerm+"&location="+searchCity+"&radius=4000&limit=10&offset="+offset, requestOptions)
+fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events/search?term="+searchTerm+"&location="+searchCity+"&radius=4000&limit=10&offset="+offset, requestOptions)
   .then(response => response.text())
   // .then(result => setheroinfo(result.businesses))
   .then(result => console.log(result))
@@ -193,7 +193,7 @@ const [thissearchterm, setthissearchterm] = useState()
   }
   return (
     <>
-    <h2>Yelp Api</h2>
+    <h2>Yelp Events</h2>
     <Button onClick={()=> findyelpapi()}>Find by location</Button>
     <Grid item>
       <form onSubmit={searchbusinessfunc}>
@@ -233,9 +233,9 @@ const [thissearchterm, setthissearchterm] = useState()
           container
           justify="center"
         >
-          <Typography variant="h3">Yelp Businesses</Typography>
+          <Typography variant="h3">Yelp Events</Typography>
           <GridList cellHeight={400} cols={2} className={classes.gridList}>
-            {heroinfo.businesses.map(item => (
+            {heroinfo.events.map(item => (
               <GridListTile key={item}>
                 <img src={item.image_url} alt={item.name} />
                 <GridListTileBar
@@ -251,20 +251,20 @@ const [thissearchterm, setthissearchterm] = useState()
               
                   <span>{item.name}</span>
 
+                    <span>Location: {item.location.address1}, {item.location.city}, {item.location.zip_code}</span>
+                      <br />
+                      <span>Free: {item.is_free}, with {item.attending_count} coming, while {item.interested_count} are interested in going</span>
+                      <br />
+                     {/* <span>{item.price}</span> */}
+                      {/* <br /> */}
+                   {/* <span>Phone: {item.display_phone}</span> */}
+                   <br />
+                   <span><a href={item.event_site_url} target="_blank">Website</a></span>
+                     
                   </>}
                   subtitle={
                     <>
-                    {/* rating, price, location, phone, link (url), review_count */}
-                    <span>Location: {item.location.address1}, {item.location.city}, {item.location.zip_code}</span>
-                      <br />
-                      <span>Rating: {item.rating}, from {item.review_count} reviews</span>
-                      <br />
-                     <span>{item.price}</span>
-                      <br />
-                   <span>Phone: {item.display_phone}</span>
-                   <br />
-                   <span><a href={item.url} target="_blank">Website</a></span>
-                     
+                    {item.description}
                    
 
                     </>
@@ -298,4 +298,4 @@ const [thissearchterm, setthissearchterm] = useState()
   );
 };
 
-export default YelpAPI;
+export default Yelpevents;

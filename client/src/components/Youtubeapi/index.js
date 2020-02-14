@@ -1,44 +1,45 @@
-import React, { useState } from "react";
-import { Grid } from "@material-ui/core";
-import VideoList from "./Videolist";
-import VideoDetail from "./videodetail";
-import SearchBar from "./Searchbar";
-import youtube from "./API";
-import Axios from "axios"
+// import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import SearchBar from './Searchbar';
+import YTSearch from 'youtube-api-search';
+import VideoList from './Videolist'
+import VideoDetail from './videodetail';
+import "./style.css"
+const API_KEY = 'AIzaSyCyRUzNluvXdWY35tsdEcQ3OdAfGGvruYs';
 
-export default () => {
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+const Youtubeapi = props => {
 
-  return (
-    <Grid style={{ justifyContent: "center" }} container spacing={10}>
-      <Grid item xs={11}>
-        <Grid container spacing={10}>
-          <Grid item xs={12}>
-            <SearchBar onSubmit={handleSubmit} />
-          </Grid>
-          <Grid item xs={8}>
-            <VideoDetail video={selectedVideo} />
-          </Grid>
-          <Grid item xs={4}>
-            <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
-  );
+const [videos, setvideos] = useState([])
+const [selectedVideo, setSelectedVideo] = useState(null)
+const [onload, setOnload] = useState(true)
 
-  async function handleSubmit(searchTerm) {
-    const { data: { items: videos } } = await Axios.get("https://www.googleapis.com/youtube/v3", {
-      params: {
-        part: "snippet",
-        maxResults: 5,
-        key: process.env.REACT_APP_API_KEY,
-        q: searchTerm,
-      }
-    });
-
-    setVideos(videos);
-    setSelectedVideo(videos[0]);
-  }
+const videoSearch = (searchTerm) => {
+ YTSearch({key: API_KEY, term: searchTerm}, (data) => {
+   console.log(data);
+   setvideos(data)
+   setSelectedVideo(data[0])
+ });
 }
+ useEffect(() => {
+   videoSearch("comic news")
+ }, []);
+
+    return (
+      <div class="container-fluid">
+      <div className="text-center"><h2>Search youtube for comic realated news, or videos</h2></div>
+        <SearchBar onSearchTermChange={searchTerm => videoSearch(searchTerm)} runonload={searchTerm => videoSearch(searchTerm)}/>
+        <div className="row">
+        {/* <div className="col-md-8"> */}
+        <VideoDetail video={selectedVideo}/>
+        {/* </div> */}
+        {/* <div className="col-md-4"> */}
+        <VideoList 
+          onVideoSelect={userSelected => setSelectedVideo(userSelected)}
+          videos={videos} />
+          {/* </div> */}
+          </div>
+      </div>
+    );
+}
+
+export default Youtubeapi;
