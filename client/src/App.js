@@ -19,6 +19,7 @@ import Signup from "./components/signup/signup";
 import Userprofile from "./pages/Userprofile"
 import GameTrivia from "./components/GameTrivia"
 import Blog from "./pages/Blog";
+import More from "./pages/More"
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
@@ -47,6 +48,7 @@ function App() {
             <Route exact path="/userprofile" component={Userprofile} />
             <Route exact path="/blog" component={Blog} />
             <Route exact path="/character/:id" component={Detail} />
+            <Route exact path="/more" component={More} />
             <Route
               exact
               path="/api/series/:seriesname/:charactername"

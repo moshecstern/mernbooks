@@ -2,7 +2,7 @@
 import Notes from "../components/Notes";
 import CharactersBoard from "../components/CharactersBoard";
 // import API from "../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
 // import useAxios from "axios-hooks";
 // import { makeStyles } from "@material-ui/styles";
@@ -57,6 +57,7 @@ function Home (props) {
 {/* <HomeNavLayout />
 <br /> */}
 <CharactersBoard props={props}/>
+<div className="text-center"><h2><Link to={"/more"}>Search Series through our extensive database & so much more here </Link> </h2></div>
       <br />
       <Allblogs />
         <br />

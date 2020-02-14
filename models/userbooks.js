@@ -4,11 +4,14 @@ const userbooksSchema = new Schema({
   userID: {type: String, required: true},
   Title: { type: String, required: true },
   img: { type: String, required: true },
-  link: { type: String, required: true },
+  link: { type: String, required: false },
   author: { type: Array, required: false },
-  description: { type: String, required: true },
+  description: { type: String, required: false },
   published: { type: String, required: true },
-  date: { type: Date, default: Date.now }
+  numIssues: String,
+  publisher: String,
+  date: { type: Date, default: Date.now },
+  img2: String,
 });
 const Userbooks = mongoose.model("userbooks", userbooksSchema);
 

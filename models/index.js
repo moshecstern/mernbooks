@@ -10,6 +10,7 @@ module.exports = {
  userbooksloaned: require("./userbooksloaned"),
   userblog: require("./userblog"),
   userfavblogs: require("./userfavblogs"),
+  comicvinevolumes: require("./comicvinevolumes"),
 
   // userfavtv: require("./"),
   // userfavmovies: require("./"),

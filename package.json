@@ -9,7 +9,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
-    "seed": "node scripts/seedsDB.js",
+    "seed": "node scripts/seedsDB.js && node scripts/seedsDB1 && node scripts/seedsDB2 && node scripts/seedsDB3 && node scripts/seedsDB4 && node scripts/seedsDB5 && node scripts/seedsDB6 && node scripts/seedsDB7 && node scripts/seedsDB8 && node scripts/seedsDB9",
     "build": "cd client && npm run build && npm run seed",
     "heroku-postbuild": "npm run build && npm run seed"
   },
@@ -22,6 +22,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.42",
     "@material-ui/styles": "^4.9.0",
     "article-parser": "^4.1.1",
     "axios": "^0.19.2",
@@ -34,10 +35,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
     "express-validator": "^5.3.1",
+    "google-maps-react": "^2.0.2",
+    "http-proxy-middleware": "^0.20.0",
     "husky": "^3.1.0",
     "if-env": "^1.0.4",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
     "lint-staged": "^9.5.0",
     "mongodb-client-encryption": "^1.0.1",
     "mongoose": "^5.8.10",
@@ -57,8 +61,6 @@
     "react-select": "^3.0.8",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
-    "http-proxy-middleware": "^0.20.0",
-    "jwt-decode": "^2.2.0",
     "typeface-roboto": "0.0.75"
   }
 }

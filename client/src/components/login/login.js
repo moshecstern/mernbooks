@@ -62,7 +62,13 @@ import "./login.css"
             <NavLink to="/signup"> Signup </NavLink>
         </form>
         <hr className="my-4"/>
-  <p className="text-center">If you would like to sign in as a guest please use username: guest, password: password</p>
+  <ul>
+    <li>Search & save characters, teams, places, and graphic novels</li>
+    <li>Find Comic related Yelp businesses & events near you</li>
+    <li>Create your own profile & blogs</li>
+    <li>Play comic themed games & find comic related news</li>
+  </ul>
+  <p className="text-center">Just Browse => Username: guest, password: password</p>
   
 </div>
         {/* <div className="google-btn-container">

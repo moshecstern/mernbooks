@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import SeriesAll from "../components/SeriesAll";
 import Allblogs from "../components/blog/Allblogs"
 import Notes from "../components/Notes"
+import VolumeDB from "../components/VolumesDB"
 // import YelpAPI from "../components/YelpAPI";
 // import DisplayallSeries from "../components/DisplayallSeries"
 // import Imageuploader from "../components/imageuploader";
@@ -113,11 +114,17 @@ const Blog = props => {
         <Grid item xs> */}
         {/* <SeriesScraper /> */}
 {/* <YoutubeAPI /> */}
-        <YelpAPI />
+
+{/* <VolumeDB /> */}
+
+        {/* <YelpAPI /> */}
         <Allblogs />
         <br />
         <br />
-    <SeriesAll />
+    {/* <SeriesAll /> */}
+
+
+
         {/* </Grid>
       </Grid> */}
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
-import Superheroapi from "../components/Superheroapi";
-import { List, ListItem } from "../components/List";
-import Linkpage from "../components/Linkpage";
+// import REACT_APP_googlebooks_APP_API_KEY from "dotenv";
+// import Superheroapi from "../components/Superheroapi";
+// import { List, ListItem } from "../components/List";
+// import Linkpage from "../components/Linkpage";
 import Comicbookvineapi from "../components/Comicvineapi";
 import DisplayallSeries from "../components/DisplayallSeries"
 import ComicbookvineapiSeries from "../components/Comicvineapi/serieslist";
@@ -25,6 +25,10 @@ import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderIcon from "@material-ui/icons/Folder";
 import Modal from "@material-ui/core/Modal";
+import VolumeDB from "../components/VolumesDB"
+import YelpAPI from "../components/YelpAPI"
+import YoutubeAPI from "../components/Youtubeapi"
+// import CharactersBoard from "../components/CharactersBoard";
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -78,28 +82,35 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
     <>
    {/* <Linkpage props={props}>{props}</Linkpage> */}
       {/* <Superheroapi props={props}>{props}</Superheroapi> */}
-      
- <DisplayallSeries props={props}>{props}</DisplayallSeries>
- <br />
+  
+ 
+ {/* <br /> */}
+ <div className="text-center">
  <div><h2>Find More by clicking below</h2></div>
 <Button onClick={(e)=> setSelectedDashboard("character")}>Characters</Button>
 <Button onClick={(e)=> setSelectedDashboard("volumes")}>Volumes</Button>
 <Button onClick={(e)=> setSelectedDashboard("teams")}>Teams</Button>
-<Button onClick={(e)=> setSelectedDashboard("tvseries")}>TV Series</Button>
 <Button onClick={(e)=> setSelectedDashboard("storyarcs")}>Story Arcs</Button>
+<Button onClick={(e)=> setSelectedDashboard("series")}>Series</Button>
 
 <Button onClick={(e)=> setSelectedDashboard("concepts")}>Concepts</Button>
+<Button onClick={(e)=> setSelectedDashboard("tvseries")}>TV Series</Button>
 {/* <Button onClick={(e)=> setSelectedDashboard("locations")}>Locations</Button> */}
 {/* <Button onClick={(e)=> setSelectedDashboard("issues")}>Issues</Button> */}
 {/* <Button onClick={(e)=> setSelectedDashboard("videos")}>Videos</Button> */}
 
 {/* <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button> */}
 <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button>
+<Button onClick={(e)=> setSelectedDashboard("Yelpcomicshops")}>Local Comics & Events</Button>
+        <Button onClick={(e)=> setSelectedDashboard("VolumesByDB")}>Search All Series</Button>
+        {/* <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button> */}
+</div>
 {selectedDashboard === 'character' && <Comicbookvineapi props={props} myurl={"characters"}>{props}</Comicbookvineapi>}
 {selectedDashboard === 'volumes' && <Comicbookvineapivolumes props={props}>{props}</Comicbookvineapivolumes>}
 {selectedDashboard === 'teams' &&   <Comicbookvineapiteams props={props}>{props}</Comicbookvineapiteams> }
 {selectedDashboard === 'tvseries' &&  <ComicbookvineapiSeries props={props}>{props}</ComicbookvineapiSeries>  }
 {selectedDashboard === 'storyarcs' &&   <ComicbookvineapiStoryArcs props={props}>{props}</ComicbookvineapiStoryArcs> }
+{selectedDashboard === 'series' &&   <DisplayallSeries props={props}>{props}</DisplayallSeries> }
 
 {selectedDashboard === 'concepts' &&  <Comicbookvineapiconcepts props={props}>{props}</Comicbookvineapiconcepts>  }
 {/* {selectedDashboard === 'locations' &&   } */}
@@ -107,6 +118,9 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 {/* {selectedDashboard === 'videos' &&   } */}
 
 {selectedDashboard === 'movies' && <Omdbmovies props={props}>{props}</Omdbmovies>  }
+{selectedDashboard === 'Yelpcomicshops' && <YelpAPI props={props}>{props}</YelpAPI>}
+{selectedDashboard === 'VolumesByDB' && <VolumeDB props={props}>{props}</VolumeDB>}
+{selectedDashboard === 'Youtube' && <YoutubeAPI props={props}>{props}</YoutubeAPI>}
 
     </>
   );

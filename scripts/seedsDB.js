@@ -19,6 +19,21 @@
 // // list of batman comics- go to collections/ collected
 // // https://en.wikipedia.org/wiki/List_of_Batman_comics
 
+// const comicvinevolumesSeed = 
+
+
+
+// db.comicvinevolumes.collection
+// .insertMany(comicvinevolumesSeed)
+//   .then(data => {
+//     console.log(data.result.n + " records inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
+
 
 // const characterSeed = [
 //   {
@@ -509,6 +524,8 @@
 //     console.error(err);
 //     process.exit(1);
 //   });
+
+
 
 //   db.Series
 //   .remove({})

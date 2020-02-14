@@ -17,6 +17,7 @@ module.exports = function(app) {
   app.use(proxy("/api/userbooksloaned", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/userblog", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/userfavblogs", { target: process.env.PORT||"http://localhost:3001/" }));
+  app.use(proxy("/api/comicvinevolumes", { target: process.env.PORT||"http://localhost:3001/" }));
   
   // app.use(proxy("/api/userfavtv", { target: process.env.PORT||"http://localhost:3001/" }));
   // app.use(proxy("/api/userfavmovies", { target: process.env.PORT||"http://localhost:3001/" }));

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Map from "../Map"
 import { Link } from "react-router-dom";
 // import "./style.css"
 import { List, ListItem } from "../List";
@@ -8,20 +9,21 @@ import {
   GridList,
   GridListTile,
   GridListTileBar,
-  Typography
+  Typography,
+  TextField,
 } from "@material-ui/core";
 import useAxios from "axios-hooks";
 import Axios from "axios";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
-import InfoIcon from '@material-ui/icons/Info';
+// import InfoIcon from '@material-ui/icons/Info';
 import {
     Button,
     ListItemAvatar,
     Avatar,
     ListItemText
   } from "@material-ui/core";
-
+  import InfoIcon from '@material-ui/icons/Info';
 // import { parse } from "dotenv/types";
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -66,7 +68,7 @@ function rand() {
 
 // https://cors-anywhere.herokuapp.com/
 const YelpAPI = props => {
-
+    const [businessInfo, setBusinessInfo] =useState(false)
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
   
@@ -78,7 +80,7 @@ const YelpAPI = props => {
       setOpen(false);
     };
 
-    const [characterinfo, setcharacterinfo] = useState();
+    // const [characterinfo, setcharacterinfo] = useState();
 
 
 
@@ -87,9 +89,12 @@ const YelpAPI = props => {
 //     const parser = new DOMParser();
 // return parser.parseFromString(info, "text/html")
   }
+const [mylong, setmylong] =useState()
+const [mylat, setmylat] =useState()
 
-const showMyModal = myinfo => {
-    setcharacterinfo(myinfo)
+const showMyModal = (lat, lang) => {
+    // setcharacterinfo(myinfo)
+    setBusinessInfo(true)
     handleOpen();
 }
 
@@ -121,25 +126,28 @@ const showMyModal = myinfo => {
 //   console.log("currentname");
   const classes2 = useStyles2();
 
-//   const htmlDecode = (input)=>{
-//     var e = document.createElement('div');
-//     e.
-//     innerHTML = input;
-//     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-//   }
-const options = () => {
-console.log("HI")
-}
-
+  //   const htmlDecode = (input)=>{
+    //     var e = document.createElement('div');
+    //     e.
+    //     innerHTML = input;
+    //     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    //   }
+    const options = () => {
+      console.log("HI")
+    }
+    
+    const [searchTerm, setSearchTerm] =useState("comics")
+    const [searchCity, setSearchCity] =useState("philadelphia")
+    const [offset, setOffset] = useState(0)
 // fffff
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
     // url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/concepts/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
-    url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=comics&location=philadelphia&radius=4000&limit=10",
+    url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+searchTerm+"&location="+searchCity+"&radius=4000&limit=10&offset="+offset,
  headers: {
       Authorization: "Bearer CRh4dVy8vCYb_8OeBP5ACVQmlTbrk6mZXHwi8VSv9jcOtYRHNHktPbFWZD6dqfqmv9zICcen2OEQx5aEI--lPD5BhlLYpblNxIBlGyJT2aNN1ZpmzytcLGCHOfW5XXYx",
-    redirect: "follow"
+      redirect: "follow"
     },
-});
+  });
   // console.log(heroinfo.results.businesses);
   // console.log("this is a test");
   // console.log(props);
@@ -147,7 +155,7 @@ console.log("HI")
   console.log("********************");
   console.log(heroinfo);
   console.log("********************");
-
+  
 
 function findyelpapi() {
 const myHeaders = new Headers();
@@ -159,12 +167,16 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=comics&location=philadelphia&radius=4000&limit=10", requestOptions)
+fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="+searchTerm+"&location="+searchCity+"&radius=4000&limit=10&offset="+offset, requestOptions)
   .then(response => response.text())
   // .then(result => setheroinfo(result.businesses))
   .then(result => console.log(result))
   // .then(setloading(true))
   .catch(error => console.log('error', error));
+}
+function nextpagefunc () {
+setOffset(offset + 10)
+randomtext()
 }
 // const [loading, setloading] = React.useState(false);
   if (loading) {
@@ -174,6 +186,36 @@ fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
     <>
     <h2>Yelp Api</h2>
     <Button onClick={()=> findyelpapi()}>Find by location</Button>
+    <Grid item>
+      <form onSubmit={randomtext}>
+        <TextField
+          // id="outlined-search"
+          label="Search By City"
+          type="search"
+          color="red"
+          variant="outlined"
+          value={searchCity}
+          onChange={()=> setSearchCity(searchCity)}
+          // onSubmit={randomtext()}
+        />
+              <TextField
+          // id="outlined-search"
+          label="Search Term"
+          type="search"
+          color="red"
+          variant="outlined"
+          value={searchTerm}
+          onChange={()=> setSearchTerm(searchTerm)}
+          // onSubmit={randomtext()}
+        />
+        <Button onClick={randomtext}>
+        Search
+        </Button>
+        
+      </form>
+    </Grid>
+<Button onclick={nextpagefunc}>Find More</Button>
+
       {!heroinfo ? null : (
         <Grid
           direction="column"
@@ -190,30 +232,30 @@ fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
                   {/* <br /> */}
-                  {/* {!item.description ? null : (
-                  <span>
+                
+                  {/* <span>
                   <InfoIcon
-                      onClick={() => showMyModal(item.description)}
+                      onClick={() => showMyModal(item.coordinates.latitude, item.coordinates.longitude)}
                     />
-                  </span>
-                  )} */}
+                  </span> */}
+              
                   <span>{item.name}</span>
 
                   </>}
                   subtitle={
                     <>
-                      {/* <span>Episodes: </span>
-                      <br /> */}
-                      {/* <span>Num of team members: {item.count_of_team_members}</span> */}
-                      {/* <span> First appeared: {item.first_appeared_in_issue.name} </span>  */}
-                      {/* <br /> */}
-                      {/* <span>Link: {item.api_detail_url}</span> */}
-                      {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
-                      {/* <br /> */}
-
-                      {/* <span>Info </span>
-                      <br /> */}
-                      {/* <span>{item.deck} </span> */}
+                    {/* rating, price, location, phone, link (url), review_count */}
+                    <span>Location: {item.location.address1}, {item.location.city}, {item.location.zip_code}</span>
+                      <br />
+                      <span>Rating: {item.rating}, from {item.review_count} reviews</span>
+                      <br />
+                     <span>{item.price}</span>
+                      <br />
+                   <span>Phone: {item.display_phone}</span>
+                   <br />
+                   <span><a href={item.url} target="_blank">Website</a></span>
+                     
+                   
 
                     </>
                   }
@@ -227,8 +269,9 @@ fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
           </GridList>
         </Grid>
       )}
+{/* MAKE MODAL FOR GOOGLE MAPS */}
 
-      {/* {!characterinfo ? null : (
+      {/* {!businessInfo ? false : (
         <Modal
           aria-labelledby="volumes-modal-title"
           aria-describedby="volumes-modal-description"
@@ -236,11 +279,7 @@ fetch("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/se
           onClose={handleClose}
         >
           <div style={modalStyle} className={classes.paper}>
-          <List>
-<div> { ReactHtmlParser (characterinfo)}</div>
-          </List>
-          {console.log(characterinfo)}
-         
+ <Map lat={mylat} long={mylong}/>
           </div>
         </Modal>
       )} */}

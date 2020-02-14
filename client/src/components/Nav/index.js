@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import Searchbar from "../Searchbar";
-import Signinmodal from "../Signinmodal";
+// import Signinmodal from "../Signinmodal";
 import { Link } from "react-router-dom";
 import {
   TextField,
@@ -15,24 +15,24 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
+// import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import ComicbookpagesModified from "../../images/ComicbookpagesModified.jpg";
 import "typeface-roboto";
-import Modal from "@material-ui/core/Modal";
-import Input from "@material-ui/core/Input";
-import useAxios from "axios-hooks";
-import Axios from "axios";
+// import Modal from "@material-ui/core/Modal";
+// import Input from "@material-ui/core/Input";
+// import useAxios from "axios-hooks";
+// import Axios from "axios";
 import Cookies from 'js-cookie';
 import logo from "../../images/gndblogo5.png"
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+// import AccountCircle from '@material-ui/icons/AccountCircle';
+// import Switch from '@material-ui/core/Switch';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormGroup from '@material-ui/core/FormGroup';
 // if()
 // const jwtDecode = require('jwt-decode');
 // let accessString = localStorage.getItem('JWT')
@@ -99,22 +99,6 @@ function logout () {
   Cookies.remove('JWT');
 }
   return (
-  //   <Grid container spacing={3}>
-  //   <br/>
-  //       <Grid container direction="row">
-  //     <Grid container justify="space-between" className={classes.root}>
-  //       <Searchbar />
-  //       <Grid direction="collumn" item justify="flex-end">
-  // <Grid item xs={3}><a href="/" onClick={logout}>logout</a></Grid>
-
-
-  //       <Grid item xs={3}><Link to={"/home"}>Home  </Link></Grid>
-  //       <Grid item xs={3}><Link to={"/gamepage"}>Games  </Link></Grid>
-  //       <Grid item xs={3}><Link to={"/userprofile"}>User Profile  </Link></Grid>
-  //       </Grid>
-  //       </Grid>
-  //     </Grid>
-  //   </Grid>
     <div className={classes.root}>
       {/* <AppBar position="static" className={classes.root}> */}
       <AppBar position="static">
@@ -155,37 +139,15 @@ function logout () {
               >
                 <MenuItem onClick={handleClose}><Link to={"/home"}>Home</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to={"/userprofile"}>Profile  </Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to={"/blog"}>Blog</Link></MenuItem>
+                {/* <MenuItem onClick={handleClose}><Link to={"/blog"}>Blog</Link></MenuItem> */}
                 <MenuItem onClick={handleClose}><Link to={"/gamepage"}>Games</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to={"/more"}>Find More</Link></MenuItem>
                 <MenuItem onClick={handleClose}><a href="/" onClick={logout}>Logout</a></MenuItem>
 
              
              
               </Menu>
           </div>
-
-          {/* <Typography variant="h6" className={classes.title}>
-          <Link to={"/home"}>Home</Link>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-          <Link to={"/userprofile"}>Profile  </Link>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-          <Link to={"/blog"}>Blog  </Link>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-          <Link to={"/gamepage"}>Games  </Link>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-          <a href="/" onClick={logout}>Logout</a>
-          </Typography> */}
-          {/* {!jwtDecode(accessString) ? null : (
-
-          <Typography variant="h6" className={classes.title}>
-          Welcome {jwtDecode(accessString).username}
-          </Typography>
-          )}
-          <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>
