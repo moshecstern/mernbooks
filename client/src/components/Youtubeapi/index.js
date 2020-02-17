@@ -21,7 +21,7 @@ const videoSearch = (searchTerm) => {
  });
 }
  useEffect(() => {
-   videoSearch("comic news")
+   videoSearch(props.search)
  }, []);
 
     return (

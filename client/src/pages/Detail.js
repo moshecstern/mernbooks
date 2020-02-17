@@ -103,6 +103,7 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button>
 <Button onClick={(e)=> setSelectedDashboard("Yelpcomicshops")}>Local Comics & Events</Button>
         <Button onClick={(e)=> setSelectedDashboard("VolumesByDB")}>Search All Series</Button>
+        <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button>
         {/* <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button> */}
 </div>
 {selectedDashboard === 'character' && <Comicbookvineapi props={props} myurl={"characters"}>{props}</Comicbookvineapi>}
@@ -120,7 +121,7 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 {selectedDashboard === 'movies' && <Omdbmovies props={props}>{props}</Omdbmovies>  }
 {selectedDashboard === 'Yelpcomicshops' && <YelpAPI props={props}>{props}</YelpAPI>}
 {selectedDashboard === 'VolumesByDB' && <VolumeDB props={props}>{props}</VolumeDB>}
-{selectedDashboard === 'Youtube' && <YoutubeAPI props={props}>{props}</YoutubeAPI>}
+{selectedDashboard === 'Youtube' && <YoutubeAPI props={props} search={props.match.params.name}>{props}</YoutubeAPI>}
 
     </>
   );

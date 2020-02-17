@@ -170,7 +170,28 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
   // const getgooglebook = vol => {
   //   console.log(vol);
   // };
+  // const [thisprice, setthisprice] = useState()
+async function addtomarketplace(titleM, descM, imgM, linkM, authorM, publishedM, numissuesM){
+  // vol.Title,vol.description, vol.img, vol.link, vol.author, vol.published, vol.numIssues
+  // jwtDecode(accessString).id
+  const thispriceI = prompt('How much does '+ titleM +' cost?')
 
+  Axios.post("/api/products/", {
+    userID: jwtDecode(accessString).id,
+    Title: titleM,
+    img: imgM,
+    link: linkM,
+    author: authorM,
+    description: descM,
+    published: publishedM,
+    numIssues: numissuesM,
+    price: thispriceI
+  },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(alert("Saved to Marketplace"))
+  .then(res => randomtext())
+  .catch(err => console.log(err));
+  // console.log(id)
+}
    
   if (loading) {
     return <></>;
@@ -234,8 +255,12 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
           aria-expanded={expanded}
           aria-label="show more"
         >
+
           <ExpandMoreIcon />
         </IconButton>
+{!props.admin ? null : (
+  <Button onClick={()=> addtomarketplace(vol.Title,vol.description, vol.img, vol.link, vol.author, vol.published, vol.numIssues)}>Sell Volume</Button>
+)}
       <Button onClick={() =>showvolumeinformation(vol.Title)}> Get Volumes Information</Button>
       <Button onClick={() => deleteBook(vol._id)}>Delete</Button>
       </CardActions>

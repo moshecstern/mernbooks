@@ -54,7 +54,7 @@ function Home (props) {
 <CharactersBoard props={props}/>
 <div className="text-center"><h2><Link to={"/more"}>Search Series through our extensive database & so much more click here </Link> </h2></div>
       <br />
-      <YoutubeAPI />
+      <YoutubeAPI search={"comic news"}/>
       <Allblogs />
         <br />
 

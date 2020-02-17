@@ -20,6 +20,8 @@ import Userprofile from "./pages/Userprofile"
 import GameTrivia from "./components/GameTrivia"
 import Blog from "./pages/Blog";
 import More from "./pages/More"
+import Cart from "./components/Marketplace/cart"
+import Admin from "./pages/Admin"
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
@@ -49,6 +51,9 @@ function App() {
             <Route exact path="/blog" component={Blog} />
             <Route exact path="/character/:id" component={Detail} />
             <Route exact path="/more" component={More} />
+            <Route exact path="/marketplace" component={Cart} />
+            <Route exact path="/admin" component={Admin} />
+
             <Route
               exact
               path="/api/series/:seriesname/:charactername"

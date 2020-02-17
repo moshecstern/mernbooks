@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const SearchBar = props => {
 
-  const [term, setTerm] = useState("comic news")
+  const [term, setTerm] = useState(props.search)
 
   async function onInputChange(event) {
 

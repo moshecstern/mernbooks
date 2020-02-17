@@ -12,6 +12,7 @@ import CharactersBoard from "../components/CharactersBoard";
 import Allblogs from "../components/blog/Allblogs"
 import Games from "../pages/Gamespage"
 import Userprofile from "../pages/Userprofile"
+import Marketplace from "../components/Marketplace/cart"
 
 import {
     TextField,
@@ -39,6 +40,7 @@ const More = props => {
         <Button onClick={(e)=> setSelectedDashboard("VolumeByCharacter")}>Find Series By Character</Button>
         <Button onClick={(e)=> setSelectedDashboard("games")}>Games</Button>
         <Button onClick={(e)=> setSelectedDashboard("profile")}>Profile</Button>
+        {/* <Button onClick={(e)=> setSelectedDashboard("marketplace")}>Marketplace</Button> */}
 
 </div>
 {/* news */}
@@ -54,11 +56,12 @@ const More = props => {
 {selectedDashboard === 'Yelpcomicshops' && <YelpAPI props={props}>{props}</YelpAPI>}
 {selectedDashboard === 'YelpEvents' && <Yelpevents props={props}>{props}</Yelpevents>}
 {selectedDashboard === 'VolumesByDB' && <VolumeDB props={props}>{props}</VolumeDB>}
-{selectedDashboard === 'Youtube' && <YoutubeAPI props={props}>{props}</YoutubeAPI>}
+{selectedDashboard === 'Youtube' && <YoutubeAPI props={props} search={"superhero news"}>{props}</YoutubeAPI>}
 {selectedDashboard === 'VolumeByCharacter' && <CharactersBoard props={props}>{props}</CharactersBoard>}
 {selectedDashboard === 'blogs' && <Allblogs props={props}>{props}</Allblogs>}
 {selectedDashboard === 'games' && <Games props={props}>{props}</Games>}
 {selectedDashboard === 'profile' && <Userprofile props={props}>{props}</Userprofile>}
+{selectedDashboard === 'marketplace' && <Marketplace props={props}>{props}</Marketplace>}
 
 <br />
         <Notes />

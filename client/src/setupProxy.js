@@ -19,6 +19,12 @@ module.exports = function(app) {
   app.use(proxy("/api/userfavblogs", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/comicvinevolumes", { target: process.env.PORT||"http://localhost:3001/" }));
   
+  app.use(proxy("/api/products", { target: process.env.PORT||"http://localhost:3001/" }));
+  app.use(proxy("/api/productsbought", { target: process.env.PORT||"http://localhost:3001/" }));
+  app.use(proxy("/api/wishlist", { target: process.env.PORT||"http://localhost:3001/" }));
+  app.use(proxy("/api/mycart", { target: process.env.PORT||"http://localhost:3001/" }));
+  app.use(proxy("/api/favcharacters", { target: process.env.PORT||"http://localhost:3001/" }));
+
   // app.use(proxy("/api/userfavtv", { target: process.env.PORT||"http://localhost:3001/" }));
   // app.use(proxy("/api/userfavmovies", { target: process.env.PORT||"http://localhost:3001/" }));
   // app.use(proxy("/api/userfavnews", { target: process.env.PORT||"http://localhost:3001/" }));

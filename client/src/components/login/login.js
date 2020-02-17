@@ -52,10 +52,10 @@ import "./login.css"
   
   {/* <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> */}
             <form>
-            <div class="form-group">
+            <div className="form-group">
             Username: <input type="text" class="form-control" name="username" value={username} onChange={handleChangeUsername} />
             </div>
-            <div class="form-group">
+            <div className="form-group">
             Password: <input type="password" class="form-control" name="password" value={password} onChange={handleChangePassword} />
             </div>
             <button type="submit" class="btn btn-success" onClick={loginUser}>Login</button>
