@@ -28,9 +28,9 @@ import {
   import { red, lightGreen } from '@material-ui/core/colors';
   // import StripeCheckout from 'react-stripe-checkout';
   // import Checkout from "../Marketplace/checkout"
-  import { Elements, StripeProvider } from "react-stripe-elements";
   // import {StripeProvider} from 'react-stripe-elements';
-  import Checkout from "./Checkout"
+  // import { Elements, StripeProvider } from "react-stripe-elements";
+  // import Checkout from "./Checkout"
   const jwtDecode = require('jwt-decode');
 const useStyles = makeStyles(theme => ({
   root: {
@@ -357,11 +357,11 @@ function getTotalPrice() {
       <div><h2>There is nothing in your cart.. yet!</h2> </div>
       
     )}
-    <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
+    {/* <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
       <Checkout />
-    </StripeProvider>
+    </StripeProvider> */}
 
-        <Modal
+        {/* <Modal
      
         
         aria-labelledby="server-modal-title"
@@ -386,11 +386,9 @@ function getTotalPrice() {
 >
     <div className={classes.root}>
 
-           {/* <Button onClick={savebooks}>Save Blog</Button>
-      <Button onClick={handleClose}>exit</Button> */}
-      {/* <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
-      <Checkout />
-    </StripeProvider> */}
+           <Button onClick={savebooks}>Save Blog</Button>
+      <Button onClick={handleClose}>exit</Button>
+   
   <StripeProvider apiKey={"pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU"}>
             <Elements>
               <Checkout amount={total}/>
@@ -400,10 +398,10 @@ function getTotalPrice() {
       </div>
       
    
-    {/* </div> */}
+    
 </Grid>
     </Fade>
-        </Modal>
+        </Modal> */}
     </div>
 
       </>
