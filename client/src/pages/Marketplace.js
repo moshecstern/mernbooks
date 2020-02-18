@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Notes from "../components/Notes"
 import FeaturedAll from "../components/HomeNavLayout/FeaturesAll"
 
-const More = props => {
+const Marketplace = props => {
 
 
 
@@ -11,7 +11,7 @@ const More = props => {
     return (
         <>
         <div className="text-center">
-        <FeaturedAll tab={"VolumesByDB"}/>
+        <FeaturedAll tab={"marketplace"}/>
 <br />
         <Notes />
         
@@ -19,4 +19,4 @@ const More = props => {
     </>
   );
 }
-export default More;
+export default Marketplace;

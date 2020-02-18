@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import Nav from "./components/Nav/nav";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -20,6 +20,8 @@ import Userprofile from "./pages/Userprofile"
 import GameTrivia from "./components/GameTrivia"
 import Blog from "./pages/Blog";
 import More from "./pages/More"
+import Marketplace from "./pages/Marketplace"
+import Admin from "./pages/Admin"
 
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
@@ -49,6 +51,9 @@ function App() {
             <Route exact path="/blog" component={Blog} />
             <Route exact path="/character/:id" component={Detail} />
             <Route exact path="/more" component={More} />
+            <Route exact path="/marketplace" component={Marketplace} />
+            <Route exact path="/admin" component={Admin} />
+
             <Route
               exact
               path="/api/series/:seriesname/:charactername"

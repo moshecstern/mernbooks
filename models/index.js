@@ -11,8 +11,12 @@ module.exports = {
   userblog: require("./userblog"),
   userfavblogs: require("./userfavblogs"),
   comicvinevolumes: require("./comicvinevolumes"),
-
-  // userfavtv: require("./"),
+  products: require("./products"),
+  productsbought: require("./productsbought"),
+  wishlist: require("./wishlist"),
+  mycart: require("./mycart"),
+  userfavtv: require("./userfavtv"),
+  favcharacters: require("./favcharacters")
   // userfavmovies: require("./"),
   // userfavnews: require("./"),
 };

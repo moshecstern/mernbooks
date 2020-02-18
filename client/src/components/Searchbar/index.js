@@ -99,16 +99,15 @@ function submitSearch(){
           onSubmit={handleformsubmit}
         //   onSubmit={<Link to={location => ({ ...location, pathname: "/series/"+ searchTerm })} />}
         />
-        <Button>
+        {/* <Button>
           <p>
             {
               <Link to={"/series/" + searchTerm}>
                 Search 
-                {/* ({searchTerm}) */}
               </Link>
             }
           </p>
-        </Button>
+        </Button> */}
         
       </form>
     </Grid>

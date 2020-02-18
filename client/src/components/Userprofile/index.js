@@ -170,7 +170,30 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
   // const getgooglebook = vol => {
   //   console.log(vol);
   // };
-
+  // const [thisprice, setthisprice] = useState()
+async function addtomarketplace(titleM, descM, imgM, linkM, authorM, publishedM, numissuesM){
+  // vol.Title,vol.description, vol.img, vol.link, vol.author, vol.published, vol.numIssues
+  // jwtDecode(accessString).id
+  const thispriceI = prompt('How much does '+ titleM +' cost?')
+ const thismessageI = prompt('Enter some details here about product')
+  Axios.post("/api/products/", {
+    userID: jwtDecode(accessString).id,
+    username: jwtDecode(accessString).username,
+    Title: titleM,
+    img: imgM,
+    link: linkM,
+    author: authorM,
+    description: descM,
+    published: publishedM,
+    numIssues: numissuesM,
+    price: thispriceI,
+    message: thismessageI
+  },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(alert("Saved to Marketplace"))
+  .then(res => randomtext())
+  .catch(err => console.log(err));
+  // console.log(id)
+}
    
   if (loading) {
     return <></>;
@@ -180,6 +203,7 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
     {/* <Grid container spacing={2}>
     <Grid item> */}
     {/* <Map /> */}
+    {!mybooks ? null : (
     <div>
     <h2>My Saved Books</h2>
     <Grid
@@ -234,8 +258,12 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
           aria-expanded={expanded}
           aria-label="show more"
         >
+
           <ExpandMoreIcon />
         </IconButton>
+{!props.admin ? null : (
+  <Button onClick={()=> addtomarketplace(vol.Title,vol.description, vol.img, vol.link, vol.author, vol.published, vol.numIssues)}>Sell Volume</Button>
+)}
       <Button onClick={() =>showvolumeinformation(vol.Title)}> Get Volumes Information</Button>
       <Button onClick={() => deleteBook(vol._id)}>Delete</Button>
       </CardActions>
@@ -252,6 +280,12 @@ function savevoltoprofile (myid, mytitle, myimg, mylink, myauthor, mydesc, mypub
     ))}
 </Grid>
 </div>
+)}
+{mybooks ? null : (
+  <div>
+    <h2>You have no books saved</h2>
+  </div>
+)}
       {!currentsearchresults ? null : (
         <Modal
                 aria-labelledby="transition-modal-title"

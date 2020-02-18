@@ -63,7 +63,7 @@ const News = () => {
           <GridList item cols={4} className={classes.group}>
             {comicUrls.map(item => (
               <GridListTile key={item.title}>
-                <img srcset={item.image} alt={item.title} />
+                <img srcSet={item.image} alt={item.title} />
                 <GridListTileBar
                   title={
                     <Link
