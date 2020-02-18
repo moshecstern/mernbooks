@@ -26,6 +26,9 @@ import {
 import MemHighScores from "../components/Memorygamemain/HighScore"
 import TriviaScores from "../components/GameTrivia/UserHighScore"
 import ProfileCustom from "../components/Userprofile/Userprofilecustom"
+import Mycart from "../components/Nmarketplace/Mycart"
+import Productsbought from "../components/Nmarketplace/productsbought"
+// import Mycart from "../components/Nmarketplace/Mycart"
 // import Userblog from "../components/"
 // function rand() {
 //   return Math.round(Math.random() * 20) - 10;
@@ -79,10 +82,28 @@ const Userprofile = props => {
     SetLogIn(true);
   }
 }
+const [selectedDashboardB, setSelectedDashboardB] = useState('profile')
   return (
     <>
 {/* <Imageuploader /> */}
       {/* <YelpAPI /> */}
+      <Button onClick={(e)=> setSelectedDashboardB("profile")}>Profile</Button>
+      <Button onClick={(e)=> setSelectedDashboardB("mybooks")}>My Books</Button>
+
+        {/* <Button onClick={(e)=> setSelectedDashboardB("products")}>Products</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("cart")}>My Cart</Button> */}
+        <Button onClick={(e)=> setSelectedDashboardB("scores")}>My Scores</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("blogs")}>My Blogs</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("history")}>My PurchaseHistory</Button>
+        {/* <Button onClick={(e)=> setSelectedDashboardB("favcharacters")}>Favorite Characters</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("tvseries")}>TV Series</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("storyarcs")}>Story Arcs</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("series")}>Series</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("volumes")}>Volumes</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("concepts")}>Concepts</Button> */}
+
+
+
 
 <Grid
   container
@@ -102,9 +123,16 @@ const Userprofile = props => {
   justify="center"
   alignItems="center" */}
 {/* > */}
-<ProfileCustom />
-<TriviaScores /> 
-<MemHighScores />  
+{selectedDashboardB === 'profile' && <ProfileCustom />}
+
+
+{selectedDashboardB === 'mybooks' && <Userprofileco />}
+{selectedDashboardB === 'scores' && 
+<div><TriviaScores /> 
+<MemHighScores /> </div>}
+{selectedDashboardB === 'blogs' && <Userblog /> }
+{selectedDashboardB === 'history' && <Productsbought /> }
+ 
 </Grid>
 {/* add blog here */}
 {/* // </Grid> */}
@@ -114,12 +142,12 @@ const Userprofile = props => {
   justify="center"
   alignItems="flex-end"
 > */}
-<Userblog />
-<Userprofileco />
+
+
 {/* // </Grid> */}
 {/* // </Grid> */}
-<br />
-    <SeriesAll />
+{/* <br />
+    <SeriesAll /> */}
     </>
   );
 };

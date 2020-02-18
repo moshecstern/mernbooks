@@ -15,6 +15,8 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
 // import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -110,6 +112,7 @@ function logout () {
         <Typography variant="h6" className={classes.title}>
         <Searchbar />
         </Typography>
+        <ShoppingCartIcon></ShoppingCartIcon>
          <Button> <Link to={"/more"}>Features</Link></Button>
           <div>
           <IconButton edge="start" className={classes.menuButton}

@@ -175,9 +175,10 @@ async function addtomarketplace(titleM, descM, imgM, linkM, authorM, publishedM,
   // vol.Title,vol.description, vol.img, vol.link, vol.author, vol.published, vol.numIssues
   // jwtDecode(accessString).id
   const thispriceI = prompt('How much does '+ titleM +' cost?')
-
+ const thismessageI = prompt('Enter some details here about product')
   Axios.post("/api/products/", {
     userID: jwtDecode(accessString).id,
+    username: jwtDecode(accessString).username,
     Title: titleM,
     img: imgM,
     link: linkM,
@@ -185,7 +186,8 @@ async function addtomarketplace(titleM, descM, imgM, linkM, authorM, publishedM,
     description: descM,
     published: publishedM,
     numIssues: numissuesM,
-    price: thispriceI
+    price: thispriceI,
+    message: thismessageI
   },{headers: { Authorization: `JWT ${accessString}` }} )
   .then(alert("Saved to Marketplace"))
   .then(res => randomtext())
@@ -201,6 +203,7 @@ async function addtomarketplace(titleM, descM, imgM, linkM, authorM, publishedM,
     {/* <Grid container spacing={2}>
     <Grid item> */}
     {/* <Map /> */}
+    {!mybooks ? null : (
     <div>
     <h2>My Saved Books</h2>
     <Grid
@@ -277,6 +280,12 @@ async function addtomarketplace(titleM, descM, imgM, linkM, authorM, publishedM,
     ))}
 </Grid>
 </div>
+)}
+{mybooks ? null : (
+  <div>
+    <h2>You have no books saved</h2>
+  </div>
+)}
       {!currentsearchresults ? null : (
         <Modal
                 aria-labelledby="transition-modal-title"

@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Products = props =>{
+const Productsbought = props =>{
     let accessString = localStorage.getItem('JWT')
     if(accessString == null){
       accessString = Cookies.get("JWT");
@@ -108,7 +108,7 @@ const Products = props =>{
   };
 
   const [{ data: books, loading }, randomtext] = useAxios({
-    url: "/api/products/",
+    url: "/api/productsbought/"+ jwtDecode(accessString).id,
     headers: { Authorization: `JWT ${accessString}` }
   });
   const [editbookprofile, setblogedit] = useState(false);
@@ -176,25 +176,64 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
 //   .catch(err => alert(err));
 
 // }
-// function deleteblog(id){
-//   console.log(id)
-//   Axios.delete("/api/bookblog/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
-//   .then(res => randomtext())
-// .catch(err => console.log(err))
-// };
+function deleteItemFromCart(id){
+  console.log(id)
+  Axios.delete("/api/mycart/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
+  .then(res => randomtext())
+.catch(err => console.log(err))
+};
 //   if (loading) {
 //     return <></>;
 //   }
+// const [total, setTotal] = useState(0)
+// async function buyCart(event){
+//     event.preventDefault()
+//     // if payed(true), then
+// books.map(cartBook => (
+//     Axios.post("/api/productsbought/", {
+//         userID: jwtDecode(accessString).id,
+//         username: jwtDecode(accessString).username,
+//         Title: cartBook.Title,
+//         img: cartBook.img,
+//         link: cartBook.link,
+//         author: cartBook.author,
+//         description: cartBook.description,
+//         published: cartBook.published,
+//         numIssues: cartBook.numissues,
+//         price: cartBook.price,
+//         message: cartBook.message,
+//         payed: true,
+//         message2: cartBook.message2
+//     },{headers: { Authorization: `JWT ${accessString}` }} )
+//     .then(res => console.log(res))
+//     .then(alert("Your product/s should arrive with in 2 weeks"))
+//     .catch(err => alert(err))
+// ))
+// books.map(delBook => (
+//     Axios.delete("/api/mycart/"+ delBook._id, {headers: { Authorization: `JWT ${accessString}` }})
+//     .then(res => randomtext())
+//   .catch(err => console.log(err))
+// ))
+// // else alert(please enter credit card info to purchase)
+// }
+// useEffect(() => {
+//     getTotalPrice
+//   }, []);
+// const getTotalPrice = () => {
+//     books.map(bookprice => (
+//   setTotal(total+bookprice.price)
+//     ))
+// }
   return (
     <>
       
     <div>
-    <h1>Our Store is not ready yet, but feel free to browse! All books shown will be available</h1>
-
-<h2>Books</h2>
+<h2>Books Bought</h2>
 {/* <Button onClick={openblogform}>edit book</Button> */}
 {!books ? null : (
   <div> 
+  {/* <h2>Total: {total}</h2>
+  <Button onClick={buyCart}>Buy({total})</Button> */}
 <Grid
   container
   direction="row"
@@ -233,6 +272,15 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         <Typography variant="body2" color="textSecondary" component="p">
        Details: {book.message} 
         </Typography>
+        {!book.message2 ? null : (
+<span>
+        {book.message2.map(message => (
+        <Typography variant="body2" color="textSecondary" component="p">
+       Comments: {message} 
+        </Typography>
+        ))}
+        </span>
+        )}
         <Typography variant="body2" color="textSecondary" component="p">
         {book.publisher}, {book.author}  
         </Typography>
@@ -262,7 +310,9 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         >
           <ExpandMoreIcon />
         </IconButton>
-        <Button onClick={()=> addToCart(book.Title,book.description, book.img, book.link, book.author, book.published, book.numIssues, book.price ,book.message)}>Add to cart</Button>
+        {/* <Button onClick={()=> addToCart(book.Title,book.description, book.img, book.link, book.author, book.published, book.numIssues, book.price ,book.message)}>Add to cart</Button> */}
+        {/* <Button onClick={()=> deleteItemFromCart(book._id)}>Remove from cart</Button> */}
+
         {/* <Button onClick={() =>savelike(book._id, book.liked, book.bookID)}> Like {book.liked}</Button> */}
       {/* <Button onClick={() =>showbookumeinformation(book.Title)}> Get bookumes Information</Button> */}
       {/* <Button onClick={() => deleteBook(book._id)}>Delete</Button> */}
@@ -278,17 +328,15 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         </CardContent>
       </Collapse>
     </Card>
+    
     ))}
     </Grid>
+    {/* <Button onClick={buyCart}>Buy ({total})</Button> */}
 </div>
 
     )}
     {books ? null : (
-      function(){
-
-      setblogedit(false)
-      handleOpen()
-      }
+      <div><h2>There is nothing in your purchase history.. yet!</h2> </div>
       
     )}
     
@@ -467,4 +515,4 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
       </>
   );
 }
-export default Products;
+export default Productsbought;

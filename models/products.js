@@ -13,7 +13,7 @@ const productsSchema = new Schema({
   date: { type: Date, default: Date.now },
   img2: String,
   price: {type: Number, required: true},
-  message: Array
+  message: String
 });
 const products = mongoose.model("products", productsSchema);
 

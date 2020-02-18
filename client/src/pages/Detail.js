@@ -101,9 +101,9 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 
 {/* <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button> */}
 <Button onClick={(e)=> setSelectedDashboard("movies")}>Movies</Button>
-<Button onClick={(e)=> setSelectedDashboard("Yelpcomicshops")}>Local Comics & Events</Button>
-        <Button onClick={(e)=> setSelectedDashboard("VolumesByDB")}>Search All Series</Button>
+{/* <Button onClick={(e)=> setSelectedDashboard("Yelpcomicshops")}>Local Comics & Events</Button> */}
         <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button>
+        <Button onClick={(e)=> setSelectedDashboard("VolumesByDB")}>Search All Series</Button>
         {/* <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button> */}
 </div>
 {selectedDashboard === 'character' && <Comicbookvineapi props={props} myurl={"characters"}>{props}</Comicbookvineapi>}

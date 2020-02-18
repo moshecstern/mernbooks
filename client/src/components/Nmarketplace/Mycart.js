@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Modal from "@material-ui/core/Modal";
@@ -26,6 +26,11 @@ import {
   import Collapse from '@material-ui/core/Collapse';
   import IconButton from '@material-ui/core/IconButton';
   import { red, lightGreen } from '@material-ui/core/colors';
+  // import StripeCheckout from 'react-stripe-checkout';
+  // import Checkout from "../Marketplace/checkout"
+  import { Elements, StripeProvider } from "react-stripe-elements";
+  // import {StripeProvider} from 'react-stripe-elements';
+  import Checkout from "./Checkout"
   const jwtDecode = require('jwt-decode');
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,7 +73,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: lightGreen[500],
+    // backgroundColor: lightGreen[500],
     // backgroundColor: '#5HN7E7K',
     height: '75%',
     width: '75%',
@@ -88,7 +93,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Products = props =>{
+const Mycart = props =>{
     let accessString = localStorage.getItem('JWT')
     if(accessString == null){
       accessString = Cookies.get("JWT");
@@ -108,43 +113,43 @@ const Products = props =>{
   };
 
   const [{ data: books, loading }, randomtext] = useAxios({
-    url: "/api/products/",
+    url: "/api/mycart/"+ jwtDecode(accessString).id,
     headers: { Authorization: `JWT ${accessString}` }
   });
   const [editbookprofile, setblogedit] = useState(false);
 
-const openblogform = () =>{
-  setblogedit(true)
+const openmodal = () =>{
+  // setblogedit(true)
   handleOpen()
 }
-const [mytitle, setmytitle] = useState("");
-const [mymessage, setmymessage] = useState("");
-const [myimg, setmyimg] = useState("https://cdn.pixabay.com/photo/2017/04/09/16/40/batman-2216148_1280.jpg");
-const [mylink, setmylink] = useState("");
-const [mymessagetwo, setmymessagetwo] = useState("");
-const [mylinkdescription, setmylinkdescription] = useState("blog link");
-const [myauthor, setmyauthor] = useState("");
+// const [mytitle, setmytitle] = useState("");
+// const [mymessage, setmymessage] = useState("");
+// const [myimg, setmyimg] = useState("https://cdn.pixabay.com/photo/2017/04/09/16/40/batman-2216148_1280.jpg");
+// const [mylink, setmylink] = useState("");
+// const [mymessagetwo, setmymessagetwo] = useState("");
+// const [mylinkdescription, setmylinkdescription] = useState("blog link");
+// const [myauthor, setmyauthor] = useState("");
 
-async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numissuesM, priceM, messageM) {
- const message2I = prompt("Ask a question/ or comment & we will get back to you")
-  Axios.post("/api/mycart", {
-    userID: jwtDecode(accessString).id,
-    Title: titleM,
-    img: imgM,
-    link: linkM,
-    author: authorM,
-    description: descM,
-    published: publishedM,
-    numIssues: numissuesM,
-    price: priceM,
-    message: messageM,
-    payed: false,
-    message2: message2I
-  },{headers: { Authorization: `JWT ${accessString}` }})
-  .then(res => console.log(res))
-  .then(alert("Saved to Cart"))
-  .catch(err => alert(err));
-}
+// async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numissuesM, priceM, messageM) {
+//  const message2I = prompt("Ask a question/ or comment & we will get back to you")
+//   Axios.post("/api/mycart", {
+//     userID: jwtDecode(accessString).id,
+//     Title: titleM,
+//     img: imgM,
+//     link: linkM,
+//     author: authorM,
+//     description: descM,
+//     published: publishedM,
+//     numIssues: numissuesM,
+//     price: priceM,
+//     message: messageM,
+//     payed: false,
+//     message2: message2I
+//   },{headers: { Authorization: `JWT ${accessString}` }})
+//   .then(res => console.log(res))
+//   .then(alert("Saved to Cart"))
+//   .catch(err => alert(err));
+// }
 // function savelike(id, liked, bookid){
 //   console.log(jwtDecode(accessString).bookname)
 //   if(bookid !== jwtDecode(accessString).id){
@@ -176,25 +181,76 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
 //   .catch(err => alert(err));
 
 // }
-// function deleteblog(id){
-//   console.log(id)
-//   Axios.delete("/api/bookblog/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
-//   .then(res => randomtext())
-// .catch(err => console.log(err))
-// };
+function deleteItemFromCart(id){
+  console.log(id)
+  Axios.delete("/api/mycart/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
+  .then(res => randomtext())
+.catch(err => console.log(err))
+};
 //   if (loading) {
 //     return <></>;
 //   }
+const [total, setTotal] = useState(0)
+async function buyCart(event){
+    event.preventDefault()
+    getTotalPrice();
+    // if payed(true), then
+books.map(cartBook => (
+    Axios.post("/api/productsbought/", {
+        userID: jwtDecode(accessString).id,
+        username: jwtDecode(accessString).username,
+        Title: cartBook.Title,
+        img: cartBook.img,
+        link: cartBook.link,
+        author: cartBook.author,
+        description: cartBook.description,
+        published: cartBook.published,
+        numIssues: cartBook.numissues,
+        price: cartBook.price,
+        message: cartBook.message,
+        payed: true,
+        message2: cartBook.message2
+    },{headers: { Authorization: `JWT ${accessString}` }} )
+    .then(res => console.log(res))
+    .then(alert("Your product/s should arrive with in 2 weeks"))
+    .catch(err => alert(err))
+))
+books.map(delBook => (
+    Axios.delete("/api/mycart/"+ delBook._id, {headers: { Authorization: `JWT ${accessString}` }})
+    .then(res => randomtext())
+  .catch(err => console.log(err))
+))
+// else alert(please enter credit card info to purchase)
+}
+
+useEffect(() => {
+  randomtext()
+  }, []);
+// if(!loading){
+//     getTotalPrice()
+// }
+        
+    
+
+function getTotalPrice() {
+        books.map(bookprice => (
+            setTotal(total+bookprice.price)
+            ))
+        }
   return (
     <>
       
     <div>
     <h1>Our Store is not ready yet, but feel free to browse! All books shown will be available</h1>
-
-<h2>Books</h2>
+<h2>My Cart</h2>
+{/* <Checkout amount={total}/> */}
 {/* <Button onClick={openblogform}>edit book</Button> */}
 {!books ? null : (
   <div> 
+  {/* {function(){getTotalPrice()}} */}
+  <Button onClick={getTotalPrice}>calculate Total</Button>
+  <h2>Total: {total}</h2>
+  <Button onClick={openmodal}>Buy({total})</Button>
 <Grid
   container
   direction="row"
@@ -233,6 +289,15 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         <Typography variant="body2" color="textSecondary" component="p">
        Details: {book.message} 
         </Typography>
+        {!book.message2 ? null : (
+<span>
+        {book.message2.map(message => (
+        <Typography variant="body2" color="textSecondary" component="p">
+       Comments: {message} 
+        </Typography>
+        ))}
+        </span>
+        )}
         <Typography variant="body2" color="textSecondary" component="p">
         {book.publisher}, {book.author}  
         </Typography>
@@ -262,7 +327,9 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         >
           <ExpandMoreIcon />
         </IconButton>
-        <Button onClick={()=> addToCart(book.Title,book.description, book.img, book.link, book.author, book.published, book.numIssues, book.price ,book.message)}>Add to cart</Button>
+        {/* <Button onClick={()=> addToCart(book.Title,book.description, book.img, book.link, book.author, book.published, book.numIssues, book.price ,book.message)}>Add to cart</Button> */}
+        <Button onClick={()=> deleteItemFromCart(book._id)}>Remove from cart</Button>
+
         {/* <Button onClick={() =>savelike(book._id, book.liked, book.bookID)}> Like {book.liked}</Button> */}
       {/* <Button onClick={() =>showbookumeinformation(book.Title)}> Get bookumes Information</Button> */}
       {/* <Button onClick={() => deleteBook(book._id)}>Delete</Button> */}
@@ -278,21 +345,23 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         </CardContent>
       </Collapse>
     </Card>
+    
     ))}
     </Grid>
+    {/* <Button onClick={buyCart}>Buy ({total})</Button> */}
+    <Button onClick={openmodal}>Buy ({total})</Button>
 </div>
 
     )}
     {books ? null : (
-      function(){
-
-      setblogedit(false)
-      handleOpen()
-      }
+      <div><h2>There is nothing in your cart.. yet!</h2> </div>
       
     )}
-    
-        {/* <Modal
+    <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
+      <Checkout />
+    </StripeProvider>
+
+        <Modal
      
         
         aria-labelledby="server-modal-title"
@@ -316,155 +385,28 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
   alignItems="center"
 >
     <div className={classes.root}>
-      <div>
-      <div><h2>What's on your mind?</h2></div>
-      <br />
-      <TextField
-          label="Name"
-          id="margin-none"
-        
-          className={classes.textField}
-          value={myauthor}
-          onChange={(e)=> setmyauthor(e.target.value)}
-          helperText="Your Name"
-        />
-        <TextField
-          label="Title"
-          id="margin-none"
-         
-          className={classes.textField}
-          value={mytitle}
-          onChange={(e)=> setmytitle(e.target.value)}
-          helperText="Batman is awesome"
-        />
-          <TextField
-          label="Link"
-          id="margin-none"
-         
-          className={classes.textField}
-          value={mylink}
-          onChange={(e)=> setmylink(e.target.value)}
-          helperText="Add a link"
-        />
-                  <TextField
-          label="Link Description"
-          id="margin-none"
-          
-          className={classes.textField}
-          value={mylinkdescription}
-          onChange={(e)=> setmylinkdescription(e.target.value)}
-          helperText="Title your link"
-        />
-                <TextField
-          label="Image"
-          id="margin-none"
-         
-          className={classes.textField}
-          value={myimg}
-          onChange={(e)=> setmyimg(e.target.value)}
-          helperText="https:///yourimagehere.jpg"
-        />
-        </div>
-        <div>
-  
-     
-    
-        <TextField
-          id="filled-full-width"
-          label="Info"
-          style={{ margin: 8 }}
-          
-          value={mymessage}
-          onChange={(e)=> setmymessage(e.target.value)}
-          helperText="Main blog area"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-        />
-                <TextField
-          id="filled-full-width"
-          label="Info"
-          style={{ margin: 8 }}
-         
-          value={mymessagetwo}
-          onChange={(e)=> setmymessagetwo(e.target.value)}
-          helperText="More information, will display on click"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-        />
-           <Button onClick={savebooks}>Save Blog</Button>
-      <Button onClick={handleClose}>exit</Button>
-      </div>
-      <div>
-<div><h2>How it will look</h2></div>
-<Card className={classes.card}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="blog" className={classes.avatar}>
-            B
-          </Avatar>
-        }
-        title={mytitle}
-        subheader={myauthor}
-      />
-      <CardMedia
-        className={classes.media}
-        image={myimg}
-        title={myauthor}
-      />
-      <CardContent>
 
-        <Typography variant="body2" color="textSecondary" component="p">
-       Name: {myauthor} 
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-        {mymessage} 
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Created: {Date.now}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <Typography variant="body2" color="textSecondary" component="p">
-        <Button>Delete</Button>
-        || <a>Click me {mylinkdescription}</a> || Click => for more
-        </Typography>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
- </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            {mymessagetwo}
-          </Typography>
+           {/* <Button onClick={savebooks}>Save Blog</Button>
+      <Button onClick={handleClose}>exit</Button> */}
+      {/* <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
+      <Checkout />
+    </StripeProvider> */}
+  <StripeProvider apiKey={"pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU"}>
+            <Elements>
+              <Checkout amount={total}/>
+            </Elements>
+          </StripeProvider>
+
+      </div>
       
-        </CardContent>
-      </Collapse>
-    </Card>
-</div>
    
-    </div>
+    {/* </div> */}
 </Grid>
     </Fade>
-        </Modal> */}
+        </Modal>
     </div>
 
       </>
   );
 }
-export default Products;
+export default Mycart;

@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import VolumesDB from "../components/VolumesDB"
 import ProfileCustom from "../components/Userprofile"
 import Products from "../components/Nmarketplace/Products"
+import Mycart from "../components/Nmarketplace/Mycart"
+import Productspurchased from "../components/Nmarketplace/productsbought"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {
@@ -131,13 +133,18 @@ else{
 
         <Button onClick={(e)=> setSelectedDashboard("mybooks")}>My Books</Button>
         <Button onClick={(e)=> setSelectedDashboard("products")}>Products</Button>
+        <Button onClick={(e)=> setSelectedDashboard("cart")}>My Cart</Button>
+        <Button onClick={(e)=> setSelectedDashboard("history")}>My PurchaseHistory</Button>
+
+
           </span>
 
       )}
 {/* create mycart, products, productsbought(all), wishlist */}
       {selectedDashboard === 'mybooks' && <ProfileCustom admin={adminPassword}/>}
       {selectedDashboard === 'products' && <Products admin={adminPassword}/>}
-
+      {selectedDashboard === 'cart' && <Mycart admin={adminPassword}/>}
+      {selectedDashboard === 'history' && <Productspurchased admin={adminPassword}/>}
       <ProfileCustom admin={adminPassword}/>
     <VolumesDB />
       </>

@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 // import useAxios from "axios-hooks";
 // import { makeStyles } from "@material-ui/styles";
 import React, { useState, useEffect } from 'react';
-import {Redirect} from "react-router-dom"
+// import {Redirect} from "react-router-dom"
 import Cookies from 'js-cookie';
-import axios from "axios";
-import HomeNavLayout from "../components/HomeNavLayout"
+// import axios from "axios";
+// import HomeNavLayout from "../components/HomeNavLayout"
 import Allblogs from "../components/blog/Allblogs"
 import YoutubeAPI from "../components/Youtubeapi"
 // function FriendStatus(props) {
