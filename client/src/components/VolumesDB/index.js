@@ -362,7 +362,7 @@ async function goToLastPage() {
           // id="outlined-search"
           label="Search any character"
           type="search"
-          color="red"
+          // color="red"
           variant="outlined"
           // value={title}
           onChange={(event)=> setTitle(event.target.value)}
@@ -373,7 +373,7 @@ async function goToLastPage() {
           // id="outlined-search"
           label="Search By Year"
           type="search"
-          color="red"
+          // color="red"
           variant="outlined"
           // value={title}
           onChange={(event)=> setYear(event.target.value)}
@@ -498,7 +498,7 @@ async function goToLastPage() {
           {/* INSERT BUTTONS TO SEARCH AND FIND MORE ON CUREENT PAGE */}
           <GridList cellHeight={400} cols={4} className={classes.gridList}>
             {series.map(item => (
-              <GridListTile key={item.id}>
+              <GridListTile key={item._id}>
                 <img src={item.img} alt={item.title} />
                 <GridListTileBar
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}

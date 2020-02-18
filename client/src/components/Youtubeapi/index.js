@@ -25,7 +25,7 @@ const videoSearch = (searchTerm) => {
  }, []);
 
     return (
-      <div class="container-fluid">
+      <div className="container-fluid">
       <div className="text-center"><h2>Search youtube for comic realated news, or videos</h2></div>
         <SearchBar onSearchTermChange={searchTerm => videoSearch(searchTerm)} runonload={searchTerm => videoSearch(searchTerm)}/>
         <div className="row">

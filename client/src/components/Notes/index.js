@@ -135,17 +135,17 @@ const Notes = (props) => {
       </Grid>
       </div>
       <div className="col">
-      <Grid item container>
+      <Grid container>
         <Typography variant="h5">Comments & Reviews</Typography>
         {!allnotes ? null : (
 
-        <List dense item container component="nav" aria-label="notesDisplay">
+        <List dense item={"true"} container={"true"} component="nav" aria-label="notesDisplay">
           {allnotes.map(item => (
             <ListItem key={item._id}>
               <ListItemIcon>
                 <NoteAddIcon />
               </ListItemIcon>
-              <Grid direction="column">
+              <Grid container direction="column">
                 <ListItemText primary={item.title} secondary={item.name} />
                 <ListItemText primary={item.message} />
                 <ListItemText secondary={item.date} />

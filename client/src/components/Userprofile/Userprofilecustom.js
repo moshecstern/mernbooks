@@ -164,13 +164,13 @@ function deleteprofile(id){
   return (
     <>
       
-    <div>
+    {/* <div> */}
 <h2>User Profile</h2>
 <Button onClick={opencustomprofile}>Create Profile</Button>
 {!myuser ? null : (
   <div> 
 {myuser.map(user => (
-    <Card className={classes.card}>
+    <Card className={classes.card} key={user._id}>
       <CardHeader
         avatar={
           <Avatar aria-label="book" className={classes.avatar}>
@@ -242,14 +242,14 @@ function deleteprofile(id){
     ))}
 </div>
     )}
-    {myuser ? null : (
+    {/* {myuser ? null : (
       function(){
 
       setuserprofile(false)
       handleOpen()
       }
       
-    )}
+    )} */}
     {/* {!editUserprofile ? false : ( */}
         <Modal
                 // aria-labelledby="transition-modal-title"
@@ -427,7 +427,7 @@ function deleteprofile(id){
     </div>
     </Fade>
         </Modal>
-    </div>
+    {/* </div> */}
       </>
   );
 }

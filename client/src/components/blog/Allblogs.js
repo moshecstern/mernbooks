@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Allblogs = props =>{
+function Allblogs (props) {
     let accessString = localStorage.getItem('JWT')
     if(accessString == null){
       accessString = Cookies.get("JWT");
@@ -162,13 +162,13 @@ function deleteblog(id){
   .then(res => randomtext())
 .catch(err => console.log(err))
 };
-//   if (loading) {
-//     return <></>;
-//   }
+  if (loading) {
+    return <></>;
+  }
   return (
     <>
       
-    <div>
+    {/* <div> */}
 <h2>Blogs</h2>
 <Button onClick={openblogform}>Create Blog</Button>
 {!myblog ? null : (
@@ -181,7 +181,7 @@ function deleteblog(id){
   margin="auto"
 >
 {myblog.map(user => (
-    <Card className={classes.card}>
+    <Card className={classes.card} key={user._id}>
       <CardHeader
         avatar={
           <Avatar aria-label="blog" className={classes.avatar}>
@@ -446,7 +446,7 @@ function deleteblog(id){
 </Grid>
     </Fade>
         </Modal>
-    </div>
+    {/* </div> */}
 
       </>
   );

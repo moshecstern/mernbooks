@@ -199,7 +199,7 @@ function findmorevolumes(e) {
           <Button onClick={findmorevolumes}>Find More</Button>
           <GridList cellHeight={600} cols={3} className={classes.gridList}>
             {heroinfo.results.map(item => (
-              <GridListTile key={item}>
+              <GridListTile key={item.id}>
                 <img src={item.image.medium_url} alt={item.name} />
                 <GridListTileBar
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}

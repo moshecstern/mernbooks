@@ -98,15 +98,16 @@ const Userprofile = props => {
     //   }
 if(adminPassword === "6missingducks"){
     setAdminQ(false)
+    setSelectedDashboard("mybooks")
 }
 else{
     alert("sorry not admin matireal try again!")
 }
   }
-  function handleChangePassword (event)  {
-    setAdminPassword(event.target.value)
-   };
-   const [selectedDashboard, setSelectedDashboard] = useState('mybooks')
+//   function handleChangePassword (event)  {
+    // setAdminPassword(event.target.value)
+//    };
+   const [selectedDashboard, setSelectedDashboard] = useState(null)
 
     return (
       <>
@@ -114,7 +115,7 @@ else{
       {!adminQ ? false : (
       <div>
           <div className="form-group">
-            Password: <input type="password" class="form-control" name="password" value={adminPassword} onChange={handleChangePassword} />
+            Password: <input type="password" className="form-control" name="password" value={adminPassword} onChange={(e)=>setAdminPassword(e.target.value)} />
             </div>
           <Button onClick={checkadminpassword}>Verify</Button>
         {/* <TextField
@@ -140,13 +141,16 @@ else{
           </span>
 
       )}
+      {!adminQ ? null : (
+        <div><h2>Enter password to continue</h2></div>
+      )}
 {/* create mycart, products, productsbought(all), wishlist */}
       {selectedDashboard === 'mybooks' && <ProfileCustom admin={adminPassword}/>}
       {selectedDashboard === 'products' && <Products admin={adminPassword}/>}
       {selectedDashboard === 'cart' && <Mycart admin={adminPassword}/>}
       {selectedDashboard === 'history' && <Productspurchased admin={adminPassword}/>}
-      <ProfileCustom admin={adminPassword}/>
-    <VolumesDB />
+      {/* <ProfileCustom admin={adminPassword}/> */}
+    {/* <VolumesDB /> */}
       </>
     );
   };
