@@ -27,8 +27,7 @@ const useStyles = makeStyles({
 const News = () => {
   const classes = useStyles;
   const [comicUrls, setComicUrls] = useState([]);
-  useEffect(
-    () =>
+  useEffect(() => {
       API.getNews(proxyURL, url)
         .then(function(res) {
           let data = "div > article";
@@ -48,7 +47,8 @@ const News = () => {
             setComicUrls(comicUrls => [...comicUrls, item]);
           }
         })
-        .catch(err => console.log(err)),
+        .catch(err => console.log(err))
+      },
     []
   );
   return (
@@ -60,7 +60,7 @@ const News = () => {
       </Grid>
       <Grid item>
         {!comicUrls ? null : (
-          <GridList item cols={4} className={classes.group}>
+          <GridList item={"true"} cols={4} className={classes.group}>
             {comicUrls.map(item => (
               <GridListTile key={item.title}>
                 <img srcSet={item.image} alt={item.title} />
