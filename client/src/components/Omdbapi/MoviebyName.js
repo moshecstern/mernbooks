@@ -20,7 +20,10 @@ import {
     Avatar,
     ListItemText
   } from "@material-ui/core";
-
+  import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+  import Axios from "axios";
+  import Cookies from 'js-cookie';
+  const jwtDecode = require('jwt-decode');
 // import { parse } from "dotenv/types";
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -65,7 +68,10 @@ function rand() {
 
 // https://cors-anywhere.herokuapp.com/
 const MoviebyName = props => {
-
+  let accessString = localStorage.getItem('JWT')
+  if(accessString == null){
+    accessString = Cookies.get("JWT");
+  }
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
   
@@ -137,6 +143,21 @@ function findmoremovies() {
     
 }
 
+// https://www.imdb.com/title/tt2313197/
+function savevoltoprofile (myname, myimg, mylink, myyear) {
+  let thisLink = 'https://www.imdb.com/title/'+mylink+'/';
+  Axios.post("/api/favmedia", {
+    userID: jwtDecode(accessString).id,
+    title: myname,
+    img: myimg,
+    link: thisLink,
+    year: myyear,
+    catagory: "Movie"
+  },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(res => console.log(res))
+  .then(alert("Added to your profile!"))
+  .catch(err => alert(err));
+}
   if (loading) {
     return <></>;
   }
@@ -158,11 +179,20 @@ function findmoremovies() {
                 <GridListTileBar
                   title={<> 
                   <span>{item.Title}</span>
+                  <FavoriteBorderOutlinedIcon 
+                        onClick={() =>
+                                                    // (mytitle5, myimg25, myYear5, numissues5, publisher5)
+                            savevoltoprofile(item.Title, item.Poster, item.imdbID, item.Year)
+                        }
+                      />
                   </>}
                   subtitle={
                     <>
                       <span>{item.Year} </span>
-
+                      <br />
+                      <span>
+                      <a href={"https://www.imdb.com/title/"+item.imdbID+"/"} target="_blank">IMDB Link</a>
+                      </span>
                     </>
                   }
                   classes={{

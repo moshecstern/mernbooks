@@ -11,6 +11,7 @@ import Comicbookvineapiteams from "../components/Comicvineapi/teams";
 import Comicbookvineapivolumes from "../components/Comicvineapi/volumes";
 import Comicbookvineapiconcepts from "../components/Comicvineapi/concepts";
 import Omdbmovies from "../components/Omdbapi/MoviebyName"
+import CardAPI from "../components/Comicvineapi/CardAPI"
 import Cookies from 'js-cookie';
 import {
   Grid,
@@ -28,6 +29,7 @@ import Modal from "@material-ui/core/Modal";
 import VolumeDB from "../components/VolumesDB"
 import YelpAPI from "../components/YelpAPI"
 import YoutubeAPI from "../components/Youtubeapi"
+import Locations from "../components/Comicvineapi/Locations"
 // import CharactersBoard from "../components/CharactersBoard";
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -91,11 +93,11 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 <Button onClick={(e)=> setSelectedDashboard("volumes")}>Volumes</Button>
 <Button onClick={(e)=> setSelectedDashboard("teams")}>Teams</Button>
 <Button onClick={(e)=> setSelectedDashboard("storyarcs")}>Story Arcs</Button>
-<Button onClick={(e)=> setSelectedDashboard("series")}>Series</Button>
+{/* <Button onClick={(e)=> setSelectedDashboard("series")}>Series</Button> */}
 
 <Button onClick={(e)=> setSelectedDashboard("concepts")}>Concepts</Button>
+<Button onClick={(e)=> setSelectedDashboard("locations")}>Locations</Button>
 <Button onClick={(e)=> setSelectedDashboard("tvseries")}>TV Series</Button>
-{/* <Button onClick={(e)=> setSelectedDashboard("locations")}>Locations</Button> */}
 {/* <Button onClick={(e)=> setSelectedDashboard("issues")}>Issues</Button> */}
 {/* <Button onClick={(e)=> setSelectedDashboard("videos")}>Videos</Button> */}
 
@@ -104,17 +106,22 @@ const [selectedDashboard, setSelectedDashboard] = useState('volumes')
 {/* <Button onClick={(e)=> setSelectedDashboard("Yelpcomicshops")}>Local Comics & Events</Button> */}
         <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button>
         <Button onClick={(e)=> setSelectedDashboard("VolumesByDB")}>Search All Series</Button>
-        {/* <Button onClick={(e)=> setSelectedDashboard("Youtube")}>Youtube</Button> */}
 </div>
 {selectedDashboard === 'character' && <Comicbookvineapi props={props} myurl={"characters"}>{props}</Comicbookvineapi>}
 {selectedDashboard === 'volumes' && <Comicbookvineapivolumes props={props}>{props}</Comicbookvineapivolumes>}
+{/* {selectedDashboard === 'volumes' && <CardAPI props={props}
+title={"Volumes"}
+url={"userbooks"}
+>{props}</CardAPI>} */}
+
+
 {selectedDashboard === 'teams' &&   <Comicbookvineapiteams props={props}>{props}</Comicbookvineapiteams> }
 {selectedDashboard === 'tvseries' &&  <ComicbookvineapiSeries props={props}>{props}</ComicbookvineapiSeries>  }
 {selectedDashboard === 'storyarcs' &&   <ComicbookvineapiStoryArcs props={props}>{props}</ComicbookvineapiStoryArcs> }
 {selectedDashboard === 'series' &&   <DisplayallSeries props={props}>{props}</DisplayallSeries> }
 
 {selectedDashboard === 'concepts' &&  <Comicbookvineapiconcepts props={props}>{props}</Comicbookvineapiconcepts>  }
-{/* {selectedDashboard === 'locations' &&   } */}
+{selectedDashboard === 'locations' &&  <Locations props={props}>{props}></Locations> }
 {/* {selectedDashboard === 'issues' &&   } */}
 {/* {selectedDashboard === 'videos' &&   } */}
 

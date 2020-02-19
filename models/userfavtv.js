@@ -4,12 +4,13 @@ const userfavtvSchema = new Schema({
  userID: {type: String, required: true},
   title: { type: String, required: true },
   description: { type: String, required: false },
-  img: {type: String, required: true},
+  img: {type: String, required: false},
   link: {type: String, required: false},
   date: { type: Date, default: Date.now },
   episodes: Number,
-  year: Number,
-  info: String
+  year: String,
+  info: String,
+  catagory: String
 });
 const userfavtv = mongoose.model("userfavtv", userfavtvSchema);
 
