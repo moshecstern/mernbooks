@@ -20,7 +20,10 @@ import {
     Avatar,
     ListItemText
   } from "@material-ui/core";
-
+  import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+  import Axios from "axios";
+  import Cookies from 'js-cookie';
+  const jwtDecode = require('jwt-decode');
 // import { parse } from "dotenv/types";
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -65,7 +68,10 @@ function rand() {
 
 // https://cors-anywhere.herokuapp.com/
 const Superheroapi = props => {
-
+  let accessString = localStorage.getItem('JWT')
+  if(accessString == null){
+    accessString = Cookies.get("JWT");
+  }
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
   
@@ -138,8 +144,26 @@ const showMyModal = myinfo => {
 const options = () => {
 console.log("HI")
 }
-
-
+// item.name, item.image.medium_url, item.real_name, item.aliases, item.description,
+//                 item.deck, item.count_of_issue_appearances, item.api_detail_url, item.birth
+function savevoltoprofile (myname, myimg, myrealname, myaliases, mydesc, mydeck, mynumissues, mylink, mybirth) {
+  Axios.post("/api/favcharacters", {
+    userID: jwtDecode(accessString).id,
+    name: myname,
+    img: myimg,
+    realname: myrealname,
+    aliases: myaliases,
+    bio: mydeck,
+    // description: mydesc,
+    apearences: mynumissues,
+    link: mylink,
+    birth: mybirth,
+    catagory: "Characters"
+  },{headers: { Authorization: `JWT ${accessString}` }} )
+  .then(res => console.log(res))
+  .then(alert("Added to your profile!"))
+  .catch(err => alert(err));
+}
   if (loading) {
     return <></>;
   }
@@ -169,7 +193,12 @@ console.log("HI")
                   </span>
                   )}
                   <span>{item.name}</span>
-
+                  <FavoriteBorderOutlinedIcon 
+                        onClick={() =>
+                                                    // (mytitle5, myimg25, myYear5, numissues5, publisher5)
+                            savevoltoprofile(item.name, item.image.medium_url, item.real_name, item.aliases, item.description, item.deck, item.count_of_issue_appearances, item.site_detail_url, item.birth)
+                        }
+                      />
                   </>}
                   subtitle={
                     <>
@@ -181,8 +210,8 @@ console.log("HI")
                       {/* <span>Link: {item.api_detail_url}</span> */}
                       {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
                       <br />
-
-                      <span>Bio: </span>
+                     
+                      {/* <span>Bio: </span> */}
                       <br />
                       <span>{item.deck} </span>
 

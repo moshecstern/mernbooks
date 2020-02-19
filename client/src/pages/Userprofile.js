@@ -28,6 +28,7 @@ import TriviaScores from "../components/GameTrivia/UserHighScore"
 import ProfileCustom from "../components/Userprofile/Userprofilecustom"
 import Mycart from "../components/Nmarketplace/Mycart"
 import Productsbought from "../components/Nmarketplace/productsbought"
+import CardFav from "../components/Comicvineapi/CardAPI"
 // import Mycart from "../components/Nmarketplace/Mycart"
 // import Userblog from "../components/"
 // function rand() {
@@ -92,9 +93,14 @@ const [selectedDashboardB, setSelectedDashboardB] = useState('profile')
 
         {/* <Button onClick={(e)=> setSelectedDashboardB("products")}>Products</Button>
         <Button onClick={(e)=> setSelectedDashboardB("cart")}>My Cart</Button> */}
+        <Button onClick={(e)=> setSelectedDashboardB("favcharacter")}>My Characters</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("favmedia")}>My Media</Button>
         <Button onClick={(e)=> setSelectedDashboardB("scores")}>My Scores</Button>
         <Button onClick={(e)=> setSelectedDashboardB("blogs")}>My Blogs</Button>
-        <Button onClick={(e)=> setSelectedDashboardB("history")}>My PurchaseHistory</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("cart")}>My Cart</Button>
+        <Button onClick={(e)=> setSelectedDashboardB("history")}>My Purchase History</Button>
+
+
         {/* <Button onClick={(e)=> setSelectedDashboardB("favcharacters")}>Favorite Characters</Button>
         <Button onClick={(e)=> setSelectedDashboardB("tvseries")}>TV Series</Button>
         <Button onClick={(e)=> setSelectedDashboardB("storyarcs")}>Story Arcs</Button>
@@ -102,27 +108,13 @@ const [selectedDashboardB, setSelectedDashboardB] = useState('profile')
         <Button onClick={(e)=> setSelectedDashboardB("volumes")}>Volumes</Button>
         <Button onClick={(e)=> setSelectedDashboardB("concepts")}>Concepts</Button> */}
 
-
-
-
 <Grid
   container
   direction="row"
   justify="space-evenly"
   alignItems="flex-start"
 >
-{/* <Grid
-  // container
-  direction="column"
-  justify="center"
-  alignItems="flex-start"
-><ProfileCustom /></Grid> */}
-{/* <Grid
-  // container
-  direction="column"
-  justify="center"
-  alignItems="center" */}
-{/* > */}
+
 {selectedDashboardB === 'profile' && <ProfileCustom />}
 
 
@@ -131,23 +123,29 @@ const [selectedDashboardB, setSelectedDashboardB] = useState('profile')
 <div><TriviaScores /> 
 <MemHighScores /> </div>}
 {selectedDashboardB === 'blogs' && <Userblog /> }
+{selectedDashboardB === 'cart' && <Mycart /> }
 {selectedDashboardB === 'history' && <Productsbought /> }
- 
+{selectedDashboardB === 'favcharacter' && 
+<CardFav 
+head={"Favorite Characters"}
+url={"favcharacters"}
+name={"name"}
+// img={"img"}
+// catagory={"catagory"}
+
+/> }
+{selectedDashboardB === 'favmedia' && 
+<CardFav 
+head={"Favorite Media"}
+url={"favmedia"}
+title={"title"}
+// img={".img"}
+// catagory={".catagory"}
+/> }
+
 </Grid>
-{/* add blog here */}
-{/* // </Grid> */}
-{/* <Grid
-  // container
-  direction="column"
-  justify="center"
-  alignItems="flex-end"
-> */}
 
-
-{/* // </Grid> */}
-{/* // </Grid> */}
-{/* <br />
-    <SeriesAll /> */}
+    {/* <SeriesAll /> */}
     </>
   );
 };

@@ -42,7 +42,7 @@ function rand() {
   
   const useStyles = makeStyles(theme => ({
     root: {
-      flexGrow: "100%",
+      flexGrow: "80%",
       maxWidth: 360
     },
     demo: {
@@ -54,9 +54,9 @@ function rand() {
       backgroundColor: "#F2F2F2",
       textAlign: "center"
     },
-    volumes: { minWidth: "400px" },
+    volumes: { minWidth: "200px" },
     paper: {
-      position: "absolute",
+      position: "relative",
       width: "auto",
       backgroundColor: "#D9D9D9",
       border: "2px solid #000",
@@ -86,7 +86,7 @@ const Superheroapi = props => {
     const [characterinfo, setcharacterinfo] = useState();
 
   const [{ data: heroinfo, loading }, randomtext] = useAxios({
-    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/series_list/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
+    url: "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/story_arcs/?api_key=633dbefdef3f0c1fbfb7e640d1fa1895b452b02f&filter=name:"+props.props.match.params.name+"&format=json"
   });
   
   console.log("this is a test");
@@ -118,7 +118,7 @@ const showMyModal = myinfo => {
     root: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-evenly",
+      justifyContent: "center",
       overflow: "hidden",
       backgroundColor: "#F2F2F2",
       textAlign: "center"
@@ -144,21 +144,21 @@ const showMyModal = myinfo => {
 const options = () => {
 console.log("HI")
 }
-// https://www.imdb.com/title/tt2313197/
-function savevoltoprofile (myname, myimg, mydesc, mydeck, mynumepisodes, mylink, myyear) {
-  Axios.post("/api/favmedia", {
+// item.name, item.image.medium_url, item.description, item.deck, item.count_of_issue_appearances, item.api_detail_url
+function savevoltoprofile (myname, myimg, mydesc, mydeck, mynumissues, mylink) {
+  Axios.post("/api/favcharacters", {
     userID: jwtDecode(accessString).id,
-    title: myname,
+    name: myname,
     img: myimg,
     // realname: myrealname,
     // aliases: myaliases,
-    info: mydeck,
+    bio: mydeck,
     // description: mydesc,
     // nummembers: mymembers,
-    episodes: mynumepisodes,
+    apearences: mynumissues,
     link: mylink,
-    year: myyear,
-    catagory: "TV"
+    // birth: mybirth,
+    catagory: "Locations"
   },{headers: { Authorization: `JWT ${accessString}` }} )
   .then(res => console.log(res))
   .then(alert("Added to your profile!"))
@@ -176,11 +176,11 @@ function savevoltoprofile (myname, myimg, mydesc, mydeck, mynumepisodes, mylink,
           container
           justify="center"
         >
-          <Typography variant="h3">Tv Series</Typography>
-          <GridList cellHeight={600} cols={3} className={classes.gridList}>
+          <Typography variant="h3">Locations</Typography>
+          <GridList cellHeight={400} cols={2} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item}>
-                <img src={item.image.medium_url} alt={item.name} />
+                <img src={item.image.small_url} alt={item.name} />
                 <GridListTileBar
                 //   title={<Link to={"/series/" + item.name}>{item.name}</Link>}
                   title={<> 
@@ -195,23 +195,14 @@ function savevoltoprofile (myname, myimg, mydesc, mydeck, mynumepisodes, mylink,
                   <span>{item.name}</span>
                   <FavoriteBorderOutlinedIcon 
                         onClick={() =>
-                                                    // myname, myimg, mydesc, mydeck, mynumepisodes, mylink, myyear)
-                            savevoltoprofile(item.name, item.image.medium_url, item.description, item.deck, item.count_of_episodes, item.site_detail_url, item.start_year)
+                                                    // (mytitle5, myimg25, myYear5, numissues5, publisher5)
+                            savevoltoprofile(item.name, item.image.medium_url, item.description, item.deck, item.count_of_issue_appearances, item.site_detail_url)
                         }
                       />
                   </>}
                   subtitle={
                     <>
-                      <span>Episodes: </span>
-                      <br />
-                      <span>Episodes: {item.count_of_episodes}</span>
-                      <span> Start Year: {item.start_year} </span> 
-                      <br />
-                      {/* <span>Link: {item.api_detail_url}</span> */}
-                      {/* <a href={item.api_detail_url} target="_blank">Link</a> */}
-                      <br />
-
-                      <span>Info </span>
+                      <span>Number of appearences: {item.count_of_issue_appearances} </span>
                       <br />
                       <span>{item.deck} </span>
 

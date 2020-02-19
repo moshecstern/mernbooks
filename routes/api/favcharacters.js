@@ -14,4 +14,9 @@ router
   .post(jwtVerify.confirmToken, jwtVerify.verifyToken, favcharactersController.findById)
   .delete(jwtVerify.confirmToken, jwtVerify.verifyToken, favcharactersController.remove);
 
+  // router.route("/:userid/:offset")
+  // .get(jwtVerify.confirmToken, jwtVerify.verifyToken, favcharactersController.findbyuser)
+  // .post(jwtVerify.confirmToken, jwtVerify.verifyToken, favcharactersController.findById)
+  // .delete(jwtVerify.confirmToken, jwtVerify.verifyToken, favcharactersController.remove);
+
 module.exports = router;
