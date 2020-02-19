@@ -177,15 +177,15 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
 //   .catch(err => alert(err));
 
 // }
-// function deleteblog(id){
-//   console.log(id)
-//   Axios.delete("/api/bookblog/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
-//   .then(res => randomtext())
-// .catch(err => console.log(err))
-// };
-//   if (loading) {
-//     return <></>;
-//   }
+function deletebook(id){
+  console.log(id)
+  Axios.delete("/api/products/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
+  .then(res => randomtext())
+.catch(err => console.log(err))
+};
+  if (loading) {
+    return <></>;
+  }
   return (
     <>
       
@@ -275,6 +275,9 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
         >
           <ExpandMoreIcon />
         </IconButton>
+        {!props.admin ? null : (
+        <Button onClick={() => deletebook(book._id)}>Remove</Button>
+        )}
         <Button onClick={()=> addToCart(book.Title,book.description, book.img, book.link, book.author, book.published, book.numIssues, book.price ,book.message)}>Add to cart</Button>
         {/* <Button onClick={() =>savelike(book._id, book.liked, book.bookID)}> Like {book.liked}</Button> */}
       {/* <Button onClick={() =>showbookumeinformation(book.Title)}> Get bookumes Information</Button> */}
