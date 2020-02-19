@@ -199,7 +199,7 @@ async function getTotalPrice(event) {
   console.log(total)
         }
 // const thisLocation = 'http://localhost:3000';
-const thisLocation = 'https://shrouded-taiga-88482.herokuapp.com/';
+const thisLocation = 'https://shrouded-taiga-88482.herokuapp.com';
 
 
         const openStripe = async event => {
