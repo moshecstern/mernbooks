@@ -26,6 +26,7 @@ import {
   import Collapse from '@material-ui/core/Collapse';
   import IconButton from '@material-ui/core/IconButton';
   import { red, lightGreen } from '@material-ui/core/colors';
+  import FlowCard from "./Flow"
   const jwtDecode = require('jwt-decode');
 const useStyles = makeStyles(theme => ({
   root: {
@@ -189,8 +190,20 @@ async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numis
     <>
       
     <div>
-    <h1>Our Store is not ready yet, but feel free to browse! All books shown will be available</h1>
+    {/* <h1>Our Store is not ready yet, but feel free to browse! All books shown will be available</h1> */}
+    {/* <Grid
+  container
+  direction="row"
+  justify="center"
+  alignItems="center"
+>
+       
+        <FlowCard title={"Step 1"} body={"Click to go to cart"}/>
+        <FlowCard title={"Step 2"} body={"Pay through Stripe"}/>
+        <FlowCard title={"Step 3"} body={"Come back soon!"}/>
+</Grid> */}
 
+<h1>We are still working on payments, but feel free to add to your cart as they will become available.</h1>
 <h2>Books</h2>
 {/* <Button onClick={openblogform}>edit book</Button> */}
 {!books ? null : (

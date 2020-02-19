@@ -19,6 +19,7 @@ const productsbought = require("./productsbought")
 const wishlist = require("./wishlist")
 const mycart = require("./mycart")
 const favcharacters = require("./favcharacters")
+// const payment = require("./payment")
 // api routes
 router.use("/characters", characterRoutes);
 router.use("/series", seriesRoutes);
@@ -38,5 +39,5 @@ router.use("/productsbought", productsbought);
 router.use("/wishlist", wishlist);
 router.use("/mycart", mycart);
 router.use("/favcharacters", favcharacters);
-
+// router.use("/payment", payment);
 module.exports = router;

@@ -13,7 +13,8 @@ import {
     Button,
     ListItemAvatar,
     Avatar,
-    ListItemText
+    ListItemText,
+    Link
   } from "@material-ui/core";
   import Backdrop from '@material-ui/core/Backdrop';
   import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -26,13 +27,25 @@ import {
   import Collapse from '@material-ui/core/Collapse';
   import IconButton from '@material-ui/core/IconButton';
   import { red, lightGreen } from '@material-ui/core/colors';
-  // import StripeCheckout from 'react-stripe-checkout';
-  // import Checkout from "../Marketplace/checkout"
-  // import {StripeProvider} from 'react-stripe-elements';
-  // import { Elements, StripeProvider } from "react-stripe-elements";
-  // import Checkout from "./Checkout"
-  const jwtDecode = require('jwt-decode');
-const useStyles = makeStyles(theme => ({
+  // import StripeScriptLoader from 'react-stripe-script-loader'
+import {
+  StripeProvider,
+  Elements,
+  CardNumberElement,
+} from 'react-stripe-elements'
+import scriptLoader from 'react-async-script-loader';
+import axios from 'axios';
+import { Redirect } from "react-router";
+import FlowCard from "./Flow"
+const jwtDecode = require('jwt-decode');
+let accessString = localStorage.getItem('JWT')
+if(accessString == null){
+  accessString = Cookies.get("JWT");
+}
+  const CURRENCY = 'usd';
+
+  const toCent = amount => amount * 100;
+  const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -93,7 +106,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Mycart = props =>{
+const Mycart = ({ isScriptLoaded, isScriptLoadSucceed }) =>{
+  const [stripe, setStripe] = useState(null);
+  useEffect(() => {
+    if (isScriptLoaded && isScriptLoadSucceed) {
+      setStripe(window.Stripe('pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU'));
+    }
+  }, [isScriptLoaded, isScriptLoadSucceed]);
+
+  const [amount, setAmount] = useState(0);
+
+
+
+
     let accessString = localStorage.getItem('JWT')
     if(accessString == null){
       accessString = Cookies.get("JWT");
@@ -184,6 +209,7 @@ const openmodal = () =>{
 function deleteItemFromCart(id){
   console.log(id)
   Axios.delete("/api/mycart/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
+ .then(getTotalPrice())
   .then(res => randomtext())
 .catch(err => console.log(err))
 };
@@ -226,31 +252,76 @@ books.map(delBook => (
 useEffect(() => {
   randomtext()
   }, []);
-// if(!loading){
-//     getTotalPrice()
-// }
-        
-    
 
-function getTotalPrice() {
-        books.map(bookprice => (
-            setTotal(total+bookprice.price)
-            ))
+async function getTotalPrice(event) {
+  event.preventDefault()
+  let fullprice = 0;
+ books.map(book => (
+   fullprice = book.price + fullprice
+   ))
+   setTotal(fullprice)
+  console.log(total)
         }
+
+        const openStripe = async event => {
+          event.preventDefault();
+          const useremail= alert("Please provide an email for reciept")
+          const session = await axios.post(
+            'http://localhost:3000/payment/session-initiate',
+            {
+              customerEmail: useremail,
+              clientReferenceId:
+                'Check your profile => Bought Products',
+              lineItem: {
+                name: jwtDecode(accessString).username,
+                description: books[0].message,
+                images: [books[0].img],
+                amount: toCent(total),
+                currency: CURRENCY,
+                quantity: 1,
+              },
+              successUrl: 'http://localhost:3000/cart/success',
+              cancelUrl: 'http://localhost:3000/cart/fail',
+            }
+          );
+      
+          const result = await stripe.redirectToCheckout({
+            sessionId: session.data.id,
+          });
+      
+          console.log(result.error.message);
+        };
+      
+        if (!stripe) {
+          return null;
+        }
+
   return (
     <>
-      
-    <div>
-    <h1>Our Store is not ready yet, but feel free to browse! All books shown will be available</h1>
 <h2>My Cart</h2>
+          <Grid
+  container
+  direction="row"
+  justify="space-evenly"
+  alignItems="center"
+>
+       
+        <FlowCard title={"Total: "+total} button={"Calculate"} img={"https://www.picpng.com/uploads/small/Number__PNG_35305.Png"} click={getTotalPrice} body={"Calculate total"}/>
+        
+        <FlowCard title={"Pay"} click={openStripe} button={"Pay"} body={"Pay through Stripe"} img={"https://www.picpng.com/uploads/small/Number__PNG_35353.Png"}/>
+        
+       <FlowCard title={"Search"} click={getTotalPrice} button={"Search"} body={"Come back soon!"} img={"https://www.picpng.com/uploads/Number__PNG_35388.Png"}/>
+</Grid>
+    {/* <div> */}
+    {/* <h1>Our Store is not ready yet, but feel free to browse! All books shown will be available</h1> */}
 {/* <Checkout amount={total}/> */}
 {/* <Button onClick={openblogform}>edit book</Button> */}
 {!books ? null : (
   <div> 
   {/* {function(){getTotalPrice()}} */}
-  <Button onClick={getTotalPrice}>calculate Total</Button>
-  <h2>Total: {total}</h2>
-  <Button onClick={openmodal}>Buy({total})</Button>
+  {/* <Button onClick={getTotalPrice}>calculate Total</Button> */}
+  {/* <h2>Total: {total}</h2> */}
+  {/* <Button onClick={openStripe}>Buy({total})</Button> */}
 <Grid
   container
   direction="row"
@@ -349,7 +420,7 @@ function getTotalPrice() {
     ))}
     </Grid>
     {/* <Button onClick={buyCart}>Buy ({total})</Button> */}
-    <Button onClick={openmodal}>Buy ({total})</Button>
+    {/* <Button onClick={openmodal}>Buy ({total})</Button> */}
 </div>
 
     )}
@@ -357,6 +428,18 @@ function getTotalPrice() {
       <div><h2>There is nothing in your cart.. yet!</h2> </div>
       
     )}
+
+    {/* <StripeScriptLoader
+  uniqueId=""
+  script='https://js.stripe.com/v3/'
+  loader="Loading..."
+>
+  <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
+        <Elements>
+          <CardNumberElement />
+        </Elements>
+      </StripeProvider>
+    </StripeScriptLoader> */}
     {/* <StripeProvider apiKey="pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU">
       <Checkout />
     </StripeProvider> */}
@@ -402,9 +485,9 @@ function getTotalPrice() {
 </Grid>
     </Fade>
         </Modal> */}
-    </div>
+    {/* </div> */}
 
       </>
   );
 }
-export default Mycart;
+export default scriptLoader('https://js.stripe.com/v3/')(Mycart);
