@@ -24,6 +24,7 @@ module.exports = function(app) {
   app.use(proxy("/api/wishlist", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/mycart", { target: process.env.PORT||"http://localhost:3001/" }));
   app.use(proxy("/api/favcharacters", { target: process.env.PORT||"http://localhost:3001/" }));
+  app.use(proxy("/api/payment", { target: process.env.PORT||"http://localhost:3001/" }));
 
   // app.use(proxy("/api/userfavtv", { target: process.env.PORT||"http://localhost:3001/" }));
   // app.use(proxy("/api/userfavmovies", { target: process.env.PORT||"http://localhost:3001/" }));

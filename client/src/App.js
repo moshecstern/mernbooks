@@ -22,7 +22,8 @@ import Blog from "./pages/Blog";
 import More from "./pages/More"
 import Marketplace from "./pages/Marketplace"
 import Admin from "./pages/Admin"
-
+import Cartpage from "./pages/Cart"
+import PaySucceed from "./pages/PaySucceed"
 const useStyles = makeStyles(theme => ({
   bg: { backgroundImage: `url(${ComicbookpagesModified})` },
   container: { backgroundColor: "#f6ef98" }
@@ -53,6 +54,8 @@ function App() {
             <Route exact path="/more" component={More} />
             <Route exact path="/marketplace" component={Marketplace} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/cart/fail" component={Cartpage} />
+            <Route exact path="/cart/success" component={PaySucceed} />
 
             <Route
               exact

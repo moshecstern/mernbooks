@@ -9,30 +9,13 @@ const User = require("./models/user")
 const jwt = require("jsonwebtoken")
 const jwtSecret = require('./config/jwtConfig')
 const passport = require("passport")
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Stripe = require("stripe")
 
-// (async () => {
-//   const paymentIntent = await stripe.paymentIntents.create({
-//     amount: 1099,
-//     currency: 'usd',
-//   });
-// })();
 require('./config/passport');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(
-//   express.json({
-//     // We need the raw body to verify webhook signatures.
-//     // Let's compute it only when hitting the Stripe webhook endpoint.
-//     verify: function(req, res, buf) {
-//       if (req.originalUrl.startsWith("/webhook")) {
-//         req.rawBody = buf.toString();
-//       }
-//     }
-//   })
-// );
 
 app.use('*', function(req, res, next) {
   //replace localhost:8080 to the ip address:port of your server
@@ -50,87 +33,75 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// // stripe start
-// app.get("/public-key", (req, res) => {
-//   res.send({ publicKey: process.env.STRIPE_PUBLISHABLE_KEY });
-// });
+// Add routes, both API and view   STRIPE
+app.get('/', (req, res) => {
+  res.send({
+    message: 'Ping from Checkout Server',
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV,
+  });
+})
+app.post('/payment/session-initiate', async (req, res) => {
+  const {
+    clientReferenceId,
+    customerEmail,
+    lineItem,
+    successUrl,
+    cancelUrl,
+  } = req.body;
 
-// app.get("/product-details", (req, res) => {
-//   const data = getProductDetails();
-//   res.send(data);
-// });
+  const stripe = Stripe('sk_test_xNW92P513GLaZ66DZDbkqYKJ004ahKjPlw');
 
-// app.post("/create-payment-intent", async (req, res) => {
-//   const body = req.body;
-//   const productDetails = getProductDetails();
+  let session;
 
-//   const options = {
-//     ...body,
-//     amount: productDetails.amount,
-//     currency: productDetails.currency
-//   };
+  try {
+    session = await stripe.checkout.sessions.create({
+      client_reference_id: clientReferenceId,
+      customer_email: customerEmail,
+      payment_method_types: ['card'],
+      line_items: [lineItem],
+      payment_intent_data: {
+        description: `${lineItem.name} ${lineItem.description}`,
+      },
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+    });
+  } catch (error) {
+    res.status(500).send({ error });
+  }
 
-//   try {
-//     const paymentIntent = await stripe.paymentIntents.create(options);
-//     res.json(paymentIntent);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
+  return res.status(200).send(session);
+});
+app.post('/payment/session-complete', async (req, res) => {
+  const stripe = Stripe('sk_test_xNW92P513GLaZ66DZDbkqYKJ004ahKjPlw');
 
-// const getProductDetails = () => {
-//   return { currency: "EUR", amount: 9900 };
-// };
+  let event;
 
-// // Webhook handler for asynchronous events.
-// app.post("/webhook", async (req, res) => {
-//   let data;
-//   let eventType;
-//   // Check if webhook signing is configured.
-//   if (process.env.STRIPE_WEBHOOK_SECRET) {
-//     // Retrieve the event by verifying the signature using the raw body and secret.
-//     let event;
-//     let signature = req.headers["stripe-signature"];
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.rawBody,
+      req.headers['stripe-signature'],
+      'pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU'
+    );
+  } catch (error) {
+    return res.status(400).send(`Webhook Error: ${error.message}`);
+  }
 
-//     try {
-//       event = stripe.webhooks.constructEvent(
-//         req.rawBody,
-//         signature,
-//         process.env.STRIPE_WEBHOOK_SECRET
-//       );
-//     } catch (err) {
-//       console.log(`⚠️ Webhook signature verification failed.`);
-//       return res.sendStatus(400);
-//     }
-//     // Extract the object from the event.
-//     data = event.data;
-//     eventType = event.type;
-//   } else {
-//     // Webhook signing is recommended, but if the secret is not configured in `config.js`,
-//     // retrieve the event data directly from the request body.
-//     data = req.body.data;
-//     eventType = req.body.type;
-//   }
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
 
-//   if (eventType === "payment_intent.succeeded") {
-//     // Fulfill any orders, e-mail receipts, etc
-//     console.log("💰 Payment received!");
-//   }
+    try {
+      // complete your customer's order
+      // e.g. save the purchased product into your database
+      // take the clientReferenceId to map your customer to a product
+    } catch (error) {
+      return res.status(404).send({ error, session });
+    }
+  }
 
-//   if (eventType === "payment_intent.payment_failed") {
-//     // Notify the customer that their order was not fulfilled
-//     console.log("❌ Payment failed.");
-//   }
-
-//   res.sendStatus(200);
-// });
-// // stripe end
-
-
-
-
-// Add routes, both API and view
-
+  return res.status(200).send({ received: true });
+});
+// USER AUTH
 app.post('/registerUser', (req, res, next) => {
   passport.authenticate('register', (err, user, info) => {
     if (err) {
@@ -200,79 +171,13 @@ app.get(
   }
 );
 
-
-
-
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-// app.use(express.json({ extended: false }));
-
-
-// app.use('/api/users', require('./routes/users'));
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/contacts', require('./routes/contacts'));
-
-
-// // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
-// app.use(cors());
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/comicbookdb", { useNewUrlParser: true });
 app.use(routes);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/comicbookdb", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true
 });
-// Send every other request to the React app
-// Define any API routes before this runs
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
-// Serve static assets in production
-// if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-//   app.use(express.static('client/build'));
-//   app.get('*', (req, res) =>
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-//   );
-// }
-
-
-
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
-// const express = require('express');
-// const connectDB = require('./config/db');
-// const path = require('path');
-
-// const app = express();
-
-// // Connect Database
-// connectDB();
-
-// // Init Middleware
-// app.use(express.json({ extended: false }));
-
-// // Define Routes
-// app.use('/api/users', require('./routes/users'));
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/contacts', require('./routes/contacts'));
-
-// // Serve static assets in production
-// if (process.env.NODE_ENV === 'production') {
-//   // Set static folder
-//   app.use(express.static('client/build'));
-
-//   app.get('*', (req, res) =>
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-//   );
-// }
-
-// const PORT = process.env.PORT || 5000;
-
-// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
