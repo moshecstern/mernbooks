@@ -12,10 +12,15 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 500,
     minWidth: 220,
+    backgroundColor: 'red',
+    // color: 'red',
   },
   media: {
     height: 240,
   },
+  color: {
+      backgroundColor: 'white',
+  }
 });
 
 const FlowCard = props => {
@@ -25,11 +30,11 @@ const FlowCard = props => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
+        {/* <CardMedia
           className={classes.media}
-          image={props.img}
+        //   image={props.img}
           title={props.title}
-        />
+        /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
@@ -39,7 +44,7 @@ const FlowCard = props => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.color}>
         <Button onClick={props.click} size="large" color="primary">
           {props.button}
         </Button>

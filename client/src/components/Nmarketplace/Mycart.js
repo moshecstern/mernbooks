@@ -114,11 +114,6 @@ const Mycart = ({ isScriptLoaded, isScriptLoadSucceed }) =>{
     }
   }, [isScriptLoaded, isScriptLoadSucceed]);
 
-  const [amount, setAmount] = useState(0);
-
-
-
-
     let accessString = localStorage.getItem('JWT')
     if(accessString == null){
       accessString = Cookies.get("JWT");
@@ -147,65 +142,6 @@ const openmodal = () =>{
   // setblogedit(true)
   handleOpen()
 }
-// const [mytitle, setmytitle] = useState("");
-// const [mymessage, setmymessage] = useState("");
-// const [myimg, setmyimg] = useState("https://cdn.pixabay.com/photo/2017/04/09/16/40/batman-2216148_1280.jpg");
-// const [mylink, setmylink] = useState("");
-// const [mymessagetwo, setmymessagetwo] = useState("");
-// const [mylinkdescription, setmylinkdescription] = useState("blog link");
-// const [myauthor, setmyauthor] = useState("");
-
-// async function addToCart (titleM, descM, imgM, linkM, authorM, publishedM, numissuesM, priceM, messageM) {
-//  const message2I = prompt("Ask a question/ or comment & we will get back to you")
-//   Axios.post("/api/mycart", {
-//     userID: jwtDecode(accessString).id,
-//     Title: titleM,
-//     img: imgM,
-//     link: linkM,
-//     author: authorM,
-//     description: descM,
-//     published: publishedM,
-//     numIssues: numissuesM,
-//     price: priceM,
-//     message: messageM,
-//     payed: false,
-//     message2: message2I
-//   },{headers: { Authorization: `JWT ${accessString}` }})
-//   .then(res => console.log(res))
-//   .then(alert("Saved to Cart"))
-//   .catch(err => alert(err));
-// }
-// function savelike(id, liked, bookid){
-//   console.log(jwtDecode(accessString).bookname)
-//   if(bookid !== jwtDecode(accessString).id){
-   
-//     Axios.put("/api/bookblog/"+id, {
-//     liked: liked + 1  
-//     },{headers: { Authorization: `JWT ${accessString}` }} )
-//     .then(res => randomtext())
-//     .catch(err => console.log(err));
-//   }
-// }
-// function savebooks(){
-//     // console.log(jwtDecode(accessString))
-// //    getbook()
-//     // run function to retrieve book name
-//   Axios.post("/api/bookblog", {
-//     bookID: jwtDecode(accessString).id,
-//     author: jwtDecode(accessString).bookname,
-//     title: mytitle,
-//     img: myimg,
-//     message: mymessage,
-//     messagetwo: mymessagetwo,
-//     link: mylink,
-//     linkdescription: mylinkdescription
-//   },{headers: { Authorization: `JWT ${accessString}` }} )
-//   .then(alert("Saved Blog!"))
-//   .then(res => randomtext())
-//   // .catch(err => console.log(err));
-//   .catch(err => alert(err));
-
-// }
 function deleteItemFromCart(id){
   console.log(id)
   Axios.delete("/api/mycart/"+ id, {headers: { Authorization: `JWT ${accessString}` }})
@@ -262,12 +198,15 @@ async function getTotalPrice(event) {
    setTotal(fullprice)
   console.log(total)
         }
+// const thisLocation = 'http://localhost:3000';
+const thisLocation = 'https://shrouded-taiga-88482.herokuapp.com/';
+
 
         const openStripe = async event => {
           event.preventDefault();
           const useremail= alert("Please provide an email for reciept")
           const session = await axios.post(
-            'http://localhost:3000/payment/session-initiate',
+            thisLocation+'/payment/session-initiate',
             {
               customerEmail: useremail,
               clientReferenceId:
@@ -280,8 +219,8 @@ async function getTotalPrice(event) {
                 currency: CURRENCY,
                 quantity: 1,
               },
-              successUrl: 'http://localhost:3000/cart/success',
-              cancelUrl: 'http://localhost:3000/cart/fail',
+              successUrl: thisLocation+'/cart/success',
+              cancelUrl: thisLocation+'/cart/fail',
             }
           );
       

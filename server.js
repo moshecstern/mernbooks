@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken")
 const jwtSecret = require('./config/jwtConfig')
 const passport = require("passport")
 const Stripe = require("stripe")
-
+const dotenv = require('dotenv');
 require('./config/passport');
 
 // Define middleware here
@@ -32,7 +32,6 @@ app.use('*', function(req, res, next) {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
 // Add routes, both API and view   STRIPE
 app.get('/', (req, res) => {
   res.send({
@@ -50,7 +49,8 @@ app.post('/payment/session-initiate', async (req, res) => {
     cancelUrl,
   } = req.body;
 
-  const stripe = Stripe('sk_test_xNW92P513GLaZ66DZDbkqYKJ004ahKjPlw');
+  // const stripe = Stripe('sk_test_xNW92P513GLaZ66DZDbkqYKJ004ahKjPlw');
+  const stripe = Stripe(process.env.STRIPE_SECRET_KEY||'sk_test_xNW92P513GLaZ66DZDbkqYKJ004ahKjPlw');
 
   let session;
 
@@ -73,7 +73,7 @@ app.post('/payment/session-initiate', async (req, res) => {
   return res.status(200).send(session);
 });
 app.post('/payment/session-complete', async (req, res) => {
-  const stripe = Stripe('sk_test_xNW92P513GLaZ66DZDbkqYKJ004ahKjPlw');
+  const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
   let event;
 
@@ -81,7 +81,7 @@ app.post('/payment/session-complete', async (req, res) => {
     event = stripe.webhooks.constructEvent(
       req.rawBody,
       req.headers['stripe-signature'],
-      'pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU'
+      process.env.STRIPE_PUBLISHABLE_KEY||'pk_test_XxtjpEXLFbdljxFdiXtqbyte00eGPoT2JU'
     );
   } catch (error) {
     return res.status(400).send(`Webhook Error: ${error.message}`);
