@@ -10,11 +10,15 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-
 const Footer = () => {
   const classes = useStyles();
   return (
-    <Grid container justify="space-between" alignItems="baseline" className={classes.title}> 
+    <Grid
+      container
+      justify="space-between"
+      alignItems="baseline"
+      className={classes.title}
+    >
       <Grid item>
         <Link href="https://github.com/moshecstern/mernbooks">
           View Repository
@@ -22,7 +26,16 @@ const Footer = () => {
       </Grid>
       <Grid item>
         <Typography variant="subtitle2">
-          Copyright 2020 Moshe Stern <a href="https://moshecstern.github.io/portfolio/" id="portfolio-link"><span className="icon solid fa-th">Portfolio</span></a>
+          Copyright 2020 Moshe Stern,
+          <a href="https://github.com/MagicalPowers">
+            <span>Zachary Powers</span>
+          </a>
+          <a
+            href="https://moshecstern.github.io/portfolio/"
+            id="portfolio-link"
+          >
+            <span className="icon solid fa-th">Portfolio</span>
+          </a>
         </Typography>
       </Grid>
     </Grid>
