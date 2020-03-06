@@ -44,7 +44,7 @@ function rand() {
   
   const useStyles = makeStyles(theme => ({
     root: {
-      flexGrow: "100%",
+      flexGrow: "1",
       maxWidth: 360,
       width: '100%',
       '& > * + *': {
@@ -57,17 +57,18 @@ function rand() {
     title: {
       // margin: theme.spacing(4, 0, 2),
       // height: theme.spacing(5),
+      overflow: "visable",
       backgroundColor: "#F2F2F2",
       textAlign: "center"
     },
     volumes: { minWidth: "400px" },
     paper: {
-      position: "absolute",
+      // position: "absolute",
       width: "auto",
       backgroundColor: "#D9D9D9",
       border: "2px solid #000",
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3)
+      padding: theme.spacing(2)
     }
   }));
 
@@ -120,15 +121,16 @@ const showMyModal = myinfo => {
   const useStyles2 = makeStyles(theme => ({
     root: {
       display: "flex",
-      flexWrap: "wrap",
+      flexWrap: "auto",
       justifyContent: "space-evenly",
-      overflow: "hidden",
+      // overflow: "hidden",
       backgroundColor: "#F2F2F2",
       textAlign: "center"
     },
     gridList: {
-      width: "auto",
-      height: "auto"
+      width: "min-content",
+      height: "min-content",
+      
     },
     icon: {
       color: "rgba(255, 255, 255, 0.54)"
@@ -197,7 +199,7 @@ function findmorevolumes(e) {
         >
           <Typography variant="h3">Volumes</Typography>
           <Button onClick={findmorevolumes}>Find More</Button>
-          <GridList cellHeight={600} cols={3} className={classes.gridList}>
+          <GridList cellHeight={600} spacing={24} className={classes.gridList}>
             {heroinfo.results.map(item => (
               <GridListTile key={item.id}>
                 <img src={item.image.medium_url} alt={item.name} />
