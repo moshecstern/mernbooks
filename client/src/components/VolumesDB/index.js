@@ -88,6 +88,7 @@ const VolumeDB = props => {
     const [offsetname, setOffsetname] = useState(0)
     const [searchByTerm, setSearchByTerm] = useState("something")
     const [title, setTitle] = useState()
+    
     const [{ data: series, loading }, randomtext] = useAxios({
       url: "/api/comicvinevolumes/"+searchURL+"/"+ searchByTerm+"/"+offsetname,
         headers: { Authorization: `JWT ${accessString}` }
