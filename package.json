@@ -25,7 +25,7 @@
     "@material-ui/lab": "^4.0.0-alpha.52",
     "@material-ui/styles": "^4.9.13",
     "article-parser": "^4.2.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "axios-hooks": "^1.10.0",
     "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
